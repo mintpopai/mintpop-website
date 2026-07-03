@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRoute } from 'vue-router'
 
 import BrandLogo from '@/components/BrandLogo.vue'
-import { useLocale } from '@/composables/useLocale'
+import { Locale, localizePath, pathLocale } from '@/config/locale'
 
 // 占位页：设计稿未提供 Legal/Login/Register 的样式，先用统一占位承接路由；
 // 404 页也复用此版式（tag 换成 404，subtext 承载双语补充行）
@@ -16,16 +16,26 @@ const props = defineProps<{
 }>()
 
 const { t } = useI18n()
-const { lp } = useLocale()
+const route = useRoute()
 
 // tag 缺省时使用当前语言的「SOON」词条
 const tagText = computed(() => props.tag ?? t('placeholder.soonTag'))
+
+// 首页链接的语言：catch-all 404 路由无 meta.locale，而 nginx 对 /zh/* 未知路径
+// 返回的也是英文预渲染 404 页——水合期先按 meta（缺省英文）渲染保持两端一致，
+// 挂载后再按 URL 前缀修正，让中文语境的错误路径能回到 /zh
+//（与主题的水合规避同一模式，避免 hydration mismatch）
+const homeLocale = ref<Locale>(route.meta.locale ?? Locale.EN)
+onMounted(() => {
+  homeLocale.value = route.meta.locale ?? pathLocale(route.path)
+})
+const homePath = computed(() => localizePath('/', homeLocale.value))
 </script>
 
 <template>
   <section class="placeholder">
     <div class="inner">
-      <RouterLink :to="lp('/')" class="logo-link">
+      <RouterLink :to="homePath" class="logo-link">
         <BrandLogo :size="26" />
       </RouterLink>
 
@@ -40,7 +50,7 @@ const tagText = computed(() => props.tag ?? t('placeholder.soonTag'))
         {{ subtext }}
       </p>
 
-      <RouterLink :to="lp('/')" class="back">
+      <RouterLink :to="homePath" class="back">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
           <path
             d="M19 12H5M11 6l-6 6 6 6"
