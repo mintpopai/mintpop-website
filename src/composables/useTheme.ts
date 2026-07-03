@@ -1,4 +1,4 @@
-import { readonly, ref } from 'vue'
+import { computed, readonly, ref } from 'vue'
 
 /**
  * 主题枚举：成员名与持久化字符串取值统一用 SCREAMING_SNAKE_CASE。
@@ -10,7 +10,8 @@ export const Theme = {
 
 export type Theme = (typeof Theme)[keyof typeof Theme]
 
-const STORAGE_KEY_THEME = 'mint-theme'
+// 导出供守护测试核对：index.html 的防闪烁内联脚本必须使用同一键名与枚举取值
+export const STORAGE_KEY_THEME = 'mint-theme'
 const DEFAULT_ACCENT = '#17D1A7'
 
 // 模块级单例状态：整个应用共享同一份主题，避免多组件各持一份导致不同步
@@ -18,6 +19,9 @@ const DEFAULT_ACCENT = '#17D1A7'
 // 真实主题在客户端 onMounted 后通过 syncTheme() 同步。
 const theme = ref<Theme>(Theme.LIGHT)
 const accent = ref<string>(DEFAULT_ACCENT)
+
+/** 当前是否深色，模板里常用（computed 缓存，随 theme 响应更新） */
+const isDark = computed(() => theme.value === Theme.DARK)
 
 /** 读取初始主题:SSR 阶段无浏览器全局,回退浅色;客户端按 localStorage→系统偏好→浅色 */
 function resolveInitialTheme(): Theme {
@@ -73,8 +77,7 @@ export function useTheme() {
   return {
     theme: readonly(theme),
     accent: readonly(accent),
-    /** 当前是否深色，模板里常用 */
-    isDark: () => theme.value === Theme.DARK,
+    isDark,
     toggleTheme,
     setAccent,
     syncTheme,

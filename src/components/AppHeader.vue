@@ -10,15 +10,32 @@ const { isDark, toggleTheme } = useTheme()
 
 <template>
   <header class="header">
-    <a href="#top" class="logo-link">
+    <a
+      href="#top"
+      class="logo-link"
+    >
       <BrandLogo :size="24" />
     </a>
 
     <nav class="nav">
-      <a href="#capabilities" class="nav-link">Capabilities</a>
-      <a href="#modalities" class="nav-link">Modalities</a>
-      <RouterLink to="/legal" class="nav-link">Legal</RouterLink>
-      <RouterLink to="/legal#contact" class="nav-link nav-link--accent">
+      <a
+        href="#capabilities"
+        class="nav-link"
+      >Capabilities</a>
+      <a
+        href="#modalities"
+        class="nav-link"
+      >Modalities</a>
+      <RouterLink
+        to="/legal"
+        class="nav-link"
+      >
+        Legal
+      </RouterLink>
+      <RouterLink
+        to="/legal#contact"
+        class="nav-link nav-link--accent"
+      >
         Contact
       </RouterLink>
     </nav>
@@ -31,7 +48,7 @@ const { isDark, toggleTheme } = useTheme()
         title="Toggle theme"
         @click="toggleTheme"
       >
-        <span class="theme-icon">{{ isDark() ? '☀' : '☾' }}</span>
+        <span class="theme-icon">{{ isDark ? '☀' : '☾' }}</span>
       </button>
       <a
         :href="CONSOLE_URL"

@@ -18,11 +18,11 @@ const props = withDefaults(
 const { isDark } = useTheme()
 
 // 深色界面取浅色（白字）词标，浅色界面取深色（黑字）词标
-const wordmark = computed(() => (isDark() ? wordmarkLight : wordmarkDark))
+const wordmark = computed(() => (isDark.value ? wordmarkLight : wordmarkDark))
 
 // 词标图含上下“pop”爆点装饰，字身高度约为整图的 7 成；
 // 放大 1.3 倍让字身高度与原文字 logo 的字号大致相当。
-const height = props.size * 1.3
+const height = computed(() => props.size * 1.3)
 </script>
 
 <template>
@@ -31,7 +31,7 @@ const height = props.size * 1.3
     :src="wordmark"
     alt="MintPop"
     :style="{ height: `${height}px` }"
-  />
+  >
 </template>
 
 <style scoped>
