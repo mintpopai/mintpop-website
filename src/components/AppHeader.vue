@@ -1,11 +1,15 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import { RouterLink } from 'vue-router'
 
 import BrandLogo from '@/components/BrandLogo.vue'
+import { rememberLocale, useLocale } from '@/composables/useLocale'
 import { useTheme } from '@/composables/useTheme'
 import { CONSOLE_URL } from '@/config/site'
 
 const { isDark, toggleTheme } = useTheme()
+const { t } = useI18n()
+const { lp, otherLocale, otherLabel, switchTarget } = useLocale()
 </script>
 
 <template>
@@ -15,24 +19,36 @@ const { isDark, toggleTheme } = useTheme()
     </a>
 
     <nav class="nav">
-      <a href="#capabilities" class="nav-link">Capabilities</a>
-      <a href="#modalities" class="nav-link">Modalities</a>
-      <RouterLink to="/legal" class="nav-link"> Legal </RouterLink>
-      <RouterLink to="/legal#contact" class="nav-link nav-link--accent"> Contact </RouterLink>
+      <a href="#capabilities" class="nav-link">{{ t('nav.capabilities') }}</a>
+      <a href="#modalities" class="nav-link">{{ t('nav.modalities') }}</a>
+      <RouterLink :to="lp('/legal')" class="nav-link">{{ t('nav.legal') }}</RouterLink>
+      <RouterLink :to="`${lp('/legal')}#contact`" class="nav-link nav-link--accent">
+        {{ t('nav.contact') }}
+      </RouterLink>
     </nav>
 
     <div class="actions">
-      <span class="lang">EN</span>
+      <!-- 链接式切换器：指向当前页在另一语言的对等路径，爬虫可循此发现中文页；点击记住偏好 -->
+      <RouterLink
+        :to="switchTarget"
+        class="lang"
+        :aria-label="t('nav.switchLocale')"
+        @click="rememberLocale(otherLocale)"
+      >
+        {{ otherLabel }}
+      </RouterLink>
       <button
         type="button"
         class="theme-toggle"
-        :aria-label="isDark ? 'Switch to light theme' : 'Switch to dark theme'"
+        :aria-label="isDark ? t('nav.switchToLight') : t('nav.switchToDark')"
         :aria-pressed="isDark"
         @click="toggleTheme"
       >
         <span class="theme-icon" aria-hidden="true">{{ isDark ? '☀' : '☾' }}</span>
       </button>
-      <a :href="CONSOLE_URL" target="_blank" rel="noopener" class="login-btn"> Login </a>
+      <a :href="CONSOLE_URL" target="_blank" rel="noopener" class="login-btn">
+        {{ t('nav.login') }}
+      </a>
     </div>
   </header>
 </template>
@@ -103,6 +119,10 @@ const { isDark, toggleTheme } = useTheme()
     500 13px 'Space Grotesk',
     sans-serif;
   color: var(--text2);
+}
+
+.lang:hover {
+  color: var(--accent);
 }
 
 .theme-toggle {
