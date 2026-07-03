@@ -1,4 +1,5 @@
 import { useHead } from '@unhead/vue'
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 import { Locale, localizePath } from '@/config/locale'
@@ -99,8 +100,12 @@ export function buildSeoHead(key: SeoRouteKey, locale: Locale): SeoHead {
 /**
  * 按路由 key 声明该页 head。语言从当前路由 meta.locale 读取(URL 唯一决定语言),
  * 各 View 调用方式不变:useSeo('HOME')。
+ *
+ * head 输入必须是 computed(响应式):中英同名页共用同一个组件实例,
+ * vue-router 在跨语言导航(/legal ↔ /zh/legal)时不会重跑 setup,
+ * 若传普通对象,title/lang/canonical/og 会停留在首次求值时的旧语言。
  */
 export function useSeo(key: SeoRouteKey): void {
   const route = useRoute()
-  useHead(buildSeoHead(key, route.meta.locale ?? Locale.EN))
+  useHead(computed(() => buildSeoHead(key, route.meta.locale ?? Locale.EN)))
 }

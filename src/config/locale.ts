@@ -37,3 +37,8 @@ export function stripLocale(path: string): string {
   }
   return path
 }
+
+/** 计算当前页在目标语言下的对等地址（保留锚点）；path 为带或不带 /zh 前缀的路由 path */
+export function localeSwitchTarget(path: string, hash: string, target: Locale): string {
+  return localizePath(stripLocale(path), target) + hash
+}

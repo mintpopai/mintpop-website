@@ -4,7 +4,7 @@ import { useRoute, useRouter } from 'vue-router'
 
 import { readLocalePreference } from '@/composables/useLocale'
 import { useTheme } from '@/composables/useTheme'
-import { Locale, localizePath, stripLocale } from '@/config/locale'
+import { Locale, localeSwitchTarget } from '@/config/locale'
 
 const { syncTheme } = useTheme()
 const router = useRouter()
@@ -21,7 +21,7 @@ onMounted(() => {
   if (!preferred || preferred === current) {
     return
   }
-  const target = localizePath(stripLocale(route.path), preferred) + route.hash
+  const target = localeSwitchTarget(route.path, route.hash, preferred)
   if (router.resolve(target).name) {
     void router.replace(target)
   }

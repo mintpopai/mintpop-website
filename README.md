@@ -81,7 +81,7 @@ src/
 │   ├── useLocale.ts           # 语言上下文与偏好（localStorage 记忆、URL 驱动 locale）
 │   └── useSeo.ts              # 按路由 key 声明各页 head（meta/canonical/OG）
 ├── config/
-│   ├── locale.ts              # 语言常量与路径派生（英文根 / 中文 /zh 前缀）
+│   ├── locale.ts             # 语言常量与路径派生（英文根 / 中文 /zh 前缀）
 │   ├── seo.ts                # 各路由 SEO 文案与 noindex 标记（sitemap 由此派生）
 │   └── site.ts               # 站点级常量（域名/控制台地址/可收录路由）
 ├── locales/                   # 中英词条（en.ts 为真相源，zh.ts 受同构类型约束）

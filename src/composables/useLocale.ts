@@ -1,7 +1,7 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
-import { Locale, LOCALE_LABELS, localizePath, stripLocale } from '@/config/locale'
+import { Locale, LOCALE_LABELS, localeSwitchTarget, localizePath } from '@/config/locale'
 
 // 语言偏好持久化键：手动切换时写入；回访时 App.vue 用它把用户带回偏好语言
 export const STORAGE_KEY_LOCALE = 'mint-locale'
@@ -34,8 +34,6 @@ export function useLocale() {
   const otherLocale = computed<Locale>(() => (locale.value === Locale.ZH ? Locale.EN : Locale.ZH))
   const otherLabel = computed(() => LOCALE_LABELS[otherLocale.value])
   const lp = (path: string): string => localizePath(path, locale.value)
-  const switchTarget = computed(
-    () => localizePath(stripLocale(route.path), otherLocale.value) + route.hash,
-  )
+  const switchTarget = computed(() => localeSwitchTarget(route.path, route.hash, otherLocale.value))
   return { locale, otherLocale, otherLabel, lp, switchTarget }
 }
