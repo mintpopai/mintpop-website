@@ -1,5 +1,15 @@
 import { ViteSSG } from 'vite-ssg'
 
+// 字体自托管（Fontsource，只引入实际用到的字重）：
+// 站点面向含中国大陆在内的全球用户，Google Fonts 在大陆被阻断且外链样式表会
+// render-blocking 整页白屏，故不走外链（见全局规范 global-reachability.md）。
+import '@fontsource/space-grotesk/400.css'
+import '@fontsource/space-grotesk/500.css'
+import '@fontsource/space-grotesk/600.css'
+import '@fontsource/space-grotesk/700.css'
+import '@fontsource/newsreader/500.css'
+import '@fontsource/newsreader/500-italic.css'
+
 import './styles/theme.css'
 import './styles/base.css'
 

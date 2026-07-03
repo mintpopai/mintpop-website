@@ -2,7 +2,7 @@
  * 主题变量系统：配色对齐 MintPop 品牌手册（brand/kit/README.md）。
  * - 主色取品牌手册实采样：Mint #17D1A7 / Deep #0FB389 / Bright #1FE3AD。
  * - 中性色据品牌底色 Cloud #F4F8F6（冷绿）+ Ink #0B0B0C 和谐推导，整体偏冷绿调。
- * - 字体仍沿用设计稿：标题 Newsreader、正文 Space Grotesk、Logo Fredoka（本文件不涉及字体）。
+ * - 字体：标题 Newsreader、正文 Space Grotesk，经 Fontsource 自托管（在 main.ts 引入，本文件不涉及字体）。
  * - accent 主题色可配置（默认 #17D1A7），由 useTheme 写到 :root 的 --accent 上。
  * - 浅色为默认（:root）；深色通过 [data-theme="DARK"] 覆盖。
  */
