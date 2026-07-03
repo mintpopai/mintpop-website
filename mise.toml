@@ -3,6 +3,7 @@
 node = "24.16.0"
 pnpm = "11.9.0"
 
+# —— 安装 ——
 [tasks.install]
 description = "安装/更新项目全部依赖（默认可写回 lockfile；--frozen 按 lockfile 精确还原，CI/镜像构建用）"
 usage = 'flag "--frozen" help="按 lockfile 精确安装、不写回（可复现构建：CI 与镜像构建用）"'
@@ -10,18 +11,16 @@ usage = 'flag "--frozen" help="按 lockfile 精确安装、不写回（可复现
 # 注意：--frozen 不能加 default，否则不传时 usage_frozen 会是字符串 "false"，:+ 会误判而总是追加
 run = "pnpm install ${usage_frozen:+--frozen-lockfile}"
 
+# —— 运行 ——
 [tasks.run]
 description = "启动开发服务器（唯一需要启动的组件）"
 run = "pnpm vite"
-
-[tasks.build]
-description = "类型检查 + 生产构建"
-run = "pnpm vue-tsc -b && pnpm vite-ssg build"
 
 [tasks.preview]
 description = "本地预览生产构建产物"
 run = "pnpm vite preview"
 
+# —— 质量 ——
 [tasks.typecheck]
 description = "仅做 TypeScript / 模板类型检查"
 run = "pnpm vue-tsc -b"
@@ -34,11 +33,17 @@ run = "pnpm eslint ."
 description = "运行单元测试（Vitest，单次跑完退出，CI 门禁用；本地监听加 --watch）"
 run = "pnpm vitest run"
 
+# —— 构建 ——
+[tasks.build]
+description = "类型检查 + 生产构建"
+run = "pnpm vue-tsc -b && pnpm vite-ssg build"
+
 [tasks.image]
 description = "构建生产镜像（多阶段：mise 构建 dist + nginx 托管）"
 # 不设 dir：默认在仓库根（mise.toml 所在地）运行，末尾 . 即根 context
 run = "docker build -t mintpop-website:local ."
 
+# —— 部署 ——
 [tasks.up]
 description = "拉起部署容器（docker compose，后台运行，nginx 暴露 80）"
 run = "docker compose up -d"
@@ -47,6 +52,7 @@ run = "docker compose up -d"
 description = "停止并移除部署容器"
 run = "docker compose down"
 
+# —— 发版 ——
 [tasks.release]
 description = "发版：改版本号→提交→打tag→推送（两参数均可选，按形状消歧）"
 # 两个无语义占位 arg：语义在脚本里据形状判定，不把第一个固定命名成 version

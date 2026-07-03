@@ -11,6 +11,9 @@ dist-ssr
 .vscode
 *.log
 .DS_Store
-# 构建用不到的部署/文档文件
+# 构建用不到的部署/文档/物料文件（brand 系品牌原始资产，站点用的图已拷进 src/assets 与 public）
 docker-compose.yml
 README.md
+brand
+docs
+.superpowers

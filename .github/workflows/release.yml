@@ -104,7 +104,7 @@ jobs:
                 { "title": "### ⏪ 回滚", "labels": ["revert"] }
               ],
               "template": "#{{CHANGELOG}}",
-              "empty_content": "_本次无面向用户的变更_"
+              "empty_template": "_本次无面向用户的变更_"
             }
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
