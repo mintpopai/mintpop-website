@@ -15,12 +15,14 @@
                 ? 'DARK'
                 : 'LIGHT'
           document.documentElement.dataset.theme = theme
-        } catch (e) {}
+        } catch (e) {
+          /* 隐私模式/禁用存储时 localStorage 访问会抛错，静默回退到无记忆的默认主题即可 */
+        }
       })()
     </script>
-    <!-- 站点图标:MintPop 标记(cloud 浅底瓦片) -->
+    <!-- 站点图标:MintPop 标记(cloud 浅底瓦片);iOS 主屏用专门的白底圆角版(透明底会被 iOS 垫黑) -->
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <!-- title/description 由各页 useHead 动态接管;此处保留首页文案作无 JS 兜底 -->
     <title>MintPop — One API for text, vision, and voice</title>
     <meta
