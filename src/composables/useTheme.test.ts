@@ -1,4 +1,12 @@
+import { readFileSync } from 'node:fs'
+import { fileURLToPath, URL } from 'node:url'
+
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+
+// 用 node:fs 直读文件原文（类型环境为 tsconfig.vitest.json，带 node types）。
+// 不用 Vite 的 ?raw：Vitest 默认 mock CSS 模块，theme.css?raw 会拿到空字符串。
+const readRepoFile = (relPath: string) =>
+  readFileSync(fileURLToPath(new URL(relPath, import.meta.url)), 'utf8')
 
 // useTheme 是模块级单例(theme/accent 为模块内 ref)。为避免测试间状态串扰,
 // 每个用例都 resetModules 后重新 import,拿到全新的单例。
@@ -94,5 +102,27 @@ describe('syncTheme / resolveInitialTheme', () => {
 
     syncTheme()
     expect(theme.value).toBe('LIGHT')
+  })
+})
+
+// 跨文件契约守护:主题的存储键与枚举取值被 index.html 的防闪烁内联脚本、
+// theme.css 的深色选择器各复制了一份(前者无法 import 模块,后者是 CSS)。
+// 任何一侧改名而其它侧未同步,主题记忆/防闪烁/深色配色会静默失效,
+// 这里通过直接读取文件内容锁死三处一致。
+describe('跨文件主题契约(index.html / theme.css)', () => {
+  it('index.html 防闪烁脚本使用相同的存储键与主题取值', async () => {
+    const { STORAGE_KEY_THEME, Theme } = await freshTheme()
+    const indexHtml = readRepoFile('../../index.html')
+
+    expect(indexHtml).toContain(`localStorage.getItem('${STORAGE_KEY_THEME}')`)
+    expect(indexHtml).toContain(`'${Theme.LIGHT}'`)
+    expect(indexHtml).toContain(`'${Theme.DARK}'`)
+  })
+
+  it('theme.css 深色覆盖选择器与 Theme.DARK 取值一致', async () => {
+    const { Theme } = await freshTheme()
+    const themeCss = readRepoFile('../styles/theme.css')
+
+    expect(themeCss).toContain(`:root[data-theme='${Theme.DARK}']`)
   })
 })
