@@ -34,6 +34,8 @@ export function useLocale() {
   const otherLocale = computed<Locale>(() => (locale.value === Locale.ZH ? Locale.EN : Locale.ZH))
   const otherLabel = computed(() => LOCALE_LABELS[otherLocale.value])
   const lp = (path: string): string => localizePath(path, locale.value)
-  const switchTarget = computed(() => localeSwitchTarget(route.path, route.hash, otherLocale.value))
+  const switchTarget = computed(() =>
+    localeSwitchTarget(route.path, route.query, route.hash, otherLocale.value),
+  )
   return { locale, otherLocale, otherLabel, lp, switchTarget }
 }

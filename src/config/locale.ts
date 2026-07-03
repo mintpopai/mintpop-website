@@ -1,3 +1,5 @@
+import type { LocationQuery } from 'vue-router'
+
 /**
  * 语言常量：成员名按全局规范用 SCREAMING_SNAKE_CASE；
  * 取值是小写 BCP-47 码（'en'/'zh'）——要进 URL、<html lang> 与 vue-i18n API，
@@ -38,7 +40,21 @@ export function stripLocale(path: string): string {
   return path
 }
 
-/** 计算当前页在目标语言下的对等地址（保留锚点）；path 为带或不带 /zh 前缀的路由 path */
-export function localeSwitchTarget(path: string, hash: string, target: Locale): string {
-  return localizePath(stripLocale(path), target) + hash
+/** 从路径判定语言（前缀须整段匹配：'/zhang' 判定为英文）；供无 meta.locale 的兜底路由推断语境 */
+export function pathLocale(path: string): Locale {
+  return path === ZH_PREFIX || path.startsWith(`${ZH_PREFIX}/`) ? Locale.ZH : Locale.EN
+}
+
+/**
+ * 计算当前页在目标语言下的对等地址；path 为带或不带 /zh 前缀的路由 path。
+ * 返回 vue-router location 对象而非拼接字符串：query（UTM 等统计参数）与锚点
+ * 都要在切换语言时原样保留，交给 router 携带比手工序列化 query 更可靠。
+ */
+export function localeSwitchTarget(
+  path: string,
+  query: LocationQuery,
+  hash: string,
+  target: Locale,
+): { path: string; query: LocationQuery; hash: string } {
+  return { path: localizePath(stripLocale(path), target), query, hash }
 }

@@ -21,7 +21,7 @@ onMounted(() => {
   if (!preferred || preferred === current) {
     return
   }
-  const target = localeSwitchTarget(route.path, route.hash, preferred)
+  const target = localeSwitchTarget(route.path, route.query, route.hash, preferred)
   if (router.resolve(target).name) {
     void router.replace(target)
   }
