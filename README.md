@@ -7,6 +7,10 @@ MintPop 落地页的前端实现，依据设计稿 `Mint Website.dc.html` 还原
 - **Vite** — 构建与开发服务器
 - **Vue 3**（`<script setup>` + TypeScript）
 - **Vue Router** — 页面路由
+- **vite-ssg** — 构建期把各路由预渲染成静态 HTML（SEO 需要；`dirStyle: nested` 配合 nginx 目录路由）
+- **@unhead/vue** — 各页 title/meta/canonical/OG 等 head 管理（锁 v2，见 `vite.config.ts` 相关注释）
+- **Vitest** — 单元测试（与源码同目录的 `*.test.ts`）
+- **Fontsource** — 字体（Newsreader / Space Grotesk）自托管，随构建产物同源分发，不外链 Google Fonts（大陆被阻断会整页白屏）
 - 纯 CSS + CSS 变量驱动的主题系统（无 UI 组件库）
 
 ## 工具链与命令（统一走 mise）
@@ -20,6 +24,7 @@ mise run build       # 类型检查 + 生产构建
 mise run preview     # 预览生产构建产物
 mise run typecheck   # 仅类型检查
 mise run lint        # ESLint 代码检查（本地修复加 --fix）
+mise run test        # 单元测试（Vitest 单次跑完；本地监听加 --watch）
 mise run image       # 本地构建生产镜像
 mise run up          # docker compose 拉起部署容器（nginx 暴露 80）
 mise run down        # 停止并移除部署容器
@@ -41,7 +46,7 @@ MINTPOP_TAG=0.1.0 docker compose up -d       # 拉指定版本（默认 latest�
 ## 部署与发版
 
 - **镜像**：多阶段 `Dockerfile` 产出 nginx 静态镜像，暴露 `80` 端口；单 amd64，私有部署型。
-- **CI 门禁**（`ci.yml`）：PR / push main 跑 lint + 类型检查 + 构建。
+- **CI 门禁**（`ci.yml`）：PR / push main 跑 lint + 单元测试 + 类型检查 + 构建。
 - **发版**（`release.yml`）：打 `vX.Y.Z` tag 触发 → 过质量门禁 → 构建并推送镜像到 GHCR
   （`ghcr.io/<owner>/mintpop-website`，非预发布版自动带 `latest`）→ 创建 GitHub Release。
 - **GitHub Release 正文** = annotated tag 注释（本次重点，置顶）+ 按提交类型过滤的 changelog
@@ -62,7 +67,11 @@ src/
 │       ├── CapabilitiesSection.vue  # 能力卡片
 │       └── ModalitiesSection.vue    # 模态卡片
 ├── composables/
-│   └── useTheme.ts            # 主题（Light/Dark + accent）单例
+│   ├── useTheme.ts            # 主题（Light/Dark + accent）单例（含同目录守护测试）
+│   └── useSeo.ts              # 按路由 key 声明各页 head（meta/canonical/OG）
+├── config/
+│   ├── seo.ts                # 各路由 SEO 文案与 noindex 标记（sitemap 由此派生）
+│   └── site.ts               # 站点级常量（域名/控制台地址/可收录路由）
 ├── router/
 │   └── index.ts              # 路由：/ 落地页，其余为占位
 ├── styles/
@@ -75,6 +84,8 @@ src/
 │   └── RegisterView.vue      # 占位
 ├── App.vue
 └── main.ts
+
+（单元测试为同目录 *.test.ts，覆盖主题逻辑与 SEO 配置一致性）
 ```
 
 ## 说明
