@@ -1,5 +1,6 @@
 import { useHead } from '@unhead/vue'
 
+import { Locale } from '@/config/locale'
 import { SEO, type SeoRouteKey } from '@/config/seo'
 import { absoluteUrl, OG_IMAGE_PATH, SITE_NAME } from '@/config/site'
 
@@ -13,35 +14,37 @@ const OG_IMAGE_HEIGHT = '630'
  */
 export function useSeo(key: SeoRouteKey): void {
   const entry = SEO[key]
+  // 过渡：本任务先固定取英文文案，按语言取值在 useSeo 本地化任务中完成
+  const copy = entry.copy[Locale.EN]
   const canonical = absoluteUrl(entry.path)
   const ogImage = absoluteUrl(OG_IMAGE_PATH)
 
   const meta = [
-    { name: 'description', content: entry.description },
+    { name: 'description', content: copy.description },
     // Open Graph
     { property: 'og:type', content: 'website' },
     { property: 'og:site_name', content: SITE_NAME },
     { property: 'og:locale', content: 'en_US' },
-    { property: 'og:title', content: entry.title },
-    { property: 'og:description', content: entry.description },
+    { property: 'og:title', content: copy.title },
+    { property: 'og:description', content: copy.description },
     { property: 'og:url', content: canonical },
     { property: 'og:image', content: ogImage },
     { property: 'og:image:width', content: OG_IMAGE_WIDTH },
     { property: 'og:image:height', content: OG_IMAGE_HEIGHT },
-    { property: 'og:image:alt', content: entry.title },
+    { property: 'og:image:alt', content: copy.title },
     // Twitter
     { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: entry.title },
-    { name: 'twitter:description', content: entry.description },
+    { name: 'twitter:title', content: copy.title },
+    { name: 'twitter:description', content: copy.description },
     { name: 'twitter:image', content: ogImage },
-    { name: 'twitter:image:alt', content: entry.title },
+    { name: 'twitter:image:alt', content: copy.title },
   ]
   if (entry.noindex) {
     meta.push({ name: 'robots', content: 'noindex' })
   }
 
   useHead({
-    title: entry.title,
+    title: copy.title,
     meta,
     link: [{ rel: 'canonical', href: canonical }],
   })

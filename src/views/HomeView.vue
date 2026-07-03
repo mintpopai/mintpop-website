@@ -7,6 +7,7 @@ import CapabilitiesSection from '@/components/sections/CapabilitiesSection.vue'
 import HeroSection from '@/components/sections/HeroSection.vue'
 import ModalitiesSection from '@/components/sections/ModalitiesSection.vue'
 import { useSeo } from '@/composables/useSeo'
+import { Locale } from '@/config/locale'
 import { SEO } from '@/config/seo'
 import { absoluteUrl, BRAND_LOGO_PATH, SITE_NAME, SITE_URL } from '@/config/site'
 
@@ -26,7 +27,7 @@ const jsonLd = {
       '@type': 'WebSite',
       name: SITE_NAME,
       url: SITE_URL,
-      description: SEO.HOME.description,
+      description: SEO.HOME.copy[Locale.EN].description,
     },
   ],
 }
