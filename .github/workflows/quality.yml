@@ -5,6 +5,10 @@ name: Quality
 on:
   workflow_call:
 
+# 显式最小权限：质量门禁只需读代码（被 release.yml 调用时也不放大权限）
+permissions:
+  contents: read
+
 jobs:
   quality:
     name: Lint & Build

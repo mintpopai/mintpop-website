@@ -10,6 +10,10 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
+# 显式最小权限：质量门禁只需读代码
+permissions:
+  contents: read
+
 jobs:
   quality:
     name: Quality
