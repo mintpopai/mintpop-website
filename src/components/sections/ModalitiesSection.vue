@@ -3,18 +3,11 @@
 </script>
 
 <template>
-  <section
-    id="modalities"
-    class="modalities"
-  >
+  <section id="modalities" class="modalities">
     <div class="wrap">
       <header class="head">
-        <h2 class="title">
-          One API, Every Modality
-        </h2>
-        <p class="subtitle">
-          Build once, ship across modalities.
-        </p>
+        <h2 class="title">One API, Every Modality</h2>
+        <p class="subtitle">Build once, ship across modalities.</p>
       </header>
 
       <div class="grid">
@@ -34,9 +27,7 @@
             </svg>
           </div>
           <div class="card-foot">
-            <h3 class="card-title">
-              Text
-            </h3>
+            <h3 class="card-title">Text</h3>
             <span class="badge badge-supported">SUPPORTED</span>
           </div>
         </article>
@@ -54,17 +45,11 @@
               stroke-linejoin="round"
             >
               <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" />
-              <circle
-                cx="12"
-                cy="12"
-                r="3"
-              />
+              <circle cx="12" cy="12" r="3" />
             </svg>
           </div>
           <div class="card-foot">
-            <h3 class="card-title">
-              Vision
-            </h3>
+            <h3 class="card-title">Vision</h3>
             <span class="badge badge-supported">SUPPORTED</span>
           </div>
         </article>
@@ -85,9 +70,7 @@
             </svg>
           </div>
           <div class="card-foot">
-            <h3 class="card-title">
-              Voice
-            </h3>
+            <h3 class="card-title">Voice</h3>
             <span class="badge badge-supported">SUPPORTED</span>
           </div>
         </article>
@@ -108,9 +91,7 @@
             </svg>
           </div>
           <div class="card-foot">
-            <h3 class="card-title card-title-muted">
-              More
-            </h3>
+            <h3 class="card-title card-title-muted">More</h3>
             <span class="badge badge-soon">SOON</span>
           </div>
         </article>
@@ -136,14 +117,18 @@
 
 .title {
   margin: 0;
-  font: 500 48px 'Newsreader', serif;
+  font:
+    500 48px 'Newsreader',
+    serif;
   letter-spacing: -0.015em;
   color: var(--text);
 }
 
 .subtitle {
   margin: 16px 0 0;
-  font: 400 18px 'Space Grotesk', sans-serif;
+  font:
+    400 18px 'Space Grotesk',
+    sans-serif;
   color: var(--text2);
 }
 
@@ -190,7 +175,9 @@
 
 .card-title {
   margin: 0;
-  font: 600 19px 'Space Grotesk', sans-serif;
+  font:
+    600 19px 'Space Grotesk',
+    sans-serif;
   color: var(--text);
 }
 
@@ -199,7 +186,9 @@
 }
 
 .badge {
-  font: 600 11px 'Space Grotesk', sans-serif;
+  font:
+    600 11px 'Space Grotesk',
+    sans-serif;
   letter-spacing: 0.04em;
   padding: 4px 10px;
   border-radius: 999px;

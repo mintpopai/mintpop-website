@@ -10,54 +10,23 @@ const { isDark, toggleTheme } = useTheme()
 
 <template>
   <header class="header">
-    <a
-      href="#top"
-      class="logo-link"
-    >
+    <a href="#top" class="logo-link">
       <BrandLogo :size="24" />
     </a>
 
     <nav class="nav">
-      <a
-        href="#capabilities"
-        class="nav-link"
-      >Capabilities</a>
-      <a
-        href="#modalities"
-        class="nav-link"
-      >Modalities</a>
-      <RouterLink
-        to="/legal"
-        class="nav-link"
-      >
-        Legal
-      </RouterLink>
-      <RouterLink
-        to="/legal#contact"
-        class="nav-link nav-link--accent"
-      >
-        Contact
-      </RouterLink>
+      <a href="#capabilities" class="nav-link">Capabilities</a>
+      <a href="#modalities" class="nav-link">Modalities</a>
+      <RouterLink to="/legal" class="nav-link"> Legal </RouterLink>
+      <RouterLink to="/legal#contact" class="nav-link nav-link--accent"> Contact </RouterLink>
     </nav>
 
     <div class="actions">
       <span class="lang">EN</span>
-      <button
-        type="button"
-        class="theme-toggle"
-        title="Toggle theme"
-        @click="toggleTheme"
-      >
+      <button type="button" class="theme-toggle" title="Toggle theme" @click="toggleTheme">
         <span class="theme-icon">{{ isDark ? '☀' : '☾' }}</span>
       </button>
-      <a
-        :href="CONSOLE_URL"
-        target="_blank"
-        rel="noopener"
-        class="login-btn"
-      >
-        Login
-      </a>
+      <a :href="CONSOLE_URL" target="_blank" rel="noopener" class="login-btn"> Login </a>
     </div>
   </header>
 </template>
@@ -90,13 +59,17 @@ const { isDark, toggleTheme } = useTheme()
 }
 
 .nav-link {
-  font: 500 14px 'Space Grotesk', sans-serif;
+  font:
+    500 14px 'Space Grotesk',
+    sans-serif;
   padding: 9px 15px;
   border-radius: 10px;
   color: var(--text2);
   white-space: nowrap;
   cursor: pointer;
-  transition: background-color 0.18s ease, color 0.18s ease;
+  transition:
+    background-color 0.18s ease,
+    color 0.18s ease;
 }
 
 .nav-link:hover {
@@ -120,7 +93,9 @@ const { isDark, toggleTheme } = useTheme()
 }
 
 .lang {
-  font: 500 13px 'Space Grotesk', sans-serif;
+  font:
+    500 13px 'Space Grotesk',
+    sans-serif;
   color: var(--text2);
   cursor: pointer;
 }
@@ -151,7 +126,9 @@ const { isDark, toggleTheme } = useTheme()
 }
 
 .login-btn {
-  font: 600 14px 'Space Grotesk', sans-serif;
+  font:
+    600 14px 'Space Grotesk',
+    sans-serif;
   color: var(--accent);
   padding: 9px 18px;
   border-radius: 11px;

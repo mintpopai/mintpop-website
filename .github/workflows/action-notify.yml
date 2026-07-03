@@ -15,7 +15,7 @@ on:
 
 permissions:
   contents: read
-  actions: read   # 失败时读 jobs API 拿「哪个 job 的哪个 step 挂了」
+  actions: read # 失败时读 jobs API 拿「哪个 job 的哪个 step 挂了」
 
 jobs:
   notify:
@@ -29,18 +29,18 @@ jobs:
           app_id: ${{ secrets.FEISHU_APP_ID }}
           app_secret: ${{ secrets.FEISHU_APP_SECRET }}
           receive_id: ${{ secrets.FEISHU_RECEIVE_ID }}
-          status:         ${{ github.event.workflow_run.conclusion }}
-          workflow_name:  ${{ github.event.workflow_run.name }}
-          repo:           ${{ github.repository }}
-          branch:         ${{ github.event.workflow_run.head_branch }}
-          event:          ${{ github.event.workflow_run.event }}
-          actor:          ${{ github.event.workflow_run.actor.login }}
-          run_url:        ${{ github.event.workflow_run.html_url }}
-          run_id:         ${{ github.event.workflow_run.id }}
-          commit_sha:     ${{ github.event.workflow_run.head_sha }}
+          status: ${{ github.event.workflow_run.conclusion }}
+          workflow_name: ${{ github.event.workflow_run.name }}
+          repo: ${{ github.repository }}
+          branch: ${{ github.event.workflow_run.head_branch }}
+          event: ${{ github.event.workflow_run.event }}
+          actor: ${{ github.event.workflow_run.actor.login }}
+          run_url: ${{ github.event.workflow_run.html_url }}
+          run_id: ${{ github.event.workflow_run.id }}
+          commit_sha: ${{ github.event.workflow_run.head_sha }}
           commit_message: ${{ github.event.workflow_run.head_commit.message }}
-          commit_author:  ${{ github.event.workflow_run.head_commit.author.name }}
+          commit_author: ${{ github.event.workflow_run.head_commit.author.name }}
           run_started_at: ${{ github.event.workflow_run.run_started_at }}
           run_updated_at: ${{ github.event.workflow_run.updated_at }}
-          github_token:   ${{ github.token }}
+          github_token: ${{ github.token }}
           # timezone: America/Los_Angeles   # 默认 Asia/Shanghai

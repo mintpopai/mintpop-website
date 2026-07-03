@@ -3,23 +3,11 @@ import { CONSOLE_URL } from '@/config/site'
 </script>
 
 <template>
-  <section
-    id="top"
-    class="hero"
-  >
+  <section id="top" class="hero">
     <!-- 装饰层：warhol 网点渐变 + 网点底纹 + 中央光晕（纯展示，不可交互） -->
-    <div
-      class="deco deco-dots-accent"
-      aria-hidden="true"
-    />
-    <div
-      class="deco deco-dots-ink"
-      aria-hidden="true"
-    />
-    <div
-      class="deco deco-glow"
-      aria-hidden="true"
-    />
+    <div class="deco deco-dots-accent" aria-hidden="true" />
+    <div class="deco deco-dots-ink" aria-hidden="true" />
+    <div class="deco deco-glow" aria-hidden="true" />
 
     <div class="hero-inner">
       <div class="badge">
@@ -30,32 +18,19 @@ import { CONSOLE_URL } from '@/config/site'
       </div>
 
       <h1 class="headline">
-        One API for <span class="em em-accent">text</span>,
-        <span class="em">vision</span>, and <span class="em">voice</span>.
+        One API for <span class="em em-accent">text</span>, <span class="em">vision</span>, and
+        <span class="em">voice</span>.
       </h1>
 
       <p class="subtitle">
-        Build multimodal AI into your product through a single, unified
-        endpoint.
+        Build multimodal AI into your product through a single, unified endpoint.
       </p>
-      <p class="byline">
-        Built by Energyline &nbsp;·&nbsp; Based in the United States
-      </p>
+      <p class="byline">Built by Energyline &nbsp;·&nbsp; Based in the United States</p>
 
       <div class="cta-row">
-        <a
-          :href="CONSOLE_URL"
-          target="_blank"
-          rel="noopener"
-          class="btn btn-primary"
-        >
+        <a :href="CONSOLE_URL" target="_blank" rel="noopener" class="btn btn-primary">
           Get Started
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-          >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
             <path
               d="M5 12h14M13 6l6 6-6 6"
               stroke="#fff"
@@ -65,10 +40,7 @@ import { CONSOLE_URL } from '@/config/site'
             />
           </svg>
         </a>
-        <a
-          href="#capabilities"
-          class="btn btn-ghost"
-        >Explore capabilities</a>
+        <a href="#capabilities" class="btn btn-ghost">Explore capabilities</a>
       </div>
 
       <div class="tags">
@@ -142,12 +114,7 @@ import { CONSOLE_URL } from '@/config/site'
   top: -40px;
   width: 560px;
   height: 560px;
-  background: linear-gradient(
-    150deg,
-    #0fb389 0%,
-    #17d1a7 45%,
-    rgba(23, 209, 167, 0) 92%
-  );
+  background: linear-gradient(150deg, #0fb389 0%, #17d1a7 45%, rgba(23, 209, 167, 0) 92%);
   -webkit-mask-image: radial-gradient(#000 2px, transparent 2.2px);
   mask-image: radial-gradient(#000 2px, transparent 2.2px);
   -webkit-mask-size: 20px 20px;
@@ -171,11 +138,7 @@ import { CONSOLE_URL } from '@/config/site'
   transform: translateX(-50%);
   width: 900px;
   height: 480px;
-  background: radial-gradient(
-    closest-side,
-    rgba(23, 209, 167, 0.18),
-    rgba(23, 209, 167, 0) 72%
-  );
+  background: radial-gradient(closest-side, rgba(23, 209, 167, 0.18), rgba(23, 209, 167, 0) 72%);
   filter: blur(10px);
 }
 
@@ -211,18 +174,24 @@ import { CONSOLE_URL } from '@/config/site'
   align-items: center;
   justify-content: center;
   color: #fff;
-  font: 700 11px 'Space Grotesk', sans-serif;
+  font:
+    700 11px 'Space Grotesk',
+    sans-serif;
 }
 
 .badge-text {
-  font: 500 14px 'Space Grotesk', sans-serif;
+  font:
+    500 14px 'Space Grotesk',
+    sans-serif;
   color: var(--text);
   white-space: nowrap;
 }
 
 .headline {
   margin: 34px 0 0;
-  font: 500 78px 'Newsreader', serif;
+  font:
+    500 78px 'Newsreader',
+    serif;
   line-height: 1.04;
   letter-spacing: -0.02em;
   color: var(--text);
@@ -240,14 +209,18 @@ import { CONSOLE_URL } from '@/config/site'
 .subtitle {
   margin: 26px 0 0;
   max-width: 620px;
-  font: 400 20px 'Space Grotesk', sans-serif;
+  font:
+    400 20px 'Space Grotesk',
+    sans-serif;
   line-height: 1.6;
   color: var(--text2);
 }
 
 .byline {
   margin: 12px 0 0;
-  font: 500 13px 'Space Grotesk', sans-serif;
+  font:
+    500 13px 'Space Grotesk',
+    sans-serif;
   letter-spacing: 0.01em;
   color: var(--ph);
 }
@@ -263,10 +236,14 @@ import { CONSOLE_URL } from '@/config/site'
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font: 600 16px 'Space Grotesk', sans-serif;
+  font:
+    600 16px 'Space Grotesk',
+    sans-serif;
   border-radius: 13px;
   cursor: pointer;
-  transition: background-color 0.18s ease, border-color 0.18s ease;
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease;
 }
 
 .btn-primary {
@@ -305,7 +282,9 @@ import { CONSOLE_URL } from '@/config/site'
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  font: 500 14px 'Space Grotesk', sans-serif;
+  font:
+    500 14px 'Space Grotesk',
+    sans-serif;
   color: var(--text2);
   background: var(--card);
   border: 1px solid var(--border);

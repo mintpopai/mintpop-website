@@ -3,10 +3,7 @@
 </script>
 
 <template>
-  <section
-    id="capabilities"
-    class="capabilities"
-  >
+  <section id="capabilities" class="capabilities">
     <div class="wrap">
       <div class="grid">
         <article class="card">
@@ -21,20 +18,13 @@
               stroke-linecap="round"
               stroke-linejoin="round"
             >
-              <circle
-                cx="8"
-                cy="15"
-                r="4"
-              />
+              <circle cx="8" cy="15" r="4" />
               <path d="M10.8 12.2L19 4M16 7l3 3M14 9l2 2" />
             </svg>
           </div>
-          <h3 class="card-title">
-            One-Click Access
-          </h3>
+          <h3 class="card-title">One-Click Access</h3>
           <p class="card-desc">
-            A single API key to call every capability. No separate accounts to
-            manage.
+            A single API key to call every capability. No separate accounts to manage.
           </p>
         </article>
 
@@ -54,12 +44,9 @@
               <path d="M21 4v4h-4" />
             </svg>
           </div>
-          <h3 class="card-title">
-            Always Reliable
-          </h3>
+          <h3 class="card-title">Always Reliable</h3>
           <p class="card-desc">
-            Intelligent routing with automatic failover keeps your requests
-            flowing.
+            Intelligent routing with automatic failover keeps your requests flowing.
           </p>
         </article>
 
@@ -79,12 +66,9 @@
               <path d="M12 2v10l7 3" />
             </svg>
           </div>
-          <h3 class="card-title">
-            Usage-Based Billing
-          </h3>
+          <h3 class="card-title">Usage-Based Billing</h3>
           <p class="card-desc">
-            Pay only for what you use, with quota limits and full consumption
-            visibility.
+            Pay only for what you use, with quota limits and full consumption visibility.
           </p>
         </article>
       </div>
@@ -129,13 +113,17 @@
 
 .card-title {
   margin: 0 0 12px;
-  font: 600 22px 'Space Grotesk', sans-serif;
+  font:
+    600 22px 'Space Grotesk',
+    sans-serif;
   color: var(--text);
 }
 
 .card-desc {
   margin: 0;
-  font: 400 16px 'Space Grotesk', sans-serif;
+  font:
+    400 16px 'Space Grotesk',
+    sans-serif;
   line-height: 1.62;
   color: var(--text2);
 }

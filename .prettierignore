@@ -1,0 +1,2 @@
+# Prettier 3 默认叠加 .gitignore；这里只补 git 追踪但不该格式化的文件
+pnpm-lock.yaml

@@ -20,6 +20,9 @@ jobs:
         # --frozen：CI 按 lockfile 精确还原，对不上即失败（不静默改写），保证可复现
         run: mise run install --frozen
 
+      - name: Format check
+        run: mise run format --check
+
       - name: Lint
         run: mise run lint
 

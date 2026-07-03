@@ -24,6 +24,7 @@ mise run build       # 类型检查 + 生产构建
 mise run preview     # 预览生产构建产物
 mise run typecheck   # 仅类型检查
 mise run lint        # ESLint 代码检查（本地修复加 --fix）
+mise run format      # Prettier 统一格式（CI 校验加 --check）
 mise run test        # 单元测试（Vitest 单次跑完；本地监听加 --watch）
 mise run image       # 本地构建生产镜像
 mise run up          # docker compose 拉起部署容器（nginx 暴露 80）

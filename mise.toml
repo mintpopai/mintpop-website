@@ -33,6 +33,20 @@ run = "pnpm eslint ."
 description = "运行单元测试（Vitest，单次跑完退出，CI 门禁用；本地监听加 --watch）"
 run = "pnpm vitest run"
 
+[tasks.format]
+description = "Prettier 统一格式（默认改写；CI 门禁加 --check 只校验不改写）"
+# --check 与 install 的 --frozen 同理不能设 default，未传时须保持 unset
+usage = 'flag "--check" help="只校验不改写（CI 门禁用）"'
+run = '''
+#!/usr/bin/env bash
+set -euo pipefail
+if [ -n "${usage_check:-}" ]; then
+  exec pnpm prettier --check .
+else
+  exec pnpm prettier --write .
+fi
+'''
+
 # —— 构建 ——
 [tasks.build]
 description = "类型检查 + 生产构建"

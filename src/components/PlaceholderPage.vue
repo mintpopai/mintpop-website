@@ -13,10 +13,7 @@ defineProps<{
 <template>
   <section class="placeholder">
     <div class="inner">
-      <RouterLink
-        to="/"
-        class="logo-link"
-      >
+      <RouterLink to="/" class="logo-link">
         <BrandLogo :size="26" />
       </RouterLink>
 
@@ -28,16 +25,8 @@ defineProps<{
         {{ description }}
       </p>
 
-      <RouterLink
-        to="/"
-        class="back"
-      >
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-        >
+      <RouterLink to="/" class="back">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
           <path
             d="M19 12H5M11 6l-6 6 6 6"
             stroke="currentColor"
@@ -78,7 +67,9 @@ defineProps<{
 }
 
 .tag {
-  font: 600 11px 'Space Grotesk', sans-serif;
+  font:
+    600 11px 'Space Grotesk',
+    sans-serif;
   letter-spacing: 0.06em;
   color: var(--accent);
   background: var(--accent-soft);
@@ -88,14 +79,18 @@ defineProps<{
 
 .title {
   margin: 0;
-  font: 500 52px 'Newsreader', serif;
+  font:
+    500 52px 'Newsreader',
+    serif;
   letter-spacing: -0.015em;
   color: var(--text);
 }
 
 .desc {
   margin: 0;
-  font: 400 18px 'Space Grotesk', sans-serif;
+  font:
+    400 18px 'Space Grotesk',
+    sans-serif;
   line-height: 1.6;
   color: var(--text2);
 }
@@ -105,7 +100,9 @@ defineProps<{
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  font: 600 15px 'Space Grotesk', sans-serif;
+  font:
+    600 15px 'Space Grotesk',
+    sans-serif;
   color: var(--accent);
   padding: 13px 22px;
   border-radius: 12px;

@@ -26,12 +26,7 @@ const height = computed(() => props.size * 1.3)
 </script>
 
 <template>
-  <img
-    class="brand-img"
-    :src="wordmark"
-    alt="MintPop"
-    :style="{ height: `${height}px` }"
-  >
+  <img class="brand-img" :src="wordmark" alt="MintPop" :style="{ height: `${height}px` }" />
 </template>
 
 <style scoped>
