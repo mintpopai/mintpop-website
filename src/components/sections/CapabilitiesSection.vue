@@ -118,17 +118,13 @@ const { t } = useI18n()
 
 .card-title {
   margin: 0 0 12px;
-  font:
-    600 22px 'Space Grotesk',
-    sans-serif;
+  font: 600 22px var(--font-sans);
   color: var(--text);
 }
 
 .card-desc {
   margin: 0;
-  font:
-    400 16px 'Space Grotesk',
-    sans-serif;
+  font: 400 16px var(--font-sans);
   line-height: 1.62;
   color: var(--text2);
 }

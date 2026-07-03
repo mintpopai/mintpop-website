@@ -81,9 +81,7 @@ const { lp, otherLocale, otherLabel, switchTarget } = useLocale()
 }
 
 .nav-link {
-  font:
-    500 14px 'Space Grotesk',
-    sans-serif;
+  font: 500 14px var(--font-sans);
   padding: 9px 15px;
   border-radius: 10px;
   color: var(--text2);
@@ -115,9 +113,7 @@ const { lp, otherLocale, otherLabel, switchTarget } = useLocale()
 }
 
 .lang {
-  font:
-    500 13px 'Space Grotesk',
-    sans-serif;
+  font: 500 13px var(--font-sans);
   color: var(--text2);
 }
 
@@ -151,9 +147,7 @@ const { lp, otherLocale, otherLabel, switchTarget } = useLocale()
 }
 
 .login-btn {
-  font:
-    600 14px 'Space Grotesk',
-    sans-serif;
+  font: 600 14px var(--font-sans);
   color: var(--accent);
   padding: 9px 18px;
   border-radius: 11px;

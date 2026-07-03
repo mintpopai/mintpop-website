@@ -82,9 +82,7 @@ const tagText = computed(() => props.tag ?? t('placeholder.soonTag'))
 }
 
 .tag {
-  font:
-    600 11px 'Space Grotesk',
-    sans-serif;
+  font: 600 11px var(--font-sans);
   letter-spacing: 0.06em;
   color: var(--accent);
   background: var(--accent-soft);
@@ -94,18 +92,14 @@ const tagText = computed(() => props.tag ?? t('placeholder.soonTag'))
 
 .title {
   margin: 0;
-  font:
-    500 52px 'Newsreader',
-    serif;
+  font: 500 52px var(--font-serif);
   letter-spacing: -0.015em;
   color: var(--text);
 }
 
 .desc {
   margin: 0;
-  font:
-    400 18px 'Space Grotesk',
-    sans-serif;
+  font: 400 18px var(--font-sans);
   line-height: 1.6;
   color: var(--text2);
 }
@@ -120,9 +114,7 @@ const tagText = computed(() => props.tag ?? t('placeholder.soonTag'))
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  font:
-    600 15px 'Space Grotesk',
-    sans-serif;
+  font: 600 15px var(--font-sans);
   color: var(--accent);
   padding: 13px 22px;
   border-radius: 12px;

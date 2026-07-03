@@ -120,18 +120,14 @@ const { t } = useI18n()
 
 .title {
   margin: 0;
-  font:
-    500 48px 'Newsreader',
-    serif;
+  font: 500 48px var(--font-serif);
   letter-spacing: -0.015em;
   color: var(--text);
 }
 
 .subtitle {
   margin: 16px 0 0;
-  font:
-    400 18px 'Space Grotesk',
-    sans-serif;
+  font: 400 18px var(--font-sans);
   color: var(--text2);
 }
 
@@ -178,9 +174,7 @@ const { t } = useI18n()
 
 .card-title {
   margin: 0;
-  font:
-    600 19px 'Space Grotesk',
-    sans-serif;
+  font: 600 19px var(--font-sans);
   color: var(--text);
 }
 
@@ -189,9 +183,7 @@ const { t } = useI18n()
 }
 
 .badge {
-  font:
-    600 11px 'Space Grotesk',
-    sans-serif;
+  font: 600 11px var(--font-sans);
   letter-spacing: 0.04em;
   padding: 4px 10px;
   border-radius: 999px;

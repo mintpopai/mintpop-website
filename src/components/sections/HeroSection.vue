@@ -181,24 +181,18 @@ const { t } = useI18n()
   align-items: center;
   justify-content: center;
   color: #fff;
-  font:
-    700 11px 'Space Grotesk',
-    sans-serif;
+  font: 700 11px var(--font-sans);
 }
 
 .badge-text {
-  font:
-    500 14px 'Space Grotesk',
-    sans-serif;
+  font: 500 14px var(--font-sans);
   color: var(--text);
   white-space: nowrap;
 }
 
 .headline {
   margin: 34px 0 0;
-  font:
-    500 78px 'Newsreader',
-    serif;
+  font: 500 78px var(--font-serif);
   line-height: 1.04;
   letter-spacing: -0.02em;
   color: var(--text);
@@ -216,18 +210,14 @@ const { t } = useI18n()
 .subtitle {
   margin: 26px 0 0;
   max-width: 620px;
-  font:
-    400 20px 'Space Grotesk',
-    sans-serif;
+  font: 400 20px var(--font-sans);
   line-height: 1.6;
   color: var(--text2);
 }
 
 .byline {
   margin: 12px 0 0;
-  font:
-    500 13px 'Space Grotesk',
-    sans-serif;
+  font: 500 13px var(--font-sans);
   letter-spacing: 0.01em;
   color: var(--ph);
 }
@@ -243,9 +233,7 @@ const { t } = useI18n()
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font:
-    600 16px 'Space Grotesk',
-    sans-serif;
+  font: 600 16px var(--font-sans);
   border-radius: 13px;
   cursor: pointer;
   transition:
@@ -289,9 +277,7 @@ const { t } = useI18n()
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  font:
-    500 14px 'Space Grotesk',
-    sans-serif;
+  font: 500 14px var(--font-sans);
   color: var(--text2);
   background: var(--card);
   border: 1px solid var(--border);

@@ -93,9 +93,7 @@ const { lp } = useLocale()
 }
 
 .link {
-  font:
-    500 14px 'Space Grotesk',
-    sans-serif;
+  font: 500 14px var(--font-sans);
   color: var(--text2);
   cursor: pointer;
   transition: color 0.18s ease;
@@ -132,32 +130,24 @@ const { lp } = useLocale()
 }
 
 .operated-by {
-  font:
-    400 13px 'Space Grotesk',
-    sans-serif;
+  font: 400 13px var(--font-sans);
   color: var(--text2);
 }
 
 .operated-name {
-  font:
-    600 15px 'Space Grotesk',
-    sans-serif;
+  font: 600 15px var(--font-sans);
   color: var(--text);
   letter-spacing: 0.01em;
 }
 
 .operated-loc {
-  font:
-    500 13px 'Space Grotesk',
-    sans-serif;
+  font: 500 13px var(--font-sans);
   color: var(--text2);
 }
 
 .copyright {
   margin: 0;
-  font:
-    400 13px 'Space Grotesk',
-    sans-serif;
+  font: 400 13px var(--font-sans);
   color: var(--ph);
 }
 
