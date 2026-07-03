@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
 import { CONSOLE_URL } from '@/config/site'
+
+const { t } = useI18n()
 </script>
 
 <template>
@@ -12,24 +16,27 @@ import { CONSOLE_URL } from '@/config/site'
     <div class="hero-inner">
       <div class="badge">
         <span class="badge-icon">✦</span>
-        <span class="badge-text">
-          MintPop &nbsp;·&nbsp; Multimodal AI infrastructure for developers
-        </span>
+        <span class="badge-text">{{ t('hero.badge') }}</span>
       </div>
 
-      <h1 class="headline">
-        One API for <span class="em em-accent">text</span>, <span class="em">vision</span>, and
-        <span class="em">voice</span>.
-      </h1>
+      <i18n-t keypath="hero.headline" tag="h1" class="headline">
+        <template #text>
+          <span class="em em-accent">{{ t('hero.text') }}</span>
+        </template>
+        <template #vision>
+          <span class="em">{{ t('hero.vision') }}</span>
+        </template>
+        <template #voice>
+          <span class="em">{{ t('hero.voice') }}</span>
+        </template>
+      </i18n-t>
 
-      <p class="subtitle">
-        Build multimodal AI into your product through a single, unified endpoint.
-      </p>
-      <p class="byline">Built by Energyline &nbsp;·&nbsp; Based in the United States</p>
+      <p class="subtitle">{{ t('hero.subtitle') }}</p>
+      <p class="byline">{{ t('hero.byline') }}</p>
 
       <div class="cta-row">
         <a :href="CONSOLE_URL" target="_blank" rel="noopener" class="btn btn-primary">
-          Get Started
+          {{ t('hero.getStarted') }}
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
             <path
               d="M5 12h14M13 6l6 6-6 6"
@@ -40,7 +47,7 @@ import { CONSOLE_URL } from '@/config/site'
             />
           </svg>
         </a>
-        <a href="#capabilities" class="btn btn-ghost">Explore capabilities</a>
+        <a href="#capabilities" class="btn btn-ghost">{{ t('hero.explore') }}</a>
       </div>
 
       <div class="tags">
@@ -59,7 +66,7 @@ import { CONSOLE_URL } from '@/config/site'
             <path d="M17 8l4 4-4 4" />
             <path d="M14 4l-4 16" />
           </svg>
-          Unified API
+          {{ t('hero.tagUnifiedApi') }}
         </span>
         <span class="tag">
           <svg
@@ -75,7 +82,7 @@ import { CONSOLE_URL } from '@/config/site'
             <path d="M12 3l8 4v5c0 4.4-3.1 7.6-8 9-4.9-1.4-8-4.6-8-9V7l8-4z" />
             <path d="M9 12l2 2 4-4" />
           </svg>
-          Session Persistence
+          {{ t('hero.tagSession') }}
         </span>
         <span class="tag">
           <svg
@@ -90,7 +97,7 @@ import { CONSOLE_URL } from '@/config/site'
           >
             <path d="M4 20V10M10 20V4M16 20v-8M22 20H2" />
           </svg>
-          Pay As You Go
+          {{ t('hero.tagPayg') }}
         </span>
       </div>
     </div>

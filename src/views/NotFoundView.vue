@@ -10,5 +10,6 @@ useSeo('NOT_FOUND')
     tag="404"
     title="Page not found"
     description="The page you're looking for doesn't exist or has moved."
+    subtext="你要找的页面不存在或已被移动。"
   />
 </template>

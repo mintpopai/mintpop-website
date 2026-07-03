@@ -1,11 +1,14 @@
 <script setup lang="ts">
 // 三张能力卡片：图标 + 标题 + 描述。
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 </script>
 
 <template>
   <section id="capabilities" class="capabilities">
     <!-- 本区块设计上无可见标题，补隐藏 h2 保持 h1→h2→h3 层级不跳级 -->
-    <h2 class="visually-hidden">Capabilities</h2>
+    <h2 class="visually-hidden">{{ t('capabilities.heading') }}</h2>
     <div class="wrap">
       <div class="grid">
         <article class="card">
@@ -24,9 +27,9 @@
               <path d="M10.8 12.2L19 4M16 7l3 3M14 9l2 2" />
             </svg>
           </div>
-          <h3 class="card-title">One-Click Access</h3>
+          <h3 class="card-title">{{ t('capabilities.accessTitle') }}</h3>
           <p class="card-desc">
-            A single API key to call every capability. No separate accounts to manage.
+            {{ t('capabilities.accessDesc') }}
           </p>
         </article>
 
@@ -46,9 +49,9 @@
               <path d="M21 4v4h-4" />
             </svg>
           </div>
-          <h3 class="card-title">Always Reliable</h3>
+          <h3 class="card-title">{{ t('capabilities.reliableTitle') }}</h3>
           <p class="card-desc">
-            Intelligent routing with automatic failover keeps your requests flowing.
+            {{ t('capabilities.reliableDesc') }}
           </p>
         </article>
 
@@ -68,9 +71,9 @@
               <path d="M12 2v10l7 3" />
             </svg>
           </div>
-          <h3 class="card-title">Usage-Based Billing</h3>
+          <h3 class="card-title">{{ t('capabilities.billingTitle') }}</h3>
           <p class="card-desc">
-            Pay only for what you use, with quota limits and full consumption visibility.
+            {{ t('capabilities.billingDesc') }}
           </p>
         </article>
       </div>

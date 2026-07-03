@@ -1,7 +1,12 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import { RouterLink } from 'vue-router'
 
 import BrandLogo from '@/components/BrandLogo.vue'
+import { useLocale } from '@/composables/useLocale'
+
+const { t } = useI18n()
+const { lp } = useLocale()
 </script>
 
 <template>
@@ -12,15 +17,21 @@ import BrandLogo from '@/components/BrandLogo.vue'
       </a>
 
       <nav class="links">
-        <RouterLink to="/legal#terms" class="link"> Terms of Service </RouterLink>
+        <RouterLink :to="`${lp('/legal')}#terms`" class="link">{{ t('footer.terms') }}</RouterLink>
         <span class="sep">·</span>
-        <RouterLink to="/legal#privacy" class="link"> Privacy Policy </RouterLink>
+        <RouterLink :to="`${lp('/legal')}#privacy`" class="link">
+          {{ t('footer.privacy') }}
+        </RouterLink>
         <span class="sep">·</span>
-        <RouterLink to="/legal#refund" class="link"> Refund Policy </RouterLink>
+        <RouterLink :to="`${lp('/legal')}#refund`" class="link">{{
+          t('footer.refund')
+        }}</RouterLink>
         <span class="sep">·</span>
-        <RouterLink to="/legal#aup" class="link"> Acceptable Use </RouterLink>
+        <RouterLink :to="`${lp('/legal')}#aup`" class="link">{{ t('footer.aup') }}</RouterLink>
         <span class="sep">·</span>
-        <RouterLink to="/legal#contact" class="link"> Contact </RouterLink>
+        <RouterLink :to="`${lp('/legal')}#contact`" class="link">
+          {{ t('footer.contact') }}
+        </RouterLink>
       </nav>
 
       <div class="operated">
@@ -40,13 +51,13 @@ import BrandLogo from '@/components/BrandLogo.vue'
             <path d="M2 21h20M8 8h0M8 12h0M8 16h0" />
           </svg>
         </span>
-        <span class="operated-by">Operated by</span>
+        <span class="operated-by">{{ t('footer.operatedBy') }}</span>
         <span class="operated-name">Energyline</span>
         <span class="sep">·</span>
-        <span class="operated-loc">United States</span>
+        <span class="operated-loc">{{ t('footer.location') }}</span>
       </div>
 
-      <p class="copyright">© 2026 MintPop. All rights reserved.</p>
+      <p class="copyright">{{ t('footer.copyright') }}</p>
     </div>
   </footer>
 </template>
