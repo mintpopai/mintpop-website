@@ -7,6 +7,7 @@ MintPop 落地页的前端实现，依据设计稿 `Mint Website.dc.html` 还原
 - **Vite** — 构建与开发服务器
 - **Vue 3**（`<script setup>` + TypeScript）
 - **Vue Router** — 页面路由
+- **vue-i18n** — 中英文案词条（`src/locales/`，`en.ts` 为真相源、`zh.ts` 受同构类型约束）
 - **vite-ssg** — 构建期把各路由预渲染成静态 HTML（SEO 需要；`dirStyle: nested` 配合 nginx 目录路由）
 - **@unhead/vue** — 各页 title/meta/canonical/OG 等 head 管理（锁 v2，见 `vite.config.ts` 相关注释）
 - **Vitest** — 单元测试（与源码同目录的 `*.test.ts`）
@@ -44,6 +45,14 @@ MINTPOP_TAG=0.1.0 docker compose up -d       # 拉指定版本（默认 latest�
 镜像内为 nginx 托管的静态站点，容器暴露 `80`；构建上下文裁剪走 `Dockerfile.dockerignore`
 （per-Dockerfile ignore，BuildKit 优先于仓库根的通用 `.dockerignore`）。
 
+## 国际化（i18n）
+
+- 英文在根路径（`/`、`/legal`…），中文加 `/zh` 前缀（`/zh`、`/zh/legal`…），两套页面均由 vite-ssg 预渲染。
+- 语言唯一由 URL 决定：路由 `meta.locale` → router 守卫设置 vue-i18n locale，同一来源驱动 `useSeo` 的本地化 head。
+- SEO 按语言输出 title/description/canonical/og:locale，可收录页互挂 hreflang（`x-default` 指英文），sitemap 覆盖两种语言。
+- Header 切换器为链接式（爬虫可发现中文页），手动切换记忆偏好（localStorage `mint-locale`），回访时客户端带回偏好语言；首访不自动跳转。
+- 404 只预渲染英文一份（nginx `error_page` 单一指向），页内双语同屏；中文字体走系统 CJK 回退，不自托管中文 webfont。
+
 ## 部署与发版
 
 - **镜像**：多阶段 `Dockerfile` 产出 nginx 静态镜像，暴露 `80` 端口；单 amd64，私有部署型。
@@ -69,12 +78,15 @@ src/
 │       └── ModalitiesSection.vue    # 模态卡片
 ├── composables/
 │   ├── useTheme.ts            # 主题（Light/Dark + accent）单例（含同目录守护测试）
+│   ├── useLocale.ts           # 语言上下文与偏好（localStorage 记忆、URL 驱动 locale）
 │   └── useSeo.ts              # 按路由 key 声明各页 head（meta/canonical/OG）
 ├── config/
+│   ├── locale.ts             # 语言常量与路径派生（英文根 / 中文 /zh 前缀）
 │   ├── seo.ts                # 各路由 SEO 文案与 noindex 标记（sitemap 由此派生）
 │   └── site.ts               # 站点级常量（域名/控制台地址/可收录路由）
+├── locales/                   # 中英词条（en.ts 为真相源，zh.ts 受同构类型约束）
 ├── router/
-│   └── index.ts              # 路由：/ 落地页，其余为占位；未匹配路径渲染 404
+│   └── index.ts              # 路由：英文树 + /zh 中文树由 base 表生成
 ├── styles/
 │   ├── theme.css             # Light/Dark 主题变量
 │   └── base.css              # 全局基础样式

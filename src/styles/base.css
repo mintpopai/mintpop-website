@@ -16,7 +16,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   /* 主题切换时整体平滑过渡 */
   transition:

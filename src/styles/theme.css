@@ -8,6 +8,15 @@
  */
 
 :root {
+  /* 字体栈单一来源：拉丁字符走自托管西文字体，CJK 回退各平台系统中文字体
+     （不自托管中文 webfont——体积以 MB 计；serif 栈的 CJK 也回退黑体系，
+     避免 Windows 默认宋体拉低标题观感，见 i18n 设计文档） */
+  --font-sans:
+    'Space Grotesk', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC',
+    sans-serif;
+  --font-serif:
+    'Newsreader', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', serif;
+
   /* 主题色（accent 由 JS 动态写入，这里给默认兜底） */
   --accent: #17d1a7;
   --accent-deep: #0fb389;

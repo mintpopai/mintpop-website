@@ -1,13 +1,16 @@
 <script setup lang="ts">
 // 模态卡片区：Text / Vision / Voice 已支持，More 为「即将上线」占位卡。
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 </script>
 
 <template>
   <section id="modalities" class="modalities">
     <div class="wrap">
       <header class="head">
-        <h2 class="title">One API, Every Modality</h2>
-        <p class="subtitle">Build once, ship across modalities.</p>
+        <h2 class="title">{{ t('modalities.title') }}</h2>
+        <p class="subtitle">{{ t('modalities.subtitle') }}</p>
       </header>
 
       <div class="grid">
@@ -27,8 +30,8 @@
             </svg>
           </div>
           <div class="card-foot">
-            <h3 class="card-title">Text</h3>
-            <span class="badge badge-supported">SUPPORTED</span>
+            <h3 class="card-title">{{ t('modalities.text') }}</h3>
+            <span class="badge badge-supported">{{ t('modalities.supported') }}</span>
           </div>
         </article>
 
@@ -49,8 +52,8 @@
             </svg>
           </div>
           <div class="card-foot">
-            <h3 class="card-title">Vision</h3>
-            <span class="badge badge-supported">SUPPORTED</span>
+            <h3 class="card-title">{{ t('modalities.vision') }}</h3>
+            <span class="badge badge-supported">{{ t('modalities.supported') }}</span>
           </div>
         </article>
 
@@ -70,8 +73,8 @@
             </svg>
           </div>
           <div class="card-foot">
-            <h3 class="card-title">Voice</h3>
-            <span class="badge badge-supported">SUPPORTED</span>
+            <h3 class="card-title">{{ t('modalities.voice') }}</h3>
+            <span class="badge badge-supported">{{ t('modalities.supported') }}</span>
           </div>
         </article>
 
@@ -91,8 +94,8 @@
             </svg>
           </div>
           <div class="card-foot">
-            <h3 class="card-title card-title-muted">More</h3>
-            <span class="badge badge-soon">SOON</span>
+            <h3 class="card-title card-title-muted">{{ t('modalities.more') }}</h3>
+            <span class="badge badge-soon">{{ t('modalities.soon') }}</span>
           </div>
         </article>
       </div>
@@ -117,18 +120,14 @@
 
 .title {
   margin: 0;
-  font:
-    500 48px 'Newsreader',
-    serif;
+  font: 500 48px var(--font-serif);
   letter-spacing: -0.015em;
   color: var(--text);
 }
 
 .subtitle {
   margin: 16px 0 0;
-  font:
-    400 18px 'Space Grotesk',
-    sans-serif;
+  font: 400 18px var(--font-sans);
   color: var(--text2);
 }
 
@@ -175,9 +174,7 @@
 
 .card-title {
   margin: 0;
-  font:
-    600 19px 'Space Grotesk',
-    sans-serif;
+  font: 600 19px var(--font-sans);
   color: var(--text);
 }
 
@@ -186,9 +183,7 @@
 }
 
 .badge {
-  font:
-    600 11px 'Space Grotesk',
-    sans-serif;
+  font: 600 11px var(--font-sans);
   letter-spacing: 0.04em;
   padding: 4px 10px;
   border-radius: 999px;
