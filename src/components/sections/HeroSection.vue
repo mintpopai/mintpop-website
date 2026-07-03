@@ -3,11 +3,23 @@ import { CONSOLE_URL } from '@/config/site'
 </script>
 
 <template>
-  <section id="top" class="hero">
+  <section
+    id="top"
+    class="hero"
+  >
     <!-- 装饰层：warhol 网点渐变 + 网点底纹 + 中央光晕（纯展示，不可交互） -->
-    <div class="deco deco-dots-accent" aria-hidden="true"></div>
-    <div class="deco deco-dots-ink" aria-hidden="true"></div>
-    <div class="deco deco-glow" aria-hidden="true"></div>
+    <div
+      class="deco deco-dots-accent"
+      aria-hidden="true"
+    />
+    <div
+      class="deco deco-dots-ink"
+      aria-hidden="true"
+    />
+    <div
+      class="deco deco-glow"
+      aria-hidden="true"
+    />
 
     <div class="hero-inner">
       <div class="badge">
@@ -26,7 +38,9 @@ import { CONSOLE_URL } from '@/config/site'
         Build multimodal AI into your product through a single, unified
         endpoint.
       </p>
-      <p class="byline">Built by Energyline &nbsp;·&nbsp; Based in the United States</p>
+      <p class="byline">
+        Built by Energyline &nbsp;·&nbsp; Based in the United States
+      </p>
 
       <div class="cta-row">
         <a
@@ -36,7 +50,12 @@ import { CONSOLE_URL } from '@/config/site'
           class="btn btn-primary"
         >
           Get Started
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
             <path
               d="M5 12h14M13 6l6 6-6 6"
               stroke="#fff"
@@ -46,7 +65,10 @@ import { CONSOLE_URL } from '@/config/site'
             />
           </svg>
         </a>
-        <a href="#capabilities" class="btn btn-ghost">Explore capabilities</a>
+        <a
+          href="#capabilities"
+          class="btn btn-ghost"
+        >Explore capabilities</a>
       </div>
 
       <div class="tags">

@@ -13,16 +13,31 @@ defineProps<{
 <template>
   <section class="placeholder">
     <div class="inner">
-      <RouterLink to="/" class="logo-link">
+      <RouterLink
+        to="/"
+        class="logo-link"
+      >
         <BrandLogo :size="26" />
       </RouterLink>
 
       <span class="tag">SOON</span>
-      <h1 class="title">{{ title }}</h1>
-      <p class="desc">{{ description }}</p>
+      <h1 class="title">
+        {{ title }}
+      </h1>
+      <p class="desc">
+        {{ description }}
+      </p>
 
-      <RouterLink to="/" class="back">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+      <RouterLink
+        to="/"
+        class="back"
+      >
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
           <path
             d="M19 12H5M11 6l-6 6 6 6"
             stroke="currentColor"

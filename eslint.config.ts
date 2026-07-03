@@ -16,6 +16,7 @@ export default defineConfigWithVueTs(
     ignores: ['**/dist/**', '**/dist-ssr/**', '**/coverage/**'],
   },
 
-  pluginVue.configs['flat/essential'],
+  // recommended = essential(错误级) + strongly-recommended(可读性) + recommended(最佳实践)全量档
+  pluginVue.configs['flat/recommended'],
   vueTsConfigs.recommended,
 )

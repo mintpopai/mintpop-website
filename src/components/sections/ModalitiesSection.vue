@@ -3,11 +3,18 @@
 </script>
 
 <template>
-  <section id="modalities" class="modalities">
+  <section
+    id="modalities"
+    class="modalities"
+  >
     <div class="wrap">
       <header class="head">
-        <h2 class="title">One API, Every Modality</h2>
-        <p class="subtitle">Build once, ship across modalities.</p>
+        <h2 class="title">
+          One API, Every Modality
+        </h2>
+        <p class="subtitle">
+          Build once, ship across modalities.
+        </p>
       </header>
 
       <div class="grid">
@@ -27,7 +34,9 @@
             </svg>
           </div>
           <div class="card-foot">
-            <h3 class="card-title">Text</h3>
+            <h3 class="card-title">
+              Text
+            </h3>
             <span class="badge badge-supported">SUPPORTED</span>
           </div>
         </article>
@@ -45,11 +54,17 @@
               stroke-linejoin="round"
             >
               <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" />
-              <circle cx="12" cy="12" r="3" />
+              <circle
+                cx="12"
+                cy="12"
+                r="3"
+              />
             </svg>
           </div>
           <div class="card-foot">
-            <h3 class="card-title">Vision</h3>
+            <h3 class="card-title">
+              Vision
+            </h3>
             <span class="badge badge-supported">SUPPORTED</span>
           </div>
         </article>
@@ -70,7 +85,9 @@
             </svg>
           </div>
           <div class="card-foot">
-            <h3 class="card-title">Voice</h3>
+            <h3 class="card-title">
+              Voice
+            </h3>
             <span class="badge badge-supported">SUPPORTED</span>
           </div>
         </article>
@@ -91,7 +108,9 @@
             </svg>
           </div>
           <div class="card-foot">
-            <h3 class="card-title card-title-muted">More</h3>
+            <h3 class="card-title card-title-muted">
+              More
+            </h3>
             <span class="badge badge-soon">SOON</span>
           </div>
         </article>

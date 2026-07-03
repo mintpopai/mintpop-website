@@ -7,20 +7,48 @@ import BrandLogo from '@/components/BrandLogo.vue'
 <template>
   <footer class="footer">
     <div class="inner">
-      <a href="#top" class="logo-link">
+      <a
+        href="#top"
+        class="logo-link"
+      >
         <BrandLogo :size="22" />
       </a>
 
       <nav class="links">
-        <RouterLink to="/legal#terms" class="link">Terms of Service</RouterLink>
+        <RouterLink
+          to="/legal#terms"
+          class="link"
+        >
+          Terms of Service
+        </RouterLink>
         <span class="sep">·</span>
-        <RouterLink to="/legal#privacy" class="link">Privacy Policy</RouterLink>
+        <RouterLink
+          to="/legal#privacy"
+          class="link"
+        >
+          Privacy Policy
+        </RouterLink>
         <span class="sep">·</span>
-        <RouterLink to="/legal#refund" class="link">Refund Policy</RouterLink>
+        <RouterLink
+          to="/legal#refund"
+          class="link"
+        >
+          Refund Policy
+        </RouterLink>
         <span class="sep">·</span>
-        <RouterLink to="/legal#aup" class="link">Acceptable Use</RouterLink>
+        <RouterLink
+          to="/legal#aup"
+          class="link"
+        >
+          Acceptable Use
+        </RouterLink>
         <span class="sep">·</span>
-        <RouterLink to="/legal#contact" class="link">Contact</RouterLink>
+        <RouterLink
+          to="/legal#contact"
+          class="link"
+        >
+          Contact
+        </RouterLink>
       </nav>
 
       <div class="operated">
@@ -46,7 +74,9 @@ import BrandLogo from '@/components/BrandLogo.vue'
         <span class="operated-loc">United States</span>
       </div>
 
-      <p class="copyright">© 2026 MintPop. All rights reserved.</p>
+      <p class="copyright">
+        © 2026 MintPop. All rights reserved.
+      </p>
     </div>
   </footer>
 </template>
