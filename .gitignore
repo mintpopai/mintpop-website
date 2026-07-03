@@ -15,8 +15,7 @@ pnpm-debug.log*
 # 编辑器 / 工具本地工程文件（按仓库卫生规范排除）
 .idea/
 .claude/
-.vscode/*
-!.vscode/extensions.json
+.vscode/
 .DS_Store
 *.suo
 *.ntvs*

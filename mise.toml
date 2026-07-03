@@ -99,7 +99,8 @@ else
 fi
 
 # 一次 fetch 同时供「自动算版本号」与「main 落后检查」复用
-git fetch origin main --tags >/dev/null 2>&1
+# --quiet 只压进度输出，真实错误仍走 stderr；失败时 set -e 中止且能看到 git 报错
+git fetch --quiet origin main --tags
 
 # 解析版本号：未显式给则取最新稳定 tag 的 patch+1（git 内置版本排序，禁用 sort -V）
 if [ -z "$RAW_VERSION" ]; then
