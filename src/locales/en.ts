@@ -60,8 +60,10 @@ export default {
     legalDesc:
       'Terms of Service, Privacy Policy, Refund Policy, Acceptable Use and contact details will live here once the design is ready.',
     loginTitle: 'Login',
-    loginDesc: "The sign-in experience is coming soon. The design for this page hasn't been provided yet.",
+    loginDesc:
+      "The sign-in experience is coming soon. The design for this page hasn't been provided yet.",
     registerTitle: 'Get Started',
-    registerDesc: "Account registration is coming soon. The design for this page hasn't been provided yet.",
+    registerDesc:
+      "Account registration is coming soon. The design for this page hasn't been provided yet.",
   },
 }
