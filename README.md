@@ -10,7 +10,7 @@ MintPop 落地页的前端实现，依据设计稿 `Mint Website.dc.html` 还原
 - **vue-i18n** — 中英文案词条（`src/locales/`，`en.ts` 为真相源、`zh.ts` 受同构类型约束）
 - **vite-ssg** — 构建期把各路由预渲染成静态 HTML（SEO 需要；`dirStyle: nested` 配合 nginx 目录路由）
 - **@unhead/vue** — 各页 title/meta/canonical/OG 等 head 管理（锁 v2，见 `vite.config.ts` 相关注释）
-- **Vitest** — 单元测试（与源码同目录的 `*.test.ts`）
+- **Vitest + @vue/test-utils** — 单元与组件测试（与源码同目录的 `*.test.ts`）
 - **Fontsource** — 字体（Newsreader / Space Grotesk）自托管，随构建产物同源分发，不外链 Google Fonts（大陆被阻断会整页白屏）
 - 纯 CSS + CSS 变量驱动的主题系统（无 UI 组件库）
 
