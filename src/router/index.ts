@@ -1,4 +1,4 @@
-import type { RouteRecordRaw, RouterScrollBehavior } from 'vue-router'
+import type { RouteRecordRaw, RouteRecordSingleView, RouterScrollBehavior } from 'vue-router'
 
 import { Locale, localizePath } from '@/config/locale'
 import type { SeoRouteKey } from '@/config/seo'
@@ -19,9 +19,9 @@ export const ZH_NAME_SUFFIX = '_ZH'
 interface BaseRouteDef {
   path: string
   name: SeoRouteKey
-  // 若 RouteRecordRaw['component'] 索引类型在当前 vue-router 版本下报错，
-  // 改用 vue-router 导出的 RawRouteComponent 类型，语义等价
-  component: RouteRecordRaw['component']
+  // 索引类型取自 RouteRecordRaw，NonNullable 去掉联合分支带出的 null/undefined，
+  // 使其可直接满足下方 RouteRecordSingleView 的必填 component
+  component: NonNullable<RouteRecordRaw['component']>
   zh: boolean
 }
 
@@ -48,18 +48,25 @@ const BASE_ROUTES: BaseRouteDef[] = [
 // 路由表：交给 vite-ssg 创建 router（history 由 vite-ssg 自动注入）。
 // 英文树在根路径，中文树加 /zh 前缀，两套都会被 SSG 预渲染。
 export const routes: RouteRecordRaw[] = [
-  ...BASE_ROUTES.map((r) => ({
-    path: r.path,
-    name: r.name,
-    component: r.component,
-    meta: { locale: Locale.EN },
-  } as RouteRecordRaw)),
-  ...BASE_ROUTES.filter((r) => r.zh).map((r) => ({
-    path: localizePath(r.path, Locale.ZH),
-    name: `${r.name}${ZH_NAME_SUFFIX}`,
-    component: r.component,
-    meta: { locale: Locale.ZH },
-  } as RouteRecordRaw)),
+  // satisfies 用具体联合分支校验对象形状（未知字段/拼写错误会报 TS2353），比 as 断言安全
+  ...BASE_ROUTES.map(
+    (r) =>
+      ({
+        path: r.path,
+        name: r.name,
+        component: r.component,
+        meta: { locale: Locale.EN },
+      }) satisfies RouteRecordSingleView,
+  ),
+  ...BASE_ROUTES.filter((r) => r.zh).map(
+    (r) =>
+      ({
+        path: localizePath(r.path, Locale.ZH),
+        name: `${r.name}${ZH_NAME_SUFFIX}`,
+        component: r.component,
+        meta: { locale: Locale.ZH },
+      }) satisfies RouteRecordSingleView,
+  ),
   // 兜底：客户端侧未匹配路由渲染 404 页（不重定向，保留原 URL 与 nginx 的 404 状态一致）
   {
     path: '/:pathMatch(.*)*',
