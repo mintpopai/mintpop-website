@@ -4,6 +4,8 @@
 
 <template>
   <section id="capabilities" class="capabilities">
+    <!-- 本区块设计上无可见标题，补隐藏 h2 保持 h1→h2→h3 层级不跳级 -->
+    <h2 class="visually-hidden">Capabilities</h2>
     <div class="wrap">
       <div class="grid">
         <article class="card">

@@ -2,10 +2,10 @@ import { describe, expect, it } from 'vitest'
 
 import { SEO, type SeoRouteKey } from './seo'
 
-const ALL_KEYS: SeoRouteKey[] = ['HOME', 'LEGAL', 'LOGIN', 'REGISTER']
+const ALL_KEYS: SeoRouteKey[] = ['HOME', 'LEGAL', 'LOGIN', 'REGISTER', 'NOT_FOUND']
 
 describe('SEO 配置', () => {
-  it('四个路由 key 齐全', () => {
+  it('路由 key 齐全', () => {
     expect(Object.keys(SEO).sort()).toEqual([...ALL_KEYS].sort())
   })
 
@@ -18,9 +18,10 @@ describe('SEO 配置', () => {
     }
   })
 
-  it('login/register 标了 noindex,home/legal 未标', () => {
+  it('login/register/404 标了 noindex,home/legal 未标', () => {
     expect(SEO.LOGIN.noindex).toBe(true)
     expect(SEO.REGISTER.noindex).toBe(true)
+    expect(SEO.NOT_FOUND.noindex).toBe(true)
     expect(SEO.HOME.noindex).toBeUndefined()
     expect(SEO.LEGAL.noindex).toBeUndefined()
   })

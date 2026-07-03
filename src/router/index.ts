@@ -25,10 +25,16 @@ export const routes: RouteRecordRaw[] = [
     name: 'REGISTER',
     component: () => import('@/views/RegisterView.vue'),
   },
-  // 兜底:未匹配路由回首页
+  // 404:显式 /404 路由供 SSG 预渲染出 dist/404/index.html(nginx error_page 指向它)
+  {
+    path: '/404',
+    name: 'NOT_FOUND',
+    component: () => import('@/views/NotFoundView.vue'),
+  },
+  // 兜底:客户端侧未匹配路由渲染 404 页(不重定向,保留原 URL 与 nginx 的 404 状态一致)
   {
     path: '/:pathMatch(.*)*',
-    redirect: '/',
+    component: () => import('@/views/NotFoundView.vue'),
   },
 ]
 

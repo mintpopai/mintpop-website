@@ -23,8 +23,14 @@ const { isDark, toggleTheme } = useTheme()
 
     <div class="actions">
       <span class="lang">EN</span>
-      <button type="button" class="theme-toggle" title="Toggle theme" @click="toggleTheme">
-        <span class="theme-icon">{{ isDark ? '☀' : '☾' }}</span>
+      <button
+        type="button"
+        class="theme-toggle"
+        :aria-label="isDark ? 'Switch to light theme' : 'Switch to dark theme'"
+        :aria-pressed="isDark"
+        @click="toggleTheme"
+      >
+        <span class="theme-icon" aria-hidden="true">{{ isDark ? '☀' : '☾' }}</span>
       </button>
       <a :href="CONSOLE_URL" target="_blank" rel="noopener" class="login-btn"> Login </a>
     </div>
@@ -97,7 +103,6 @@ const { isDark, toggleTheme } = useTheme()
     500 13px 'Space Grotesk',
     sans-serif;
   color: var(--text2);
-  cursor: pointer;
 }
 
 .theme-toggle {

@@ -74,7 +74,7 @@ src/
 │   ├── seo.ts                # 各路由 SEO 文案与 noindex 标记（sitemap 由此派生）
 │   └── site.ts               # 站点级常量（域名/控制台地址/可收录路由）
 ├── router/
-│   └── index.ts              # 路由：/ 落地页，其余为占位
+│   └── index.ts              # 路由：/ 落地页，其余为占位；未匹配路径渲染 404
 ├── styles/
 │   ├── theme.css             # Light/Dark 主题变量
 │   └── base.css              # 全局基础样式
@@ -82,7 +82,8 @@ src/
 │   ├── HomeView.vue          # 落地页
 │   ├── LegalView.vue         # 占位
 │   ├── LoginView.vue         # 占位
-│   └── RegisterView.vue      # 占位
+│   ├── RegisterView.vue      # 占位
+│   └── NotFoundView.vue      # 404（预渲染出 /404/，nginx error_page 指向它）
 ├── App.vue
 └── main.ts
 

@@ -3,11 +3,16 @@ import { RouterLink } from 'vue-router'
 
 import BrandLogo from '@/components/BrandLogo.vue'
 
-// 占位页：设计稿未提供 Legal/Login/Register 的样式，先用统一占位承接路由
-defineProps<{
-  title: string
-  description: string
-}>()
+// 占位页：设计稿未提供 Legal/Login/Register 的样式，先用统一占位承接路由；
+// 404 页也复用此版式（tag 换成 404）
+withDefaults(
+  defineProps<{
+    title: string
+    description: string
+    tag?: string
+  }>(),
+  { tag: 'SOON' },
+)
 </script>
 
 <template>
@@ -17,7 +22,7 @@ defineProps<{
         <BrandLogo :size="26" />
       </RouterLink>
 
-      <span class="tag">SOON</span>
+      <span class="tag">{{ tag }}</span>
       <h1 class="title">
         {{ title }}
       </h1>
