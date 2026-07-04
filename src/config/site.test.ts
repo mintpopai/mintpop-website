@@ -1,3 +1,6 @@
+import { readFileSync } from 'node:fs'
+import { fileURLToPath, URL } from 'node:url'
+
 import { describe, expect, it } from 'vitest'
 
 import { Locale, localizePath } from './locale'
@@ -33,5 +36,19 @@ describe('INDEXABLE_ROUTES', () => {
     expect(INDEXABLE_ROUTES).toContain('/zh')
     expect(INDEXABLE_ROUTES).toContain('/legal')
     expect(INDEXABLE_ROUTES).toContain('/zh/legal')
+  })
+})
+
+// 路径经变量传入,避开 Vite 对 new URL('字面量', import.meta.url) 的静态资产重写
+// (重写后不再是 file: URL,fileURLToPath 会抛错;与 useTheme.test.ts 同一模式)
+const readRepoFile = (relPath: string) =>
+  readFileSync(fileURLToPath(new URL(relPath, import.meta.url)), 'utf8')
+
+// 跨文件契约守护:robots.txt 是静态文件,里面的 Sitemap 绝对 URL 无法 import SITE_URL,
+// 只能手抄一份——SITE_URL 变更时这里锁死两处一致(与 index.html 主题键的守护同一模式)
+describe('跨文件站点契约(public/robots.txt)', () => {
+  it('robots.txt 的 Sitemap 指向 SITE_URL 下的 sitemap.xml', () => {
+    const robots = readRepoFile('../../public/robots.txt')
+    expect(robots).toContain(`Sitemap: ${SITE_URL}/sitemap.xml`)
   })
 })
