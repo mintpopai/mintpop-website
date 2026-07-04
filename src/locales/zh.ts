@@ -18,8 +18,6 @@ const zh: typeof en = {
     text: '文本',
     vision: '视觉',
     voice: '语音',
-    subtitle: '通过单一统一端点，把多模态 AI 能力构建进你的产品。',
-    byline: '由 Energyline 打造\u00A0·\u00A0立足美国',
     getStarted: '立即开始',
     explore: '了解能力',
     tagUnifiedApi: '统一 API',

@@ -16,8 +16,6 @@ export default {
     text: 'text',
     vision: 'vision',
     voice: 'voice',
-    subtitle: 'Build multimodal AI into your product through a single, unified endpoint.',
-    byline: 'Built by Energyline\u00A0·\u00A0Based in the United States',
     getStarted: 'Get Started',
     explore: 'Explore capabilities',
     tagUnifiedApi: 'Unified API',
