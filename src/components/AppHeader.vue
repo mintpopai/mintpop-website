@@ -14,15 +14,20 @@ const { lp, otherLocale, otherLabel, switchTarget } = useLocale()
 
 <template>
   <header class="header">
-    <a href="#top" class="logo-link">
+    <!-- 锚点与 logo 带首页路径前缀：页头也挂载在联系页等非首页，裸锚点在那里会失效 -->
+    <RouterLink :to="`${lp('/')}#top`" class="logo-link">
       <BrandLogo :size="24" />
-    </a>
+    </RouterLink>
 
     <nav class="nav">
-      <a href="#capabilities" class="nav-link">{{ t('nav.capabilities') }}</a>
-      <a href="#modalities" class="nav-link">{{ t('nav.modalities') }}</a>
+      <RouterLink :to="`${lp('/')}#capabilities`" class="nav-link">
+        {{ t('nav.capabilities') }}
+      </RouterLink>
+      <RouterLink :to="`${lp('/')}#modalities`" class="nav-link">
+        {{ t('nav.modalities') }}
+      </RouterLink>
       <RouterLink :to="lp('/legal')" class="nav-link">{{ t('nav.legal') }}</RouterLink>
-      <RouterLink :to="`${lp('/legal')}#contact`" class="nav-link nav-link--accent">
+      <RouterLink :to="lp('/contact')" class="nav-link nav-link--accent">
         {{ t('nav.contact') }}
       </RouterLink>
     </nav>

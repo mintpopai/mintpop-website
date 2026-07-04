@@ -40,3 +40,21 @@ describe('AppHeader 语言切换器', () => {
     expect(localStorage.getItem(STORAGE_KEY_LOCALE)).toBe('zh')
   })
 })
+
+// 页头在非首页（如联系页）也会挂载，链接必须带首页路径前缀才能跨页可用
+describe('AppHeader 导航链接', () => {
+  it('联系我们指向独立联系页，中文页带 /zh 前缀', async () => {
+    const en = await mountAt('/')
+    expect(en.find('a.nav-link--accent').attributes('href')).toBe('/contact')
+    const zh = await mountAt('/zh')
+    expect(zh.find('a.nav-link--accent').attributes('href')).toBe('/zh/contact')
+  })
+
+  it('区块锚点与 logo 带首页路径前缀，非首页也能回到首页对应区块', async () => {
+    const wrapper = await mountAt('/contact')
+    expect(wrapper.find('a.logo-link').attributes('href')).toBe('/#top')
+    const anchors = wrapper.findAll('a.nav-link').map((a) => a.attributes('href'))
+    expect(anchors).toContain('/#capabilities')
+    expect(anchors).toContain('/#modalities')
+  })
+})

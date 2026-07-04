@@ -12,9 +12,10 @@ const { lp } = useLocale()
 <template>
   <footer class="footer">
     <div class="inner">
-      <a href="#top" class="logo-link">
+      <!-- 带首页路径前缀：页脚也挂载在联系页等非首页，裸 #top 锚点在那里会失效 -->
+      <RouterLink :to="`${lp('/')}#top`" class="logo-link">
         <BrandLogo :size="22" />
-      </a>
+      </RouterLink>
 
       <nav class="links">
         <RouterLink :to="`${lp('/legal')}#terms`" class="link">{{ t('footer.terms') }}</RouterLink>
@@ -29,7 +30,7 @@ const { lp } = useLocale()
         <span class="sep">·</span>
         <RouterLink :to="`${lp('/legal')}#aup`" class="link">{{ t('footer.aup') }}</RouterLink>
         <span class="sep">·</span>
-        <RouterLink :to="`${lp('/legal')}#contact`" class="link">
+        <RouterLink :to="lp('/contact')" class="link">
           {{ t('footer.contact') }}
         </RouterLink>
       </nav>
