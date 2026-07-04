@@ -27,6 +27,12 @@ interface BaseRouteDef {
 
 const BASE_ROUTES: BaseRouteDef[] = [
   { path: '/', name: 'HOME', component: HomeView, zh: true },
+  {
+    path: '/contact',
+    name: 'CONTACT',
+    component: () => import('@/views/ContactView.vue'),
+    zh: true,
+  },
   // 以下三页设计稿暂未提供，先用占位视图占位，后续补设计再填充
   { path: '/legal', name: 'LEGAL', component: () => import('@/views/LegalView.vue'), zh: true },
   { path: '/login', name: 'LOGIN', component: () => import('@/views/LoginView.vue'), zh: true },

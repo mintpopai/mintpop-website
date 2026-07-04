@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import { Locale } from './locale'
 import { SEO, type SeoRouteKey } from './seo'
 
-const ALL_KEYS: SeoRouteKey[] = ['HOME', 'LEGAL', 'LOGIN', 'REGISTER', 'NOT_FOUND']
+const ALL_KEYS: SeoRouteKey[] = ['HOME', 'CONTACT', 'LEGAL', 'LOGIN', 'REGISTER', 'NOT_FOUND']
 const ALL_LOCALES = [Locale.EN, Locale.ZH]
 
 describe('SEO 配置', () => {

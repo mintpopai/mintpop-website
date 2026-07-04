@@ -41,6 +41,15 @@ export default {
     supported: 'SUPPORTED',
     soon: 'SOON',
   },
+  contact: {
+    title: 'Contact',
+    intro:
+      'MintPop is an API access relay and quota-management service for overseas developers and cross-border teams. Reach us through any channel below — we typically reply within one business day.',
+    emailLabel: 'Email Support',
+    emailDesc: 'Billing, account, credit-limit, and compliance questions.',
+    telegramLabel: 'Telegram',
+    telegramJoin: 'Join our Telegram group',
+  },
   footer: {
     terms: 'Terms of Service',
     privacy: 'Privacy Policy',

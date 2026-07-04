@@ -43,6 +43,15 @@ const zh: typeof en = {
     supported: '已支持',
     soon: '敬请期待',
   },
+  contact: {
+    title: '联系我们',
+    intro:
+      'MintPop 是面向海外开发者与跨境团队的 API 中转与额度管理服务。你可以通过以下任一渠道联系我们——通常会在一个工作日内回复。',
+    emailLabel: '邮件支持',
+    emailDesc: '账单、账户、额度上限与合规相关问题。',
+    telegramLabel: 'Telegram',
+    telegramJoin: '加入我们的 Telegram 群',
+  },
   footer: {
     terms: '服务条款',
     privacy: '隐私政策',

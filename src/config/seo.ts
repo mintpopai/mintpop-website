@@ -1,7 +1,7 @@
 import { Locale } from './locale'
 
 // 每个路由的 SEO 文案：路径 / 是否禁止收录 / 各语言 title+description
-export type SeoRouteKey = 'HOME' | 'LEGAL' | 'LOGIN' | 'REGISTER' | 'NOT_FOUND'
+export type SeoRouteKey = 'HOME' | 'CONTACT' | 'LEGAL' | 'LOGIN' | 'REGISTER' | 'NOT_FOUND'
 
 export interface SeoCopy {
   title: string
@@ -30,6 +30,20 @@ export const SEO: Record<SeoRouteKey, SeoEntry> = {
         title: 'MintPop — 一个 API，打通文本、视觉与语音',
         description:
           'MintPop——面向开发者的多模态 AI 基础设施。通过单一统一端点，把文本、视觉与语音能力构建进你的产品。',
+      },
+    },
+  },
+  CONTACT: {
+    path: '/contact',
+    copy: {
+      [Locale.EN]: {
+        title: 'Contact — MintPop',
+        description:
+          'Contact MintPop — email support and Telegram group for billing, account, credit-limit, and compliance questions.',
+      },
+      [Locale.ZH]: {
+        title: '联系我们 — MintPop',
+        description: '联系 MintPop——邮件支持与 Telegram 群，解答账单、账户、额度与合规相关问题。',
       },
     },
   },

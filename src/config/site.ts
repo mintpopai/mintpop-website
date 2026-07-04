@@ -8,6 +8,10 @@ export const SITE_NAME = 'MintPop'
 // 控制台地址:Get Started 等入口跳转目标,改这里全站生效
 export const CONSOLE_URL = 'https://console.mintpop.ai'
 
+// 联系渠道:支持邮箱与 Telegram 群邀请链接,改这里全站生效
+export const SUPPORT_EMAIL = 'support@mintpop.ai'
+export const TELEGRAM_GROUP_URL = 'https://t.me/+NpAwBIWXs8FkMzVh'
+
 // 相对站点根的静态资源路径
 export const OG_IMAGE_PATH = '/og-image.png'
 export const BRAND_LOGO_PATH = '/favicon.png'
