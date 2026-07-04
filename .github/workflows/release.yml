@@ -116,8 +116,10 @@ jobs:
           CHANGELOG: ${{ steps.changelog.outputs.changelog }}
         run: |
           : > notes.md
-          # checkout 对 tag 触发常只落指向 commit 的轻量本地 ref，强制拉一次 annotated tag 对象
-          git fetch --force origin "refs/tags/${TAG}:refs/tags/${TAG}" >/dev/null 2>&1 || true
+          # checkout 对 tag 触发常只落指向 commit 的轻量本地 ref，强制拉一次 annotated tag 对象。
+          # 拉取失败可容忍（|| true）：后果仅是降级为按轻量 tag 处理、注释不置顶，
+          # 不该让整个发版失败；--quiet 只压进度输出，stderr 保留，真失败时日志可见
+          git fetch --force --quiet origin "refs/tags/${TAG}:refs/tags/${TAG}" || true
           # 轻量 tag 直接指向 commit，%(contents) 会误把 commit 信息当注释，故先判类型
           if [ "$(git cat-file -t "$TAG")" = "tag" ]; then
             git tag -l --format='%(contents)' "$TAG" >> notes.md
