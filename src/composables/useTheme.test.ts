@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs'
 import { fileURLToPath, URL } from 'node:url'
 
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 // 用 node:fs 直读文件原文（类型环境为 tsconfig.vitest.json，带 node types）。
 // 不用 Vite 的 ?raw：Vitest 默认 mock CSS 模块，theme.css?raw 会拿到空字符串。
@@ -101,6 +101,46 @@ describe('syncTheme / resolveInitialTheme', () => {
     const { theme, syncTheme } = useTheme()
 
     syncTheme()
+    expect(theme.value).toBe('LIGHT')
+  })
+})
+
+// 隐私模式/禁用站点数据时 localStorage 方法会抛 SecurityError——
+// 主题功能须整体降级(当次会话仍可切换,只丢跨会话记忆),不得抛错中断调用方
+// (syncTheme 抛错会连带中断 App.vue onMounted 里后续的语言偏好回跳)。
+describe('存储不可用(隐私模式)', () => {
+  // stubGlobal 不自动恢复;不还原会让后续用例的 localStorage.clear() 炸掉
+  afterEach(() => {
+    vi.unstubAllGlobals()
+  })
+
+  function stubThrowingStorage() {
+    vi.stubGlobal('localStorage', {
+      getItem: () => {
+        throw new DOMException('denied', 'SecurityError')
+      },
+      setItem: () => {
+        throw new DOMException('denied', 'SecurityError')
+      },
+    })
+  }
+
+  it('toggleTheme 不抛错,主题仍切换并写入 document', async () => {
+    const { useTheme } = await freshTheme()
+    const { theme, toggleTheme } = useTheme()
+    stubThrowingStorage()
+
+    expect(() => toggleTheme()).not.toThrow()
+    expect(theme.value).toBe('DARK')
+    expect(document.documentElement.dataset.theme).toBe('DARK')
+  })
+
+  it('syncTheme 不抛错,回退系统偏好', async () => {
+    const { useTheme } = await freshTheme()
+    const { theme, syncTheme } = useTheme()
+    stubThrowingStorage()
+
+    expect(() => syncTheme()).not.toThrow()
     expect(theme.value).toBe('LIGHT')
   })
 })

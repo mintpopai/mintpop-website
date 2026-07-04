@@ -1,5 +1,7 @@
 import { computed, readonly, ref } from 'vue'
 
+import { safeStorageGet, safeStorageSet } from '@/utils/safeStorage'
+
 /**
  * 主题枚举：成员名与持久化字符串取值统一用 SCREAMING_SNAKE_CASE。
  */
@@ -28,7 +30,7 @@ function resolveInitialTheme(): Theme {
   if (typeof window === 'undefined') {
     return Theme.LIGHT
   }
-  const saved = localStorage.getItem(STORAGE_KEY_THEME)
+  const saved = safeStorageGet(STORAGE_KEY_THEME)
   if (saved === Theme.LIGHT || saved === Theme.DARK) {
     return saved
   }
@@ -46,10 +48,10 @@ function applyToDocument(): void {
   root.style.setProperty('--accent', accent.value)
 }
 
-/** 切换浅色 / 深色，并持久化记忆 */
+/** 切换浅色 / 深色，并持久化记忆（存储不可用时静默丢记忆，当次切换不受影响） */
 function toggleTheme(): void {
   theme.value = theme.value === Theme.DARK ? Theme.LIGHT : Theme.DARK
-  localStorage.setItem(STORAGE_KEY_THEME, theme.value)
+  safeStorageSet(STORAGE_KEY_THEME, theme.value)
   applyToDocument()
 }
 

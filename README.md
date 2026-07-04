@@ -90,6 +90,8 @@ src/
 ├── styles/
 │   ├── theme.css             # Light/Dark 主题变量
 │   └── base.css              # 全局基础样式
+├── utils/
+│   └── safeStorage.ts        # localStorage 安全读写（隐私模式/SSR 下静默回退）
 ├── views/
 │   ├── HomeView.vue          # 落地页
 │   ├── LegalView.vue         # 占位

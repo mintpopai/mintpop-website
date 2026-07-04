@@ -2,24 +2,19 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 import { Locale, LOCALE_LABELS, localeSwitchTarget, localizePath } from '@/config/locale'
+import { safeStorageGet, safeStorageSet } from '@/utils/safeStorage'
 
 // 语言偏好持久化键：手动切换时写入；回访时 App.vue 用它把用户带回偏好语言
 export const STORAGE_KEY_LOCALE = 'mint-locale'
 
-/** 记住用户手动选择的语言（SSG 构建期无 localStorage，直接跳过） */
+/** 记住用户手动选择的语言（SSG 构建期/存储不可用时由 safeStorage 静默跳过） */
 export function rememberLocale(locale: Locale): void {
-  if (typeof localStorage === 'undefined') {
-    return
-  }
-  localStorage.setItem(STORAGE_KEY_LOCALE, locale)
+  safeStorageSet(STORAGE_KEY_LOCALE, locale)
 }
 
-/** 读取语言偏好；无记录或值非法（历史脏数据）返回 null */
+/** 读取语言偏好；无记录、值非法（历史脏数据）或存储不可用时返回 null */
 export function readLocalePreference(): Locale | null {
-  if (typeof localStorage === 'undefined') {
-    return null
-  }
-  const saved = localStorage.getItem(STORAGE_KEY_LOCALE)
+  const saved = safeStorageGet(STORAGE_KEY_LOCALE)
   return saved === Locale.EN || saved === Locale.ZH ? saved : null
 }
 
