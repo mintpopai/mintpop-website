@@ -3,7 +3,7 @@ import { useI18n } from 'vue-i18n'
 
 import { CONSOLE_URL } from '@/config/site'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 </script>
 
 <template>
@@ -19,7 +19,11 @@ const { t } = useI18n()
         <span class="badge-text">{{ t('hero.badge') }}</span>
       </div>
 
-      <i18n-t keypath="hero.headline" tag="h1" class="headline">
+      <!-- :key="locale"：中英文标题的子节点结构不保证一致，切换语言时必须整体重挂载；
+           否则 Vue 按位置复用无 key 的 span 且不重 patch 静态 class，「文本」会丢失强调色 -->
+      <i18n-t :key="locale" keypath="hero.headline" tag="h1" class="headline">
+        <!-- {br}：标题固定两行，中英文都在第一段后换行 -->
+        <template #br><br /></template>
         <template #text>
           <span class="em em-accent">{{ t('hero.text') }}</span>
         </template>

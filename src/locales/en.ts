@@ -12,7 +12,7 @@ export default {
   },
   hero: {
     badge: 'MintPop\u00A0·\u00A0Multimodal AI infrastructure for developers',
-    headline: 'One API for {text}, {vision}, and {voice}.',
+    headline: 'One API{br}for {text}, {vision}, and {voice}.',
     text: 'text',
     vision: 'vision',
     voice: 'voice',

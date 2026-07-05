@@ -14,7 +14,7 @@ const zh: typeof en = {
   },
   hero: {
     badge: 'MintPop\u00A0·\u00A0面向开发者的多模态 AI 基础设施',
-    headline: '一个 API，打通{text}、{vision}与{voice}。',
+    headline: '一个 API{br}打通{text}、{vision}与{voice}。',
     text: '文本',
     vision: '视觉',
     voice: '语音',
