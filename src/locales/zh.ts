@@ -21,7 +21,7 @@ const zh: typeof en = {
     getStarted: '立即开始',
     explore: '了解能力',
     tagUnifiedApi: '统一 API',
-    tagSession: '会话持久化',
+    tagSession: '会话安全性',
     tagPayg: '按量付费',
   },
   capabilities: {

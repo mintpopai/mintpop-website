@@ -19,7 +19,7 @@ export default {
     getStarted: 'Get Started',
     explore: 'Explore capabilities',
     tagUnifiedApi: 'Unified API',
-    tagSession: 'Session Persistence',
+    tagSession: 'Session Security',
     tagPayg: 'Pay As You Go',
   },
   capabilities: {
