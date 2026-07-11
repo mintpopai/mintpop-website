@@ -12,9 +12,15 @@ export const CONSOLE_URL = 'https://console.mintpop.ai'
 export const SUPPORT_EMAIL = 'support@mintpop.ai'
 export const TELEGRAM_GROUP_URL = 'https://t.me/+NpAwBIWXs8FkMzVh'
 
-// 相对站点根的静态资源路径
+// 相对站点根的静态资源路径（og-image 是本站专属社交分享图，非品牌通用物料，仍本地托管）
 export const OG_IMAGE_PATH = '/og-image.png'
-export const BRAND_LOGO_PATH = '/favicon.png'
+
+// 品牌物料统一引用规范中心（standards.mintpop.ai）线上的同一份，本仓不存本地副本。
+// 注意 index.html 的 favicon / apple-touch-icon 是静态 HTML、无法 import，此处 URL 在那里各写了一份。
+export const BRAND_ASSETS_BASE = 'https://standards.mintpop.ai/assets/brand'
+export const BRAND_ICON_URL = `${BRAND_ASSETS_BASE}/app-icon/mintpop-app-cloud.png`
+export const BRAND_WORDMARK_DARK_URL = `${BRAND_ASSETS_BASE}/wordmark/mintpop-wordmark-dark.png`
+export const BRAND_WORDMARK_LIGHT_URL = `${BRAND_ASSETS_BASE}/wordmark/mintpop-wordmark-light.png`
 
 // 允许被搜索引擎收录、写入 sitemap 的路由 —— 从 SEO 配置派生，单一真相。
 // 每个非 noindex 条目派生英文 + 中文两条路径；noindex 路由（login/register）自动排除。

@@ -11,7 +11,7 @@ import ModalitiesSection from '@/components/sections/ModalitiesSection.vue'
 import { useSeo } from '@/composables/useSeo'
 import { Locale } from '@/config/locale'
 import { SEO } from '@/config/seo'
-import { absoluteUrl, BRAND_LOGO_PATH, SITE_NAME, SITE_URL } from '@/config/site'
+import { BRAND_ICON_URL, SITE_NAME, SITE_URL } from '@/config/site'
 
 useSeo('HOME')
 
@@ -28,7 +28,7 @@ const jsonLd = computed(() => ({
       '@type': 'Organization',
       name: SITE_NAME,
       url: SITE_URL,
-      logo: absoluteUrl(BRAND_LOGO_PATH),
+      logo: BRAND_ICON_URL,
     },
     {
       '@type': 'WebSite',
