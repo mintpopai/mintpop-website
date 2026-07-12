@@ -6,8 +6,10 @@ import { useRoute } from 'vue-router'
 import AppFooter from '@/components/AppFooter.vue'
 import AppHeader from '@/components/AppHeader.vue'
 import CapabilitiesSection from '@/components/sections/CapabilitiesSection.vue'
+import GuaranteesSection from '@/components/sections/GuaranteesSection.vue'
 import HeroSection from '@/components/sections/HeroSection.vue'
 import ModalitiesSection from '@/components/sections/ModalitiesSection.vue'
+import PurityReportSection from '@/components/sections/PurityReportSection.vue'
 import { useSeo } from '@/composables/useSeo'
 import { Locale } from '@/config/locale'
 import { SEO } from '@/config/seo'
@@ -55,6 +57,8 @@ useHead({
     <HeroSection />
     <CapabilitiesSection />
     <ModalitiesSection />
+    <GuaranteesSection />
+    <PurityReportSection />
   </main>
   <AppFooter />
 </template>
