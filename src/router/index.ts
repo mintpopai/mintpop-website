@@ -1,6 +1,7 @@
+import { START_LOCATION } from 'vue-router'
 import type { RouteRecordRaw, RouteRecordSingleView, RouterScrollBehavior } from 'vue-router'
 
-import { Locale, localizePath } from '@/config/locale'
+import { Locale, localizePath, stripLocale } from '@/config/locale'
 import type { SeoRouteKey } from '@/config/seo'
 import HomeView from '@/views/HomeView.vue'
 
@@ -89,7 +90,17 @@ export const routes: RouteRecordRaw[] = [
 export const ANCHOR_SCROLL_OFFSET = 90
 
 // 支持锚点滚动（#terms / #capabilities 等），并在普通跳转时回到顶部
-export const scrollBehavior: RouterScrollBehavior = (to, _from, savedPosition) => {
+export const scrollBehavior: RouterScrollBehavior = (to, from, savedPosition) => {
+  // 语言切换是「同一页、只换语言树」的路由跳转（/foo ↔ /zh/foo）：保持当前滚动位置，
+  // 不回顶、也不重跳所携带的锚点（锚点只是切换时原样保留的 URL 状态，不是用户点击）。
+  // 排除 START_LOCATION：首次进入带锚点的页面仍要走下面的锚点滚动。
+  if (
+    from !== START_LOCATION &&
+    to.path !== from.path &&
+    stripLocale(to.path) === stripLocale(from.path)
+  ) {
+    return false
+  }
   if (to.hash) {
     return { el: to.hash, top: ANCHOR_SCROLL_OFFSET, behavior: 'smooth' }
   }

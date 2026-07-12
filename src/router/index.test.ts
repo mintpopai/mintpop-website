@@ -65,7 +65,7 @@ describe('路由与 SEO 配置契约', () => {
 // 路由滚动不吃 CSS scroll-padding-top，锚点偏移必须由 scrollBehavior 显式返回；
 // 少了 top 会让标题被吸顶 header 挡住一半（曾发生，防回潮）
 describe('scrollBehavior 锚点偏移', () => {
-  const routeAt = (hash: string) => ({ hash }) as RouteLocationNormalizedLoaded
+  const routeAt = (hash: string, path = '/') => ({ hash, path }) as RouteLocationNormalizedLoaded
 
   it('带锚点跳转返回 header 等高偏移与平滑滚动', () => {
     expect(scrollBehavior(routeAt('#terms'), routeAt(''), null)).toEqual({
@@ -76,6 +76,17 @@ describe('scrollBehavior 锚点偏移', () => {
   })
 
   it('普通跳转回到页面顶部', () => {
-    expect(scrollBehavior(routeAt(''), routeAt(''), null)).toEqual({ top: 0 })
+    expect(scrollBehavior(routeAt('', '/legal'), routeAt(''), null)).toEqual({ top: 0 })
+  })
+
+  // 语言切换是同页跳转（/foo ↔ /zh/foo），不应把用户甩回页面顶部（曾发生，防回潮）
+  it('语言切换保持当前滚动位置，携带的锚点也不重跳', () => {
+    expect(scrollBehavior(routeAt('', '/zh'), routeAt('', '/'), null)).toBe(false)
+    expect(scrollBehavior(routeAt('', '/legal'), routeAt('', '/zh/legal'), null)).toBe(false)
+    expect(scrollBehavior(routeAt('#capabilities', '/zh'), routeAt('', '/'), null)).toBe(false)
+  })
+
+  it('跨页面跳转（即使语言也变了）仍回到顶部', () => {
+    expect(scrollBehavior(routeAt('', '/zh/legal'), routeAt('', '/'), null)).toEqual({ top: 0 })
   })
 })
