@@ -13,7 +13,7 @@ export const Theme = {
 export type Theme = (typeof Theme)[keyof typeof Theme]
 
 // 导出供守护测试核对：index.html 的防闪烁内联脚本必须使用同一键名与枚举取值
-export const STORAGE_KEY_THEME = 'mint-theme'
+export const STORAGE_KEY_THEME = 'mintpop-theme'
 const DEFAULT_ACCENT = '#17D1A7'
 
 // 模块级单例状态：整个应用共享同一份主题，避免多组件各持一份导致不同步

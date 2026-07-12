@@ -9,7 +9,7 @@ describe('语言偏好持久化', () => {
     localStorage.clear()
   })
 
-  it('rememberLocale 把小写语言码写入 mint-locale', () => {
+  it('rememberLocale 把小写语言码写入 mintpop-locale', () => {
     rememberLocale(Locale.ZH)
     expect(localStorage.getItem(STORAGE_KEY_LOCALE)).toBe('zh')
   })

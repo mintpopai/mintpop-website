@@ -5,7 +5,7 @@ import { Locale, LOCALE_LABELS, localeSwitchTarget, localizePath } from '@/confi
 import { safeStorageGet, safeStorageSet } from '@/utils/safeStorage'
 
 // 语言偏好持久化键：手动切换时写入；回访时 App.vue 用它把用户带回偏好语言
-export const STORAGE_KEY_LOCALE = 'mint-locale'
+export const STORAGE_KEY_LOCALE = 'mintpop-locale'
 
 /** 记住用户手动选择的语言（SSG 构建期/存储不可用时由 safeStorage 静默跳过） */
 export function rememberLocale(locale: Locale): void {

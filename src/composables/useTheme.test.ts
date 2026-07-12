@@ -52,7 +52,7 @@ describe('toggleTheme', () => {
     toggleTheme()
 
     expect(theme.value).toBe('DARK')
-    expect(localStorage.getItem('mint-theme')).toBe('DARK')
+    expect(localStorage.getItem('mintpop-theme')).toBe('DARK')
     expect(document.documentElement.dataset.theme).toBe('DARK')
   })
 
@@ -64,13 +64,13 @@ describe('toggleTheme', () => {
     toggleTheme()
 
     expect(theme.value).toBe('LIGHT')
-    expect(localStorage.getItem('mint-theme')).toBe('LIGHT')
+    expect(localStorage.getItem('mintpop-theme')).toBe('LIGHT')
   })
 })
 
 describe('syncTheme / resolveInitialTheme', () => {
   it('localStorage 有有效记录时优先采用', async () => {
-    localStorage.setItem('mint-theme', 'DARK')
+    localStorage.setItem('mintpop-theme', 'DARK')
     const { useTheme } = await freshTheme()
     const { theme, syncTheme } = useTheme()
 
@@ -96,7 +96,7 @@ describe('syncTheme / resolveInitialTheme', () => {
   })
 
   it('localStorage 记录非法值时忽略,回退系统偏好', async () => {
-    localStorage.setItem('mint-theme', 'PURPLE')
+    localStorage.setItem('mintpop-theme', 'PURPLE')
     const { useTheme } = await freshTheme()
     const { theme, syncTheme } = useTheme()
 
