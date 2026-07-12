@@ -191,7 +191,13 @@ const { t, locale } = useI18n()
   grid-template-columns: repeat(3, 1fr);
 }
 
+/* subgrid：图标/标题/描述/徽标四行跨三栏共享行高，
+   标题折行数不同时，描述与徽标仍逐行对齐（标题行统一取最高栏的高度） */
 .item {
+  grid-row: span 4;
+  display: grid;
+  grid-template-rows: subgrid;
+  justify-items: start;
   padding: 0 36px;
 }
 
