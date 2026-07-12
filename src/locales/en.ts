@@ -53,6 +53,87 @@ export default {
     wechatDesc: 'Scan the QR code with WeChat to add us.',
     wechatQrAlt: 'MintPop WeChat QR code',
   },
+  legal: {
+    eyebrow: 'Legal Center',
+    title: 'Terms & Policies',
+    intro:
+      'MintPop is a developer platform for multimodal AI, operated by Energyline. The documents below govern your use of the service.',
+    docsLabel: 'Documents',
+    lastUpdated: 'Last updated: July 12, 2026',
+    questionsLabel: 'Questions?',
+    questionsLink: 'Visit the Contact page',
+    terms: {
+      title: 'Terms of Service',
+      s1Title: '1. Service Overview',
+      s1Body:
+        'MintPop ("MintPop", "we", "us"), operated by Energyline, provides developers with a unified API to access multimodal AI capabilities — including text, vision, and voice — through a single endpoint, billed on a usage basis. By using the service you agree to these Terms.',
+      s2Title: '2. Eligibility',
+      s2Body:
+        'You must be at least 18 years old and able to form a binding contract. If you use the service on behalf of an organization, you represent that you have authority to bind it.',
+      s3Title: '3. Accounts & API Keys',
+      s3Body:
+        'You are responsible for safeguarding your account credentials and API keys, and for all activity under them. Notify us promptly of any unauthorized use.',
+      s4Title: '4. Payment & Credits',
+      s4Body:
+        'The service is billed on a usage basis using prepaid credits. Applicable fees are shown before purchase. Credits and refunds are governed by our Refund Policy.',
+      s5Title: '5. Acceptable Use',
+      s5Body:
+        'You agree to use the service in compliance with our Acceptable Use Policy and all applicable laws. We may suspend or terminate accounts that violate these Terms.',
+      s6Title: '6. Availability & Changes',
+      s6Body:
+        'The service is provided on an "as is" and "as available" basis. We may modify, suspend, or discontinue features at any time, and do not guarantee uninterrupted service.',
+      s7Title: '7. Limitation of Liability',
+      s7Body:
+        'To the maximum extent permitted by law, MintPop shall not be liable for any indirect, incidental, or consequential damages. Our total liability shall not exceed the fees you paid in the three (3) months preceding the claim.',
+      s8Title: '8. Governing Law & Contact',
+      s8Body: 'These Terms are governed by the laws of the United States. Questions: {email}',
+    },
+    privacy: {
+      title: 'Privacy Policy',
+      s1Title: '1. Information We Collect',
+      s1Item1: 'Account information (e.g., email address).',
+      s1Item2: 'Usage data (e.g., API request metadata, consumption).',
+      s1Item3: 'Payment information, processed by our third-party payment providers.',
+      s2Title: '2. How We Use Information',
+      s2Body:
+        'To provide, maintain, and bill the service; ensure security; provide support; and comply with legal obligations.',
+      s3Title: '3. Sharing',
+      s3Body:
+        'We share information only with infrastructure and payment providers as needed to operate the service, or where required by law. We do not sell your personal information.',
+      s4Title: '4. Data Retention & Security',
+      s4Body:
+        'We retain data only as long as necessary for the purposes above and apply reasonable measures to protect it.',
+      s5Title: '5. Your Rights',
+      s5Body: 'You may request access to or deletion of your personal data by contacting {email}.',
+      s6Title: '6. Contact',
+      s6Body: 'Energyline — {email}',
+    },
+    refund: {
+      title: 'Refund Policy',
+      item1: 'The service is billed on a usage basis through prepaid credits.',
+      item2: 'Prepaid credits are non-refundable except where required by applicable law.',
+      item3: 'Charges already incurred for usage are non-refundable.',
+      item4: 'For billing questions, contact {email}.',
+    },
+    aup: {
+      title: 'Acceptable Use Policy',
+      intro: 'You agree not to use MintPop to:',
+      item1: 'violate any applicable law or regulation;',
+      item2: 'infringe the intellectual property or privacy rights of others;',
+      item3: 'generate or distribute malicious code, spam, or harmful content;',
+      item4:
+        'attempt to disrupt, overload, reverse-engineer, or gain unauthorized access to the service;',
+      item5:
+        'generate content prohibited by applicable law or by the policies of the underlying providers.',
+      outro: 'Violations may result in suspension or termination without notice.',
+    },
+    about: {
+      title: 'Contact / About',
+      body: 'MintPop is a developer platform for multimodal AI, operated by Energyline.',
+      ctaLabel: 'Support & inquiries:',
+      ctaLink: 'Go to the Contact page',
+    },
+  },
   footer: {
     terms: 'Terms of Service',
     privacy: 'Privacy Policy',
@@ -66,9 +147,6 @@ export default {
   placeholder: {
     soonTag: 'SOON',
     back: 'Back to home',
-    legalTitle: 'Legal',
-    legalDesc:
-      'Terms of Service, Privacy Policy, Refund Policy, Acceptable Use and contact details will live here once the design is ready.',
     loginTitle: 'Login',
     loginDesc:
       "The sign-in experience is coming soon. The design for this page hasn't been provided yet.",

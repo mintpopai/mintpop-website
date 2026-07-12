@@ -33,8 +33,8 @@ const BASE_ROUTES: BaseRouteDef[] = [
     component: () => import('@/views/ContactView.vue'),
     zh: true,
   },
-  // 以下三页设计稿暂未提供，先用占位视图占位，后续补设计再填充
   { path: '/legal', name: 'LEGAL', component: () => import('@/views/LegalView.vue'), zh: true },
+  // 登录/注册两页设计稿暂未提供，先用占位视图占位，后续补设计再填充
   { path: '/login', name: 'LOGIN', component: () => import('@/views/LoginView.vue'), zh: true },
   {
     path: '/register',
@@ -80,10 +80,18 @@ export const routes: RouteRecordRaw[] = [
   },
 ]
 
-// 支持锚点滚动（#capabilities / #modalities 等），并在普通跳转时回到顶部
+/**
+ * 锚点滚动偏移：吸顶 header 高 74px，再留一点呼吸空间。
+ * 路由滚动是 JS 算坐标后 scrollTo，不吃 base.css 的 scroll-padding-top
+ * （那只对原生 #hash 跳转生效），必须在这里显式传 top 偏移（vue-router 官方做法），
+ * 两处数值保持一致。
+ */
+export const ANCHOR_SCROLL_OFFSET = 90
+
+// 支持锚点滚动（#terms / #capabilities 等），并在普通跳转时回到顶部
 export const scrollBehavior: RouterScrollBehavior = (to, _from, savedPosition) => {
   if (to.hash) {
-    return { el: to.hash, behavior: 'smooth' }
+    return { el: to.hash, top: ANCHOR_SCROLL_OFFSET, behavior: 'smooth' }
   }
   if (savedPosition) {
     return savedPosition

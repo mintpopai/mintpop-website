@@ -34,8 +34,8 @@ describe('PlaceholderPage 首页链接语言', () => {
     expect(wrapper.find('a.back').attributes('href')).toBe('/')
   })
 
-  it('带 meta.locale 的中文页（/zh/legal）：返回链指向 /zh', async () => {
-    const wrapper = await mountAt('/zh/legal')
+  it('带 meta.locale 的中文页（/zh/login）：返回链指向 /zh', async () => {
+    const wrapper = await mountAt('/zh/login')
     expect(wrapper.find('a.back').attributes('href')).toBe('/zh')
   })
 

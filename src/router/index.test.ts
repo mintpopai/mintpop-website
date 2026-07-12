@@ -1,10 +1,11 @@
 import { describe, expect, it } from 'vitest'
+import type { RouteLocationNormalizedLoaded } from 'vue-router'
 
 import { Locale, localizePath } from '@/config/locale'
 import { SEO, type SeoRouteKey } from '@/config/seo'
 import { INDEXABLE_ROUTES } from '@/config/site'
 
-import { routes, ZH_NAME_SUFFIX } from './index'
+import { ANCHOR_SCROLL_OFFSET, routes, scrollBehavior, ZH_NAME_SUFFIX } from './index'
 
 // 路由表与 SEO 配置各写了一份 path（前者给 vue-router/SSG，后者派生 head 与 sitemap），
 // 这里锁死两者一致，并守护中英双树的派生规则。
@@ -58,5 +59,23 @@ describe('路由与 SEO 配置契约', () => {
     for (const p of INDEXABLE_ROUTES) {
       expect(routePaths.has(p), `INDEXABLE ${p} 不在路由表`).toBe(true)
     }
+  })
+})
+
+// 路由滚动不吃 CSS scroll-padding-top，锚点偏移必须由 scrollBehavior 显式返回；
+// 少了 top 会让标题被吸顶 header 挡住一半（曾发生，防回潮）
+describe('scrollBehavior 锚点偏移', () => {
+  const routeAt = (hash: string) => ({ hash }) as RouteLocationNormalizedLoaded
+
+  it('带锚点跳转返回 header 等高偏移与平滑滚动', () => {
+    expect(scrollBehavior(routeAt('#terms'), routeAt(''), null)).toEqual({
+      el: '#terms',
+      top: ANCHOR_SCROLL_OFFSET,
+      behavior: 'smooth',
+    })
+  })
+
+  it('普通跳转回到页面顶部', () => {
+    expect(scrollBehavior(routeAt(''), routeAt(''), null)).toEqual({ top: 0 })
   })
 })

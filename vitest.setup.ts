@@ -15,3 +15,14 @@ vi.stubGlobal(
     dispatchEvent: vi.fn(),
   })),
 )
+
+// jsdom 同样未实现 IntersectionObserver —— LegalView 的目录滚动侦测在 onMounted 里
+// `new IntersectionObserver(...)`，缺 stub 会让所有挂载该组件的测试直接抛错。
+// stub 为惰性实现（不触发回调），测试中目录保持无激活项即可；须用 class（可被 new）。
+class IntersectionObserverStub {
+  observe = vi.fn()
+  unobserve = vi.fn()
+  disconnect = vi.fn()
+  takeRecords = vi.fn(() => [])
+}
+vi.stubGlobal('IntersectionObserver', IntersectionObserverStub)

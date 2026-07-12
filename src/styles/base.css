@@ -7,9 +7,17 @@
 
 html {
   scroll-behavior: smooth;
-  /* 吸顶 header 高 74px,锚点跳转时为目标留出等高偏移(再加一点呼吸空间),
-     避免 section 标题被 header 盖住;原生 #hash 跳转与路由 scrollIntoView 均生效 */
+  /* 吸顶 header 高 74px,锚点跳转时为目标留出等高偏移(再加一点呼吸空间),避免标题被
+     header 盖住。注意这只对「原生 #hash 跳转」(如带锚点直接进站)生效;站内路由滚动是
+     JS 算坐标,偏移由 router 的 ANCHOR_SCROLL_OFFSET 提供,两处数值保持一致 */
   scroll-padding-top: 90px;
+}
+
+/* 尊重系统「减少动态效果」偏好：锚点跳转改为即时定位 */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {
