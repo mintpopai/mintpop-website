@@ -8,7 +8,7 @@ import { createAppI18n } from '@/locales'
 import { routes } from '@/router'
 import ContactView from '@/views/ContactView.vue'
 
-// 组件级守护：联系页只暴露邮件支持与 Telegram 群链接两个渠道；
+// 组件级守护：联系页暴露邮件支持、Telegram 群链接与微信二维码三个渠道；
 // 个人账号 @Mintpop_Jack 已按需求移除，断言防止回潮
 async function mountAt(path: string) {
   const router = createRouter({ history: createMemoryHistory(), routes })
@@ -36,6 +36,13 @@ describe('ContactView 联系渠道', () => {
     expect(tg.attributes('href')).toBe('https://t.me/+NpAwBIWXs8FkMzVh')
     expect(tg.attributes('target')).toBe('_blank')
     expect(tg.attributes('rel')).toBe('noopener')
+  })
+
+  it('微信卡片渲染二维码图片并带无障碍替代文本', async () => {
+    const wrapper = await mountAt('/contact')
+    const qr = wrapper.find('img.wechat-qr')
+    expect(qr.attributes('src')).toContain('wechat-qr')
+    expect(qr.attributes('alt')).toBe('MintPop WeChat QR code')
   })
 
   it('页面不出现个人账号 Mintpop_Jack', async () => {

@@ -51,6 +51,9 @@ const zh: typeof en = {
     emailDesc: '账单、账户、额度上限与合规相关问题。',
     telegramLabel: 'Telegram',
     telegramJoin: '加入我们的 Telegram 群',
+    wechatLabel: '微信',
+    wechatDesc: '使用微信扫一扫，添加我们为好友。',
+    wechatQrAlt: 'MintPop 微信二维码',
   },
   footer: {
     terms: '服务条款',

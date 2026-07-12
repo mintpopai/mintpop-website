@@ -49,6 +49,9 @@ export default {
     emailDesc: 'Billing, account, credit-limit, and compliance questions.',
     telegramLabel: 'Telegram',
     telegramJoin: 'Join our Telegram group',
+    wechatLabel: 'WeChat',
+    wechatDesc: 'Scan the QR code with WeChat to add us.',
+    wechatQrAlt: 'MintPop WeChat QR code',
   },
   footer: {
     terms: 'Terms of Service',
