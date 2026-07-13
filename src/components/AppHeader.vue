@@ -5,7 +5,7 @@ import { RouterLink } from 'vue-router'
 import BrandLogo from '@/components/BrandLogo.vue'
 import { rememberLocale, useLocale } from '@/composables/useLocale'
 import { useTheme } from '@/composables/useTheme'
-import { CONSOLE_URL } from '@/config/site'
+import { API_URL } from '@/config/site'
 
 const { isDark, toggleTheme } = useTheme()
 const { t } = useI18n()
@@ -42,7 +42,7 @@ const { lp, otherLocale, otherLabel, switchTarget } = useLocale()
       >
         <span class="theme-icon" aria-hidden="true">{{ isDark ? '☀' : '☾' }}</span>
       </button>
-      <a :href="CONSOLE_URL" target="_blank" rel="noopener" class="login-btn">
+      <a :href="API_URL" target="_blank" rel="noopener" class="login-btn">
         {{ t('nav.login') }}
       </a>
     </div>

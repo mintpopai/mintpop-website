@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 
-import { CONSOLE_URL } from '@/config/site'
+import { API_URL } from '@/config/site'
 
 const { t, locale } = useI18n()
 </script>
@@ -84,7 +84,7 @@ const { t, locale } = useI18n()
       </div>
 
       <div class="cta-row">
-        <a :href="CONSOLE_URL" target="_blank" rel="noopener" class="btn btn-primary">
+        <a :href="API_URL" target="_blank" rel="noopener" class="btn btn-primary">
           {{ t('hero.getStarted') }}
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
             <path

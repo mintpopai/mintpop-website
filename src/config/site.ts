@@ -5,8 +5,8 @@ import { SEO } from './seo'
 export const SITE_URL = 'https://mintpop.ai'
 export const SITE_NAME = 'MintPop'
 
-// 控制台地址:Get Started 等入口跳转目标,改这里全站生效
-export const CONSOLE_URL = 'https://console.mintpop.ai'
+// API 平台地址:Get Started / 登录等入口跳转目标,改这里全站生效
+export const API_URL = 'https://api.mintpop.ai'
 
 // 联系渠道:支持邮箱与 Telegram 群邀请链接,改这里全站生效
 export const SUPPORT_EMAIL = 'support@mintpop.ai'
