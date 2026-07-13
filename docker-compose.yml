@@ -5,7 +5,7 @@
 #   - 镜像由 CI（release.yml）构建并推送；本地要构建镜像用 `mise run image`，不归 compose 管
 services:
   web:
-    image: ghcr.io/yuebai-blast/mintpop-website:${MINTPOP_TAG:-latest}
+    image: ghcr.io/mintpopai/mintpop-website:${MINTPOP_TAG:-latest}
     container_name: mintpop-website
     restart: unless-stopped
     ports:
