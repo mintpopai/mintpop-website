@@ -29,10 +29,11 @@ const { t } = useI18n()
               <path d="M4 6h16M4 6V4M20 6V4M12 6v14M8 20h8" />
             </svg>
           </div>
-          <div class="card-foot">
+          <div class="card-head">
             <h3 class="card-title">{{ t('modalities.text') }}</h3>
             <span class="badge badge-supported">{{ t('modalities.supported') }}</span>
           </div>
+          <p class="card-desc">{{ t('modalities.textDesc') }}</p>
         </article>
 
         <article class="card">
@@ -51,10 +52,11 @@ const { t } = useI18n()
               <circle cx="12" cy="12" r="3" />
             </svg>
           </div>
-          <div class="card-foot">
+          <div class="card-head">
             <h3 class="card-title">{{ t('modalities.vision') }}</h3>
             <span class="badge badge-supported">{{ t('modalities.supported') }}</span>
           </div>
+          <p class="card-desc">{{ t('modalities.visionDesc') }}</p>
         </article>
 
         <article class="card">
@@ -72,10 +74,11 @@ const { t } = useI18n()
               <path d="M3 12v0M7 8v8M11 4v16M15 8v8M19 11v2" />
             </svg>
           </div>
-          <div class="card-foot">
+          <div class="card-head">
             <h3 class="card-title">{{ t('modalities.voice') }}</h3>
             <span class="badge badge-supported">{{ t('modalities.supported') }}</span>
           </div>
+          <p class="card-desc">{{ t('modalities.voiceDesc') }}</p>
         </article>
 
         <article class="card card-soon">
@@ -93,10 +96,11 @@ const { t } = useI18n()
               <path d="M12 5v14M5 12h14" />
             </svg>
           </div>
-          <div class="card-foot">
+          <div class="card-head">
             <h3 class="card-title card-title-muted">{{ t('modalities.more') }}</h3>
             <span class="badge badge-soon">{{ t('modalities.soon') }}</span>
           </div>
+          <p class="card-desc">{{ t('modalities.moreDesc') }}</p>
         </article>
       </div>
     </div>
@@ -113,9 +117,9 @@ const { t } = useI18n()
   margin: 0 auto;
 }
 
+/* 与承诺/纯度区块统一左对齐的编辑排版，全页仅 Hero 居中 */
 .head {
-  text-align: center;
-  margin-bottom: 54px;
+  margin-bottom: 44px;
 }
 
 .title {
@@ -126,7 +130,7 @@ const { t } = useI18n()
 }
 
 .subtitle {
-  margin: 16px 0 0;
+  margin: 14px 0 0;
   font: 400 18px var(--font-sans);
   color: var(--text2);
 }
@@ -166,7 +170,7 @@ const { t } = useI18n()
   background: var(--muted);
 }
 
-.card-foot {
+.card-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -179,6 +183,13 @@ const { t } = useI18n()
 }
 
 .card-title-muted {
+  color: var(--text2);
+}
+
+.card-desc {
+  margin: 10px 0 0;
+  font: 400 14.5px var(--font-sans);
+  line-height: 1.58;
   color: var(--text2);
 }
 

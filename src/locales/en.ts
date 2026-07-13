@@ -1,7 +1,6 @@
 // 英文词条 —— 全站文案的真相源；zh.ts 以本文件结构为类型约束
 export default {
   nav: {
-    legal: 'Legal',
     contact: 'Contact',
     login: 'Login',
     switchToLight: 'Switch to light theme',
@@ -20,9 +19,13 @@ export default {
     title: 'One API, Every Modality',
     subtitle: 'Build once, ship across modalities.',
     text: 'Text',
+    textDesc: 'Chat, reasoning, and code generation.',
     vision: 'Vision',
+    visionDesc: 'Image understanding and document parsing.',
     voice: 'Voice',
+    voiceDesc: 'Speech recognition and natural synthesis.',
     more: 'More',
+    moreDesc: 'More modalities are on the way.',
     supported: 'SUPPORTED',
     soon: 'SOON',
   },

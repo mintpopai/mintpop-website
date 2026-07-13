@@ -3,7 +3,6 @@ import type en from './en'
 // 中文词条 —— 结构与 en.ts 同构（typeof en 约束），漏译在编译期报错
 const zh: typeof en = {
   nav: {
-    legal: '法律条款',
     contact: '联系我们',
     login: '登录',
     switchToLight: '切换到浅色主题',
@@ -22,9 +21,13 @@ const zh: typeof en = {
     title: '一个 API，覆盖所有模态',
     subtitle: '一次构建，跨模态交付。',
     text: '文本',
+    textDesc: '对话、推理与代码生成。',
     vision: '视觉',
+    visionDesc: '图像理解与文档解析。',
     voice: '语音',
+    voiceDesc: '语音识别与自然合成。',
     more: '更多',
+    moreDesc: '更多模态正在路上。',
     supported: '已支持',
     soon: '敬请期待',
   },

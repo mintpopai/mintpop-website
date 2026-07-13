@@ -145,7 +145,8 @@ const { t, locale } = useI18n()
   position: relative;
   overflow: hidden;
   background: #121614;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  /* 面板固定深色：0.08 让暗色主题下面板与背景仍有可辨边界 */
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 28px;
   padding: 64px 72px 72px;
 }

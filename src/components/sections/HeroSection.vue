@@ -105,7 +105,48 @@ const { t, locale } = useI18n()
 .hero {
   position: relative;
   overflow: hidden;
-  padding: 64px 44px 96px;
+  padding: 40px 44px 56px;
+}
+
+/* 入场编排：徽章→标题→模型→CTA 依次上浮淡入，一次性、克制 */
+.badge,
+.headline,
+.models,
+.cta-row {
+  animation: hero-rise 0.55s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+.headline {
+  animation-delay: 0.08s;
+}
+
+.models {
+  animation-delay: 0.16s;
+}
+
+.cta-row {
+  animation-delay: 0.24s;
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badge,
+  .headline,
+  .models,
+  .cta-row {
+    animation: none;
+  }
 }
 
 .deco {
@@ -248,7 +289,9 @@ const { t, locale } = useI18n()
   cursor: pointer;
   transition:
     background-color 0.18s ease,
-    border-color 0.18s ease;
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.18s ease;
 }
 
 /* 唯一 CTA：加大尺寸让「立即开始」足够显眼 */
@@ -260,13 +303,30 @@ const { t, locale } = useI18n()
   box-shadow: 0 8px 22px rgba(23, 209, 167, 0.38);
 }
 
+.btn-primary svg {
+  transition: transform 0.18s ease;
+}
+
 .btn-primary:hover {
   background: var(--accent-deep);
+  box-shadow: 0 10px 26px rgba(23, 209, 167, 0.44);
+  transform: translateY(-1px);
+}
+
+.btn-primary:hover svg {
+  transform: translateX(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary:hover,
+  .btn-primary:hover svg {
+    transform: none;
+  }
 }
 
 @media (max-width: 720px) {
   .hero {
-    padding: 44px 18px 64px;
+    padding: 32px 18px 44px;
   }
 
   .headline {

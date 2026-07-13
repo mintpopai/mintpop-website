@@ -19,14 +19,11 @@ const { lp, otherLocale, otherLabel, switchTarget } = useLocale()
       <BrandLogo :size="24" />
     </RouterLink>
 
-    <nav class="nav">
-      <RouterLink :to="lp('/legal')" class="nav-link">{{ t('nav.legal') }}</RouterLink>
-      <RouterLink :to="lp('/contact')" class="nav-link nav-link--accent">
+    <!-- 页头只留动作区：法律条款按惯例只放页脚，联系我们归入右侧动作 -->
+    <div class="actions">
+      <RouterLink :to="lp('/contact')" class="contact-link">
         {{ t('nav.contact') }}
       </RouterLink>
-    </nav>
-
-    <div class="actions">
       <!-- 链接式切换器：指向当前页在另一语言的对等路径，爬虫可循此发现中文页；点击记住偏好 -->
       <RouterLink
         :to="switchTarget"
@@ -72,43 +69,27 @@ const { lp, otherLocale, otherLabel, switchTarget } = useLocale()
   align-items: flex-end;
 }
 
-.nav {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  margin-left: 8px;
-}
-
-.nav-link {
-  font: 500 14px var(--font-sans);
-  padding: 9px 15px;
-  border-radius: 10px;
-  color: var(--text2);
-  white-space: nowrap;
-  cursor: pointer;
-  transition:
-    background-color 0.18s ease,
-    color 0.18s ease;
-}
-
-.nav-link:hover {
-  background: var(--muted);
-}
-
-.nav-link--accent {
-  font-weight: 600;
-  color: var(--accent);
-}
-
-.nav-link--accent:hover {
-  background: var(--accent-soft);
-}
-
 .actions {
   margin-left: auto;
   display: flex;
   align-items: center;
   gap: 14px;
+}
+
+.contact-link {
+  font: 500 14px var(--font-sans);
+  padding: 9px 15px;
+  border-radius: 10px;
+  color: var(--text2);
+  white-space: nowrap;
+  transition:
+    background-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.contact-link:hover {
+  color: var(--text);
+  background: var(--muted);
 }
 
 .lang {
@@ -167,7 +148,8 @@ const { lp, otherLocale, otherLabel, switchTarget } = useLocale()
     gap: 14px;
   }
 
-  .nav {
+  /* 小屏优先保联系入口的可达性由页脚兜底，页头只留核心动作 */
+  .contact-link {
     display: none;
   }
 }

@@ -177,7 +177,7 @@ function passRate(passed: number): string {
 
 <style scoped>
 .purity {
-  padding: 56px 44px 120px;
+  padding: 56px 44px 96px;
 }
 
 .wrap {
