@@ -11,7 +11,7 @@ describe('PurityReportSection', () => {
     expect(wrapper.findAll('.stat')).toHaveLength(4)
     expect(wrapper.find('.stat-hero .stat-value').text()).toBe('A+')
     const link = wrapper.find('a.chip-verified')
-    expect(link.attributes('href')).toBe('https://veridrop.org')
+    expect(link.attributes('href')).toBe('https://veridrop.org/leaderboard/mintpop.ai')
     expect(link.attributes('target')).toBe('_blank')
     expect(link.attributes('rel')).toBe('noopener')
   })

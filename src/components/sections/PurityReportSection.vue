@@ -5,7 +5,7 @@ import { useI18n } from 'vue-i18n'
 
 const { t, locale } = useI18n()
 
-const VERIDROP_URL = 'https://veridrop.org'
+const VERIDROP_URL = 'https://veridrop.org/leaderboard/mintpop.ai'
 const TOTAL_REPORTS = 26
 
 // 八项关键检查：name 为报告里的检查项标识（代码风格展示，不参与 i18n）
