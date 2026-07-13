@@ -96,58 +96,6 @@ const { t, locale } = useI18n()
             />
           </svg>
         </a>
-        <a href="#capabilities" class="btn btn-ghost">{{ t('hero.explore') }}</a>
-      </div>
-
-      <div class="tags">
-        <span class="tag">
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="var(--accent)"
-            stroke-width="1.9"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M7 8l-4 4 4 4" />
-            <path d="M17 8l4 4-4 4" />
-            <path d="M14 4l-4 16" />
-          </svg>
-          {{ t('hero.tagUnifiedApi') }}
-        </span>
-        <span class="tag">
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="var(--accent)"
-            stroke-width="1.9"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M12 3l8 4v5c0 4.4-3.1 7.6-8 9-4.9-1.4-8-4.6-8-9V7l8-4z" />
-            <path d="M9 12l2 2 4-4" />
-          </svg>
-          {{ t('hero.tagSession') }}
-        </span>
-        <span class="tag">
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="var(--accent)"
-            stroke-width="1.9"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M4 20V10M10 20V4M16 20v-8M22 20H2" />
-          </svg>
-          {{ t('hero.tagPayg') }}
-        </span>
       </div>
     </div>
   </section>
@@ -157,7 +105,7 @@ const { t, locale } = useI18n()
 .hero {
   position: relative;
   overflow: hidden;
-  padding: 120px 44px 96px;
+  padding: 64px 44px 96px;
 }
 
 .deco {
@@ -303,54 +251,22 @@ const { t, locale } = useI18n()
     border-color 0.18s ease;
 }
 
+/* 唯一 CTA：加大尺寸让「立即开始」足够显眼 */
 .btn-primary {
   color: #fff;
   background: var(--accent);
-  padding: 15px 28px;
-  box-shadow: 0 6px 18px rgba(23, 209, 167, 0.34);
+  font-size: 18px;
+  padding: 18px 40px;
+  box-shadow: 0 8px 22px rgba(23, 209, 167, 0.38);
 }
 
 .btn-primary:hover {
   background: var(--accent-deep);
 }
 
-.btn-ghost {
-  gap: 8px;
-  color: var(--text);
-  padding: 15px 24px;
-  border: 1px solid var(--border2);
-  background: var(--card);
-}
-
-.btn-ghost:hover {
-  border-color: var(--accent);
-}
-
-.tags {
-  margin-top: 46px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  font: 500 14px var(--font-sans);
-  color: var(--text2);
-  background: var(--card);
-  border: 1px solid var(--border);
-  padding: 10px 18px;
-  border-radius: 999px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
-}
-
 @media (max-width: 720px) {
   .hero {
-    padding: 72px 18px 64px;
+    padding: 44px 18px 64px;
   }
 
   .headline {

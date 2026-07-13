@@ -3,8 +3,6 @@ import type en from './en'
 // 中文词条 —— 结构与 en.ts 同构（typeof en 约束），漏译在编译期报错
 const zh: typeof en = {
   nav: {
-    capabilities: '能力',
-    modalities: '模态',
     legal: '法律条款',
     contact: '联系我们',
     login: '登录',
@@ -19,19 +17,6 @@ const zh: typeof en = {
     vision: '视觉',
     voice: '语音',
     getStarted: '立即开始',
-    explore: '了解能力',
-    tagUnifiedApi: '统一 API',
-    tagSession: '会话安全性',
-    tagPayg: '按量付费',
-  },
-  capabilities: {
-    heading: '核心能力',
-    accessTitle: '一键接入',
-    accessDesc: '一把 API Key 调用全部能力，无需维护多个账号。',
-    reliableTitle: '稳定可靠',
-    reliableDesc: '智能路由与自动故障切换，保障请求持续畅通。',
-    billingTitle: '按用量计费',
-    billingDesc: '只为实际用量付费，支持额度上限与完整的消耗明细。',
   },
   modalities: {
     title: '一个 API，覆盖所有模态',
@@ -48,7 +33,7 @@ const zh: typeof en = {
     title: '我们{em}的三件事。',
     titleEm: '郑重承诺',
     modelTitle: '{em}模型，绝不缩水。',
-    modelEm: '满血',
+    modelEm: '原生',
     modelDesc: '100% 官方模型——绝不混装、绝不替换。',
     modelBadge: '纯度实测 · A+',
     privacyTitle: '你的数据{em}，始终如一。',
@@ -62,7 +47,7 @@ const zh: typeof en = {
   },
   purity: {
     badge: '模型纯度报告',
-    title: '满血成色，我们用数据{em}。',
+    title: '原生模型，我们用数据{em}。',
     titleEm: '证明',
     intro: '每个模型都持续与官方 API 对比测试——不混装、不降级。以下是最新一期独立审计结果。',
     basedOn: '基于 {n} 份独立报告',

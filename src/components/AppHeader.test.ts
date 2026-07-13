@@ -50,11 +50,8 @@ describe('AppHeader 导航链接', () => {
     expect(zh.find('a.nav-link--accent').attributes('href')).toBe('/zh/contact')
   })
 
-  it('区块锚点与 logo 带首页路径前缀，非首页也能回到首页对应区块', async () => {
+  it('logo 锚点带首页路径前缀，非首页也能回到首页顶部', async () => {
     const wrapper = await mountAt('/contact')
     expect(wrapper.find('a.logo-link').attributes('href')).toBe('/#top')
-    const anchors = wrapper.findAll('a.nav-link').map((a) => a.attributes('href'))
-    expect(anchors).toContain('/#capabilities')
-    expect(anchors).toContain('/#modalities')
   })
 })

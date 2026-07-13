@@ -24,6 +24,6 @@ describe('GuaranteesSection', () => {
     await nextTick()
     expect(wrapper.find('.title .em').text()).toBe('郑重承诺')
     const itemEms = wrapper.findAll('.item-title .em').map((s) => s.text())
-    expect(itemEms).toEqual(['满血', '保持私密', '任何时刻'])
+    expect(itemEms).toEqual(['原生', '保持私密', '任何时刻'])
   })
 })

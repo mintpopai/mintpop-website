@@ -20,12 +20,6 @@ const { lp, otherLocale, otherLabel, switchTarget } = useLocale()
     </RouterLink>
 
     <nav class="nav">
-      <RouterLink :to="`${lp('/')}#capabilities`" class="nav-link">
-        {{ t('nav.capabilities') }}
-      </RouterLink>
-      <RouterLink :to="`${lp('/')}#modalities`" class="nav-link">
-        {{ t('nav.modalities') }}
-      </RouterLink>
       <RouterLink :to="lp('/legal')" class="nav-link">{{ t('nav.legal') }}</RouterLink>
       <RouterLink :to="lp('/contact')" class="nav-link nav-link--accent">
         {{ t('nav.contact') }}

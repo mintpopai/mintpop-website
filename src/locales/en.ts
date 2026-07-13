@@ -1,8 +1,6 @@
 // 英文词条 —— 全站文案的真相源；zh.ts 以本文件结构为类型约束
 export default {
   nav: {
-    capabilities: 'Capabilities',
-    modalities: 'Modalities',
     legal: 'Legal',
     contact: 'Contact',
     login: 'Login',
@@ -17,19 +15,6 @@ export default {
     vision: 'vision',
     voice: 'voice',
     getStarted: 'Get Started',
-    explore: 'Explore capabilities',
-    tagUnifiedApi: 'Unified API',
-    tagSession: 'Session Security',
-    tagPayg: 'Pay As You Go',
-  },
-  capabilities: {
-    heading: 'Capabilities',
-    accessTitle: 'One-Click Access',
-    accessDesc: 'A single API key to call every capability. No separate accounts to manage.',
-    reliableTitle: 'Always Reliable',
-    reliableDesc: 'Intelligent routing with automatic failover keeps your requests flowing.',
-    billingTitle: 'Usage-Based Billing',
-    billingDesc: 'Pay only for what you use, with quota limits and full consumption visibility.',
   },
   modalities: {
     title: 'One API, Every Modality',

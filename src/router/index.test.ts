@@ -83,7 +83,7 @@ describe('scrollBehavior 锚点偏移', () => {
   it('语言切换保持当前滚动位置，携带的锚点也不重跳', () => {
     expect(scrollBehavior(routeAt('', '/zh'), routeAt('', '/'), null)).toBe(false)
     expect(scrollBehavior(routeAt('', '/legal'), routeAt('', '/zh/legal'), null)).toBe(false)
-    expect(scrollBehavior(routeAt('#capabilities', '/zh'), routeAt('', '/'), null)).toBe(false)
+    expect(scrollBehavior(routeAt('#modalities', '/zh'), routeAt('', '/'), null)).toBe(false)
   })
 
   it('跨页面跳转（即使语言也变了）仍回到顶部', () => {
