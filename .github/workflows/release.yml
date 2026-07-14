@@ -68,7 +68,8 @@ jobs:
 
   release-notes:
     name: GitHub Release
-    needs: quality
+    # 依赖镜像推送成功：交付物发布失败的发版不留 Release 页（release-notes.md 硬规则）
+    needs: [quality, build-push]
     # 仅 tag 触发才建 Release，workflow_dispatch 逃生口不建
     if: github.ref_type == 'tag'
     runs-on: ubuntu-latest
