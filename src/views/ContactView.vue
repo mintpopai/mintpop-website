@@ -109,11 +109,7 @@ onBeforeUnmount(() => clearTimeout(copiedTimer))
               </svg>
             </span>
             <div class="im-toggle" role="group" :aria-label="t('contact.imToggleAria')">
-              <span
-                class="im-thumb"
-                :class="{ 'im-thumb--qq': !isWechat }"
-                aria-hidden="true"
-              />
+              <span class="im-thumb" :class="{ 'im-thumb--qq': !isWechat }" aria-hidden="true" />
               <button
                 type="button"
                 class="im-tab im-tab--wechat"
