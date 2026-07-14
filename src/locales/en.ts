@@ -78,6 +78,12 @@ export default {
     wechatLabel: 'WeChat',
     wechatDesc: 'Scan the QR code with WeChat to add us.',
     wechatQrAlt: 'MintPop WeChat QR code',
+    qqLabel: 'QQ',
+    qqDesc: 'Scan with QQ to join — group ID {n}',
+    qqQrAlt: 'MintPop QQ group QR code',
+    qqCopyAria: 'Copy QQ group ID',
+    qqCopied: 'Copied',
+    imToggleAria: 'Switch messaging channel',
   },
   legal: {
     eyebrow: 'Legal Center',

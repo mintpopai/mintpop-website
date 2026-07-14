@@ -1,6 +1,6 @@
 import { createHead } from '@unhead/vue/client'
-import { mount } from '@vue/test-utils'
-import { describe, expect, it } from 'vitest'
+import { flushPromises, mount } from '@vue/test-utils'
+import { describe, expect, it, vi } from 'vitest'
 import { createMemoryHistory, createRouter } from 'vue-router'
 
 import { Locale } from '@/config/locale'
@@ -40,9 +40,56 @@ describe('ContactView 联系渠道', () => {
 
   it('微信卡片渲染二维码图片并带无障碍替代文本', async () => {
     const wrapper = await mountAt('/contact')
-    const qr = wrapper.find('img.wechat-qr')
+    const qr = wrapper.find('img.im-qr')
     expect(qr.attributes('src')).toContain('wechat-qr')
     expect(qr.attributes('alt')).toBe('MintPop WeChat QR code')
+  })
+
+  it('IM 卡片默认展示微信渠道，微信 tab 处于按下态', async () => {
+    const wrapper = await mountAt('/contact')
+    const tabs = wrapper.findAll('button.im-tab')
+    expect(tabs).toHaveLength(2)
+    expect(tabs[0]!.attributes('aria-pressed')).toBe('true')
+    expect(tabs[1]!.attributes('aria-pressed')).toBe('false')
+    expect(wrapper.find('img.im-qr').attributes('src')).toContain('wechat-qr')
+  })
+
+  it('点击 QQ tab 切换为 QQ 群二维码，并展示群号', async () => {
+    const wrapper = await mountAt('/contact')
+    const tabs = wrapper.findAll('button.im-tab')
+    await tabs[1]!.trigger('click')
+    await flushPromises()
+    const qr = wrapper.find('img.im-qr')
+    expect(qr.attributes('src')).toContain('qq-qr')
+    expect(qr.attributes('alt')).toBe('MintPop QQ group QR code')
+    expect(tabs[1]!.attributes('aria-pressed')).toBe('true')
+    expect(tabs[0]!.attributes('aria-pressed')).toBe('false')
+    expect(wrapper.text()).toContain('1063651825')
+  })
+
+  it('QQ 群号是可点击复制的按钮，点击后写入剪贴板并给出已复制反馈', async () => {
+    const writeText = vi.fn().mockResolvedValue(undefined)
+    Object.defineProperty(navigator, 'clipboard', { value: { writeText }, configurable: true })
+    const wrapper = await mountAt('/zh/contact')
+    await wrapper.findAll('button.im-tab')[1]!.trigger('click')
+    await flushPromises()
+    const btn = wrapper.find('button.copy-id')
+    expect(btn.text()).toContain('1063651825')
+    await btn.trigger('click')
+    await flushPromises()
+    expect(writeText).toHaveBeenCalledWith('1063651825')
+    expect(btn.classes()).toContain('copy-id--done')
+  })
+
+  it('切到 QQ 后可再切回微信', async () => {
+    const wrapper = await mountAt('/contact')
+    const tabs = wrapper.findAll('button.im-tab')
+    await tabs[1]!.trigger('click')
+    await flushPromises()
+    await tabs[0]!.trigger('click')
+    await flushPromises()
+    expect(wrapper.find('img.im-qr').attributes('src')).toContain('wechat-qr')
+    expect(wrapper.text()).not.toContain('1063651825')
   })
 
   it('页面不出现个人账号 Mintpop_Jack', async () => {

@@ -78,6 +78,12 @@ const zh: typeof en = {
     wechatLabel: '微信',
     wechatDesc: '使用微信扫一扫，添加我们为好友。',
     wechatQrAlt: 'MintPop 微信二维码',
+    qqLabel: 'QQ',
+    qqDesc: '使用 QQ 扫一扫加入群聊，群号 {n}',
+    qqQrAlt: 'MintPop QQ 群二维码',
+    qqCopyAria: '复制 QQ 群号',
+    qqCopied: '已复制',
+    imToggleAria: '切换社交联系渠道',
   },
   legal: {
     eyebrow: '法律中心',
