@@ -56,4 +56,13 @@ describe('ProductsView 产品列表', () => {
     const wrapper = await mountAt('/zh/products')
     expect(wrapper.find('h1.title').text()).toBe('全部产品')
   })
+
+  // 动态拼接词条键（products.<key>.point<n>）无编译期检查，键缺失时 vue-i18n 会
+  // 静默渲染键名字符串；词条文案不会含 "products." 前缀，据此兜住双语全部词条
+  it('双语页面均不泄漏裸词条键', async () => {
+    const en = await mountAt('/products')
+    expect(en.text()).not.toContain('products.')
+    const zh = await mountAt('/zh/products')
+    expect(zh.text()).not.toContain('products.')
+  })
 })

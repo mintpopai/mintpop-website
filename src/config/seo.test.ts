@@ -39,7 +39,7 @@ describe('SEO 配置', () => {
     }
   })
 
-  it('login/register/404 标了 noindex，home/legal 未标', () => {
+  it('login/register/404 标了 noindex，home/legal/products 未标', () => {
     expect(SEO.LOGIN.noindex).toBe(true)
     expect(SEO.REGISTER.noindex).toBe(true)
     expect(SEO.NOT_FOUND.noindex).toBe(true)
