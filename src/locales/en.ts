@@ -1,6 +1,7 @@
 // 英文词条 —— 全站文案的真相源；zh.ts 以本文件结构为类型约束
 export default {
   nav: {
+    products: 'Products',
     contact: 'Contact',
     login: 'Login',
     switchToLight: 'Switch to light theme',
@@ -167,6 +168,7 @@ export default {
     },
   },
   footer: {
+    products: 'All Products',
     terms: 'Terms of Service',
     privacy: 'Privacy Policy',
     refund: 'Refund Policy',
@@ -175,6 +177,32 @@ export default {
     operatedBy: 'Operated by',
     location: 'United States',
     copyright: '© 2026 MintPop. All rights reserved.',
+  },
+  products: {
+    title: 'All Products',
+    intro: 'Everything MintPop ships today — built for overseas developers and cross-border teams.',
+    live: 'LIVE',
+    soon: 'SOON',
+    api: {
+      name: 'MintPop API',
+      tagline: 'One API for text, vision, and voice — 100% official, full-power models.',
+      point1: 'A single unified endpoint covering every modality.',
+      point2: 'Continuously purity-tested — never blended or downgraded.',
+      point3: 'Zero data retention, usage-based billing.',
+      cta: 'Get Started',
+    },
+    shop: {
+      name: 'MintPop Shop',
+      tagline: 'Mainstream AI subscriptions in one store — ChatGPT Plus, Claude Pro, and more.',
+      point1: 'Official top-ups through legitimate channels.',
+      point2: 'Instant activation after checkout.',
+      point3: 'Multiple payment methods with human after-sales support.',
+      cta: 'Visit Shop',
+    },
+    more: {
+      name: 'More coming',
+      desc: 'New products are on the way.',
+    },
   },
   placeholder: {
     soonTag: 'SOON',

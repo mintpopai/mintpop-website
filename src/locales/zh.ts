@@ -3,6 +3,7 @@ import type en from './en'
 // 中文词条 —— 结构与 en.ts 同构（typeof en 约束），漏译在编译期报错
 const zh: typeof en = {
   nav: {
+    products: '产品',
     contact: '联系我们',
     login: '登录',
     switchToLight: '切换到浅色主题',
@@ -162,6 +163,7 @@ const zh: typeof en = {
     },
   },
   footer: {
+    products: '全部产品',
     terms: '服务条款',
     privacy: '隐私政策',
     refund: '退款政策',
@@ -170,6 +172,32 @@ const zh: typeof en = {
     operatedBy: '运营方',
     location: '美国',
     copyright: '© 2026 MintPop. 保留所有权利。',
+  },
+  products: {
+    title: '全部产品',
+    intro: 'MintPop 当前提供的全部产品——为海外开发者与跨境团队而建。',
+    live: '已上线',
+    soon: '敬请期待',
+    api: {
+      name: 'MintPop API',
+      tagline: '一个 API 打通文本、视觉与语音——100% 官方满血模型。',
+      point1: '单一统一端点，覆盖全部模态。',
+      point2: '持续纯度实测——绝不混装、绝不降级。',
+      point3: '零数据留存，按用量计费。',
+      cta: '立即开始',
+    },
+    shop: {
+      name: 'MintPop Shop',
+      tagline: '主流 AI 订阅一站购齐——ChatGPT Plus、Claude Pro 等。',
+      point1: '正规渠道官方直充。',
+      point2: '下单后即时开通。',
+      point3: '多种支付方式，真人售后支持。',
+      cta: '前往商店',
+    },
+    more: {
+      name: '更多产品',
+      desc: '新产品正在路上。',
+    },
   },
   placeholder: {
     soonTag: '即将上线',

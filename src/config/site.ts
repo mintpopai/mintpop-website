@@ -8,6 +8,9 @@ export const SITE_NAME = 'MintPop'
 // API 平台地址:Get Started / 登录等入口跳转目标,改这里全站生效
 export const API_URL = 'https://api.mintpop.ai'
 
+// Shop 商城地址：产品页 MintPop Shop 的 CTA 跳转目标（地址暂定，改这里全站生效）
+export const SHOP_URL = 'https://shop.mintpop.ai'
+
 // 联系渠道:支持邮箱、Telegram 群邀请链接与 QQ 群号,改这里全站生效
 export const SUPPORT_EMAIL = 'support@mintpop.ai'
 export const TELEGRAM_GROUP_URL = 'https://t.me/+NpAwBIWXs8FkMzVh'
