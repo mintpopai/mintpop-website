@@ -17,6 +17,7 @@ const zh: typeof en = {
     vision: '视觉',
     voice: '语音',
     getStarted: '立即开始',
+    allProducts: '全部产品',
   },
   modalities: {
     title: '一个 API，覆盖所有模态',
@@ -175,7 +176,6 @@ const zh: typeof en = {
   },
   products: {
     title: '全部产品',
-    intro: 'MintPop 当前提供的全部产品——为海外开发者与跨境团队而建。',
     live: '已上线',
     soon: '敬请期待',
     api: {

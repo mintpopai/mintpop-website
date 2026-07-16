@@ -95,6 +95,12 @@ const { lp, otherLocale, otherLabel, switchTarget } = useLocale()
   background: var(--muted);
 }
 
+/* 当前页高亮：vue-router 对匹配路由的 RouterLink 自动加 router-link-active */
+.contact-link.router-link-active {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
 .lang {
   font: 500 13px var(--font-sans);
   color: var(--text2);

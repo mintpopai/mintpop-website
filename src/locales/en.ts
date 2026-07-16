@@ -15,6 +15,7 @@ export default {
     vision: 'vision',
     voice: 'voice',
     getStarted: 'Get Started',
+    allProducts: 'All Products',
   },
   modalities: {
     title: 'One API, Every Modality',
@@ -180,7 +181,6 @@ export default {
   },
   products: {
     title: 'All Products',
-    intro: 'Everything MintPop ships today — built for overseas developers and cross-border teams.',
     live: 'LIVE',
     soon: 'SOON',
     api: {

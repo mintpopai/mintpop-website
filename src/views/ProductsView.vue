@@ -26,9 +26,8 @@ const POINT_COUNT = 3
   <main class="products">
     <div class="inner">
       <h1 class="title">{{ t('products.title') }}</h1>
-      <p class="intro">{{ t('products.intro') }}</p>
 
-      <div class="list">
+      <div class="grid">
         <article v-for="p in PRODUCTS" :key="p.key" class="product-card">
           <div class="body">
             <div class="head">
@@ -66,7 +65,7 @@ const POINT_COUNT = 3
 </template>
 
 <style scoped>
-/* 页首排版与联系页同构：左对齐编辑式大标题 + 短 intro */
+/* 页首排版与联系页同构：左对齐编辑式大标题 */
 .products {
   background: var(--bg);
   padding: 96px 44px 120px;
@@ -85,41 +84,36 @@ const POINT_COUNT = 3
   color: var(--text);
 }
 
-.intro {
-  margin: 26px 0 0;
-  max-width: 560px;
-  font: 400 18px var(--font-sans);
-  line-height: 1.65;
-  color: var(--text2);
-}
-
-.list {
-  margin-top: 56px;
-  display: flex;
-  flex-direction: column;
+/* 宫格布局：产品卡两列铺排，SOON 占位卡占一格 */
+.grid {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 28px;
 }
 
-/* 产品大卡：左文右图两栏；SOON 卡复用主页 More 卡的虚线视觉 */
+/* 产品卡：竖排内容 + 右上角网点装饰；SOON 卡复用主页 More 卡的虚线视觉 */
 .product-card {
-  display: grid;
-  grid-template-columns: 1fr 280px;
-  gap: 32px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 20px;
-  padding: 44px 40px;
+  padding: 40px 36px;
   box-shadow: 0 2px 14px rgba(0, 0, 0, 0.045);
 }
 
 .product-card--soon {
-  grid-template-columns: 1fr;
   background: var(--cream);
   border: 1px dashed var(--border2);
   box-shadow: none;
 }
 
 .body {
+  position: relative;
+  z-index: 1;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -168,7 +162,7 @@ const POINT_COUNT = 3
 }
 
 .points {
-  margin: 20px 0 0;
+  margin: 20px 0 28px;
   padding: 0;
   list-style: none;
   display: flex;
@@ -195,8 +189,9 @@ const POINT_COUNT = 3
   background: var(--accent);
 }
 
+/* margin-top:auto：宫格内卡片等高时 CTA 底部对齐 */
 .cta {
-  margin-top: 28px;
+  margin-top: auto;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -213,9 +208,13 @@ const POINT_COUNT = 3
   background: var(--accent-soft2);
 }
 
-/* 薄荷网点装饰：与联系页 wechat-dots 同款 halftone 手法，纯 CSS 无外部资源 */
+/* 薄荷网点装饰：右上角溢出的 halftone，与联系页 wechat-dots 同款手法，纯 CSS 无外部资源 */
 .art {
-  border-radius: 14px;
+  position: absolute;
+  right: -80px;
+  top: -60px;
+  width: 260px;
+  height: 260px;
   background: linear-gradient(150deg, var(--accent-deep) 0%, var(--accent) 45%, transparent 92%);
   -webkit-mask-image: radial-gradient(#000 2px, transparent 2.2px);
   mask-image: radial-gradient(#000 2px, transparent 2.2px);
@@ -225,12 +224,8 @@ const POINT_COUNT = 3
 }
 
 @media (max-width: 920px) {
-  .product-card {
+  .grid {
     grid-template-columns: 1fr;
-  }
-
-  .art {
-    display: none;
   }
 }
 

@@ -61,4 +61,12 @@ describe('AppHeader 导航链接', () => {
     const zh = await mountAt('/zh')
     expect(zh.find('a.products-link').attributes('href')).toBe('/zh/products')
   })
+
+  // 当前页对应的导航链接要高亮：样式挂在 router-link-active 上，这里守护类名确实随路由出现
+  it('身处产品页时产品链接带激活类，首页则没有', async () => {
+    const onProducts = await mountAt('/products')
+    expect(onProducts.find('a.products-link').classes()).toContain('router-link-active')
+    const onHome = await mountAt('/')
+    expect(onHome.find('a.products-link').classes()).not.toContain('router-link-active')
+  })
 })

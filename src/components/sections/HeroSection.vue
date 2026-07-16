@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import { RouterLink } from 'vue-router'
 
+import { useLocale } from '@/composables/useLocale'
 import { API_URL } from '@/config/site'
 
 const { t, locale } = useI18n()
+const { lp } = useLocale()
 </script>
 
 <template>
@@ -96,6 +99,9 @@ const { t, locale } = useI18n()
             />
           </svg>
         </a>
+        <RouterLink :to="lp('/products')" class="btn btn-secondary">
+          {{ t('hero.allProducts') }}
+        </RouterLink>
       </div>
     </div>
   </section>
@@ -294,7 +300,7 @@ const { t, locale } = useI18n()
     transform 0.18s ease;
 }
 
-/* 唯一 CTA：加大尺寸让「立即开始」足够显眼 */
+/* 主 CTA：加大尺寸让「立即开始」足够显眼 */
 .btn-primary {
   color: #fff;
   background: var(--accent);
@@ -315,6 +321,19 @@ const { t, locale } = useI18n()
 
 .btn-primary:hover svg {
   transform: translateX(3px);
+}
+
+/* 次级 CTA：软底描边款，与主按钮同高并排，指向站内产品页 */
+.btn-secondary {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-border);
+  font-size: 18px;
+  padding: 17px 34px;
+}
+
+.btn-secondary:hover {
+  background: var(--accent-soft2);
 }
 
 @media (prefers-reduced-motion: reduce) {
