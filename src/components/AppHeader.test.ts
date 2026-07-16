@@ -45,13 +45,20 @@ describe('AppHeader 语言切换器', () => {
 describe('AppHeader 导航链接', () => {
   it('联系我们指向独立联系页，中文页带 /zh 前缀', async () => {
     const en = await mountAt('/')
-    expect(en.find('a.contact-link').attributes('href')).toBe('/contact')
+    expect(en.find('a.contact-link:not(.products-link)').attributes('href')).toBe('/contact')
     const zh = await mountAt('/zh')
-    expect(zh.find('a.contact-link').attributes('href')).toBe('/zh/contact')
+    expect(zh.find('a.contact-link:not(.products-link)').attributes('href')).toBe('/zh/contact')
   })
 
   it('logo 锚点带首页路径前缀，非首页也能回到首页顶部', async () => {
     const wrapper = await mountAt('/contact')
     expect(wrapper.find('a.logo-link').attributes('href')).toBe('/#top')
+  })
+
+  it('产品页链接指向 /products，中文页带 /zh 前缀', async () => {
+    const en = await mountAt('/')
+    expect(en.find('a.products-link').attributes('href')).toBe('/products')
+    const zh = await mountAt('/zh')
+    expect(zh.find('a.products-link').attributes('href')).toBe('/zh/products')
   })
 })

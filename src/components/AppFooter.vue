@@ -18,6 +18,8 @@ const { lp } = useLocale()
       </RouterLink>
 
       <nav class="links">
+        <RouterLink :to="lp('/products')" class="link">{{ t('footer.products') }}</RouterLink>
+        <span class="sep">·</span>
         <RouterLink :to="`${lp('/legal')}#terms`" class="link">{{ t('footer.terms') }}</RouterLink>
         <span class="sep">·</span>
         <RouterLink :to="`${lp('/legal')}#privacy`" class="link">

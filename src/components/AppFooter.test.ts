@@ -28,3 +28,12 @@ describe('AppFooter 联系链接', () => {
     expect(hrefs).toContain('/zh/contact')
   })
 })
+
+describe('AppFooter 产品链接', () => {
+  it('全部产品链接指向本语言树的 /products', async () => {
+    const en = await mountAt('/')
+    expect(en.findAll('nav.links a').map((a) => a.attributes('href'))).toContain('/products')
+    const zh = await mountAt('/zh')
+    expect(zh.findAll('nav.links a').map((a) => a.attributes('href'))).toContain('/zh/products')
+  })
+})

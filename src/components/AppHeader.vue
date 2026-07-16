@@ -21,6 +21,9 @@ const { lp, otherLocale, otherLabel, switchTarget } = useLocale()
 
     <!-- 页头只留动作区：法律条款按惯例只放页脚，联系我们归入右侧动作 -->
     <div class="actions">
+      <RouterLink :to="lp('/products')" class="contact-link products-link">
+        {{ t('nav.products') }}
+      </RouterLink>
       <RouterLink :to="lp('/contact')" class="contact-link">
         {{ t('nav.contact') }}
       </RouterLink>
