@@ -3,7 +3,15 @@ import { describe, expect, it } from 'vitest'
 import { Locale } from './locale'
 import { SEO, type SeoRouteKey } from './seo'
 
-const ALL_KEYS: SeoRouteKey[] = ['HOME', 'CONTACT', 'LEGAL', 'LOGIN', 'REGISTER', 'NOT_FOUND']
+const ALL_KEYS: SeoRouteKey[] = [
+  'HOME',
+  'PRODUCTS',
+  'CONTACT',
+  'LEGAL',
+  'LOGIN',
+  'REGISTER',
+  'NOT_FOUND',
+]
 const ALL_LOCALES = [Locale.EN, Locale.ZH]
 
 describe('SEO 配置', () => {
@@ -37,6 +45,7 @@ describe('SEO 配置', () => {
     expect(SEO.NOT_FOUND.noindex).toBe(true)
     expect(SEO.HOME.noindex).toBeUndefined()
     expect(SEO.LEGAL.noindex).toBeUndefined()
+    expect(SEO.PRODUCTS.noindex).toBeUndefined()
   })
 
   it('path 互不重复', () => {

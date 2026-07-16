@@ -1,7 +1,8 @@
 import { Locale } from './locale'
 
 // 每个路由的 SEO 文案：路径 / 是否禁止收录 / 各语言 title+description
-export type SeoRouteKey = 'HOME' | 'CONTACT' | 'LEGAL' | 'LOGIN' | 'REGISTER' | 'NOT_FOUND'
+export type SeoRouteKey =
+  'HOME' | 'PRODUCTS' | 'CONTACT' | 'LEGAL' | 'LOGIN' | 'REGISTER' | 'NOT_FOUND'
 
 export interface SeoCopy {
   title: string
@@ -30,6 +31,21 @@ export const SEO: Record<SeoRouteKey, SeoEntry> = {
         title: 'MintPop — 一个 API，打通文本、视觉与语音',
         description:
           'MintPop——面向开发者的多模态 AI 基础设施。通过单一统一端点，把文本、视觉与语音能力构建进你的产品。',
+      },
+    },
+  },
+  PRODUCTS: {
+    path: '/products',
+    copy: {
+      [Locale.EN]: {
+        title: 'All Products — MintPop',
+        description:
+          'Explore MintPop products — the MintPop API for multimodal AI, and the MintPop Shop for mainstream AI subscriptions.',
+      },
+      [Locale.ZH]: {
+        title: '全部产品 — MintPop',
+        description:
+          '了解 MintPop 旗下产品——多模态 AI 统一接入的 MintPop API，与主流 AI 订阅商店 MintPop Shop。',
       },
     },
   },

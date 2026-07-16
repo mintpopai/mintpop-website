@@ -29,6 +29,12 @@ interface BaseRouteDef {
 const BASE_ROUTES: BaseRouteDef[] = [
   { path: '/', name: 'HOME', component: HomeView, zh: true },
   {
+    path: '/products',
+    name: 'PRODUCTS',
+    component: () => import('@/views/ProductsView.vue'),
+    zh: true,
+  },
+  {
     path: '/contact',
     name: 'CONTACT',
     component: () => import('@/views/ContactView.vue'),
