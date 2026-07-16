@@ -193,7 +193,7 @@ export default {
     },
     shop: {
       name: 'MintPop Shop',
-      tagline: 'Mainstream AI subscriptions in one store — ChatGPT Plus, Claude Pro, and more.',
+      tagline: 'Mainstream AI subscriptions in one store — ChatGPT Plus, Claude Max, and more.',
       point1: 'Official top-ups through legitimate channels.',
       point2: 'Instant activation after checkout.',
       point3: 'Multiple payment methods with human after-sales support.',

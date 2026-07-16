@@ -188,7 +188,7 @@ const zh: typeof en = {
     },
     shop: {
       name: 'MintPop Shop',
-      tagline: '主流 AI 订阅一站购齐——ChatGPT Plus、Claude Pro 等。',
+      tagline: '主流 AI 订阅一站购齐——ChatGPT Plus、Claude Max 等。',
       point1: '正规渠道官方直充。',
       point2: '下单后即时开通。',
       point3: '多种支付方式，真人售后支持。',
