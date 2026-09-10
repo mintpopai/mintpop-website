@@ -64,7 +64,7 @@ const { lp, otherLocale, otherLabel, switchTarget } = useLocale()
   height: 74px;
   background: var(--bar);
   backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--border);
+  border-bottom: var(--border-width) solid var(--border-strong);
 }
 
 .logo-link {

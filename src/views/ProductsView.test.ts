@@ -9,8 +9,8 @@ import { createAppI18n } from '@/locales'
 import { routes } from '@/router'
 import ProductsView from '@/views/ProductsView.vue'
 
-// 组件级守护：产品页渲染 API 与 Shop 两张在线产品大卡 + 一张 SOON 占位卡，
-// CTA 分别外链到 API 平台与 Shop 商城
+// 组件级守护：产品页渲染 API / Shop / Lane 三张在线产品卡 + 一张 SOON 占位卡，
+// 顶部轮播每产品一张 slide；CTA 分别外链到 API 平台与 Shop 商城，Lane 未上线先指 '#'
 async function mountAt(path: string) {
   const router = createRouter({ history: createMemoryHistory(), routes })
   await router.push(path)
@@ -22,18 +22,29 @@ async function mountAt(path: string) {
 }
 
 describe('ProductsView 产品列表', () => {
-  it('渲染两张在线产品卡与一张 SOON 占位卡', async () => {
+  it('渲染三张在线产品卡与一张 SOON 占位卡', async () => {
     const wrapper = await mountAt('/products')
-    expect(wrapper.findAll('article.product-card')).toHaveLength(3)
+    expect(wrapper.findAll('article.product-card')).toHaveLength(4)
     expect(wrapper.findAll('article.product-card--soon')).toHaveLength(1)
     expect(wrapper.text()).toContain('MintPop API')
     expect(wrapper.text()).toContain('MintPop Shop')
+    expect(wrapper.text()).toContain('MintPop Lane')
+  })
+
+  it('轮播每产品一张 slide，前后翻页循环', async () => {
+    const wrapper = await mountAt('/products')
+    expect(wrapper.findAll('.slide')).toHaveLength(3)
+    expect(wrapper.find('.counter').text()).toBe('1 / 3')
+    await wrapper.find('button[aria-label="Previous product"]').trigger('click')
+    expect(wrapper.find('.counter').text()).toBe('3 / 3')
+    await wrapper.find('button[aria-label="Next product"]').trigger('click')
+    expect(wrapper.find('.counter').text()).toBe('1 / 3')
   })
 
   it('CTA 分别外链到 API 平台与 Shop 商城，新窗口打开', async () => {
     const wrapper = await mountAt('/products')
     const ctas = wrapper.findAll('a.cta')
-    expect(ctas.map((a) => a.attributes('href'))).toEqual([API_URL, SHOP_URL])
+    expect(ctas.map((a) => a.attributes('href'))).toEqual([API_URL, SHOP_URL, '#'])
     for (const cta of ctas) {
       expect(cta.attributes('target')).toBe('_blank')
       expect(cta.attributes('rel')).toBe('noopener')
