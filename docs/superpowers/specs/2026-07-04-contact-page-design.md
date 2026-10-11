@@ -25,7 +25,7 @@
 - **路由**：`BASE_ROUTES` 加 `{ path: '/contact', name: 'CONTACT', zh: true }`，自动生成 `/zh/contact` 中文树。
 - **SEO**：`src/config/seo.ts` 加 `CONTACT` 条目（title/description 中英双份，可收录、随 `INDEXABLE_ROUTES` 进 sitemap）。现有路由↔SEO 契约测试自动覆盖。
 - **i18n**：`en.ts` / `zh.ts` 各加 `contact` 段（标题、介绍、两卡片文案）。英文为真相源，中文按结构对齐。
-- **入口**：`AppHeader.vue`、`AppFooter.vue` 的「联系我们」由 `` `${lp('/legal')}#contact` `` 改为 `` lp('/contact') ``；`legalDesc` 等 Legal 占位文案中「联系方式将呈现于此」的表述不动（Legal 页仍是占位）。
+- **入口**：`AppHeader.vue`、`AppFooter.vue` 的「联系我们」由 `` `${lp('/legal')}#contact` `` 改为 `lp('/contact')`；`legalDesc` 等 Legal 占位文案中「联系方式将呈现于此」的表述不动（Legal 页仍是占位）。
 
 ## 测试
 

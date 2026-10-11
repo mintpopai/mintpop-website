@@ -25,11 +25,13 @@
 ### Task 1: i18n 词条与 SHOP_URL 常量
 
 **Files:**
+
 - Modify: `src/locales/en.ts`（`nav` 增 1 键；`footer` 增 1 键；新增 `products` 命名空间）
 - Modify: `src/locales/zh.ts`（同构镜像）
 - Modify: `src/config/site.ts`（新增 `SHOP_URL` 常量）
 
 **Interfaces:**
+
 - Consumes: 无（首个任务）。
 - Produces: 词条键 `nav.products`、`footer.products`、`products.*`（结构见下）；常量 `export const SHOP_URL = 'https://shop.mintpop.ai'`。后续任务的组件用 `t('products.api.name')` 等取词条、`import { SHOP_URL } from '@/config/site'` 取地址。
 
@@ -152,12 +154,14 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 ### Task 2: 注册 /products 路由与 SEO（占位视图先行）
 
 **Files:**
+
 - Modify: `src/config/seo.ts`（`SeoRouteKey` 增 `'PRODUCTS'` + `SEO` 增条目）
 - Modify: `src/config/seo.test.ts`（`ALL_KEYS` 增 key + noindex 断言）
 - Modify: `src/router/index.ts`（`BASE_ROUTES` 增条目）
 - Create: `src/views/ProductsView.vue`（骨架：h1 + intro + useSeo，产品卡下一任务填充）
 
 **Interfaces:**
+
 - Consumes: Task 1 的词条 `products.title`、`products.intro`。
 - Produces: SEO key `'PRODUCTS'`（`useSeo('PRODUCTS')` 可用）；路由 `/products`（name `PRODUCTS`）与 `/zh/products`（name `PRODUCTS_ZH`）；组件文件 `@/views/ProductsView.vue`。Task 3 在该文件内扩展，Task 4 的页头/页脚链接指向该路由。
 
@@ -180,7 +184,7 @@ const ALL_KEYS: SeoRouteKey[] = [
 `login/register/404 标了 noindex，home/legal 未标` 用例中 `expect(SEO.LEGAL.noindex).toBeUndefined()` 之后加一行（产品页必须可收录）：
 
 ```ts
-    expect(SEO.PRODUCTS.noindex).toBeUndefined()
+expect(SEO.PRODUCTS.noindex).toBeUndefined()
 ```
 
 - [ ] **Step 2: 运行测试确认失败**
@@ -194,13 +198,7 @@ Expected: FAIL——TS 编译错误 `'PRODUCTS'` 不在 `SeoRouteKey` 联合类�
 
 ```ts
 export type SeoRouteKey =
-  | 'HOME'
-  | 'PRODUCTS'
-  | 'CONTACT'
-  | 'LEGAL'
-  | 'LOGIN'
-  | 'REGISTER'
-  | 'NOT_FOUND'
+  'HOME' | 'PRODUCTS' | 'CONTACT' | 'LEGAL' | 'LOGIN' | 'REGISTER' | 'NOT_FOUND'
 ```
 
 `SEO` 对象中 `HOME` 条目之后加：
@@ -323,10 +321,12 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 ### Task 3: 产品大卡列表（TDD）
 
 **Files:**
+
 - Create: `src/views/ProductsView.test.ts`
 - Modify: `src/views/ProductsView.vue`（骨架扩展为完整页面）
 
 **Interfaces:**
+
 - Consumes: Task 1 的 `products.*` 词条、`API_URL` / `SHOP_URL` 常量；Task 2 的 `/products` 路由与 `useSeo('PRODUCTS')`。
 - Produces: 页面 DOM 契约——`article.product-card` ×3（其中一张带 `product-card--soon`）、CTA 为 `a.cta` 外链。Task 4 不依赖本任务，Task 5 的 SSG 校验依赖页面可渲染。
 
@@ -681,12 +681,14 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 ### Task 4: 页头/页脚接入产品页入口（TDD）
 
 **Files:**
+
 - Modify: `src/components/AppHeader.test.ts`（「AppHeader 导航链接」describe 增用例）
 - Modify: `src/components/AppHeader.vue`（Contact 左侧加 Products 链接）
 - Modify: `src/components/AppFooter.test.ts`（增用例）
 - Modify: `src/components/AppFooter.vue`（链接组首位加「全部产品」）
 
 **Interfaces:**
+
 - Consumes: Task 1 的 `nav.products` / `footer.products` 词条；Task 2 的 `/products` 路由。
 - Produces: 页头 `a.products-link`、页脚指向 `lp('/products')` 的链接（无后续任务依赖）。
 
@@ -695,12 +697,12 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 `src/components/AppHeader.test.ts` 的 `describe('AppHeader 导航链接', ...)` 内加用例：
 
 ```ts
-  it('产品页链接指向 /products，中文页带 /zh 前缀', async () => {
-    const en = await mountAt('/')
-    expect(en.find('a.products-link').attributes('href')).toBe('/products')
-    const zh = await mountAt('/zh')
-    expect(zh.find('a.products-link').attributes('href')).toBe('/zh/products')
-  })
+it('产品页链接指向 /products，中文页带 /zh 前缀', async () => {
+  const en = await mountAt('/')
+  expect(en.find('a.products-link').attributes('href')).toBe('/products')
+  const zh = await mountAt('/zh')
+  expect(zh.find('a.products-link').attributes('href')).toBe('/zh/products')
+})
 ```
 
 `src/components/AppFooter.test.ts` 加 describe：
@@ -726,7 +728,7 @@ Expected: 新增 2 个用例 FAIL（找不到链接），原有用例 PASS。
 `src/components/AppHeader.vue` 的 `.actions` 内、Contact 链接之前加（复用 `contact-link` 样式，小屏随 Contact 一同隐藏由页脚兜底；`products-link` 仅作测试与语义锚点）：
 
 ```vue
-      <RouterLink :to="lp('/products')" class="contact-link products-link">
+<RouterLink :to="lp('/products')" class="contact-link products-link">
         {{ t('nav.products') }}
       </RouterLink>
 ```
@@ -736,8 +738,8 @@ Expected: 新增 2 个用例 FAIL（找不到链接），原有用例 PASS。
 `src/components/AppFooter.vue` 的 `<nav class="links">` 内、第一个链接（服务条款）之前加：
 
 ```vue
-        <RouterLink :to="lp('/products')" class="link">{{ t('footer.products') }}</RouterLink>
-        <span class="sep">·</span>
+<RouterLink :to="lp('/products')" class="link">{{ t('footer.products') }}</RouterLink>
+<span class="sep">·</span>
 ```
 
 - [ ] **Step 5: 运行测试确认通过**
@@ -759,9 +761,11 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 ### Task 5: 全量验证与 SSG 产物核对
 
 **Files:**
+
 - 无新改动（只跑校验；若 lint/format 有产出则以 `style:`/`fix:` 提交）
 
 **Interfaces:**
+
 - Consumes: 前四个任务的全部产出。
 - Produces: 验证结论（质量门禁全绿 + 双语页面已预渲染 + sitemap 收录）。
 

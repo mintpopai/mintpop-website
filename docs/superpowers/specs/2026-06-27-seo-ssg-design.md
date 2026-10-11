@@ -22,14 +22,14 @@
 
 ## 2. 关键决策(已与用户确认)
 
-| 决策点 | 结论 |
-|---|---|
-| 渲染方式 | SSG 预渲染(`vite-ssg`),**部署模式不变,仍纯静态 nginx** |
-| SEO 范围 | 每页 Meta + OG/Twitter 卡片 + JSON-LD 结构化数据 + sitemap/robots,全做 |
-| 生产域名 | `https://mintpop.ai` |
-| 收录范围 | `/` 与 `/legal` 进 sitemap 并允许收录;`/login`、`/register` 加 `noindex` 且不进 sitemap |
-| 防闪烁脚本 | 做(在 `index.html` head 内联,首屏 paint 前定主题) |
-| OG 图 | 基于 `brand/` 素材合成一张 1200×630 的 `public/og-image.png` |
+| 决策点     | 结论                                                                                    |
+| ---------- | --------------------------------------------------------------------------------------- |
+| 渲染方式   | SSG 预渲染(`vite-ssg`),**部署模式不变,仍纯静态 nginx**                                  |
+| SEO 范围   | 每页 Meta + OG/Twitter 卡片 + JSON-LD 结构化数据 + sitemap/robots,全做                  |
+| 生产域名   | `https://mintpop.ai`                                                                    |
+| 收录范围   | `/` 与 `/legal` 进 sitemap 并允许收录;`/login`、`/register` 加 `noindex` 且不进 sitemap |
+| 防闪烁脚本 | 做(在 `index.html` head 内联,首屏 paint 前定主题)                                       |
+| OG 图      | 基于 `brand/` 素材合成一张 1200×630 的 `public/og-image.png`                            |
 
 ## 3. 总体架构
 
@@ -98,20 +98,20 @@
 
 ## 10. 交付物清单
 
-| 文件 | 动作 |
-|---|---|
-| `package.json` | 加 `vite-ssg`、`@unhead/vue`;`build` 改为 `vue-tsc -b && vite-ssg build` |
-| `src/main.ts` | 改用 `ViteSSG` 包装导出 `createApp`,挂载 router 与 head |
-| `src/composables/useTheme.ts` | SSR 安全守卫 + 客户端同步 |
-| `src/config/site.ts` | 新增:`SITE_URL` 等站点常量 |
-| `src/config/seo.ts` | 新增:每路由 SEO 数据 |
-| `src/composables/useSeo.ts` | 新增:`buildSeoHead` 组装 head |
-| `src/views/*.vue` | 调用 `useSeo`/`useHead`,login/register 加 noindex |
-| `index.html` | 精简写死 meta + 加防闪烁内联脚本 |
-| `public/robots.txt` | 新增 |
-| `public/og-image.png` | 新增(品牌素材合成) |
-| sitemap 生成 | 接入 `vite-ssg` 配置 |
-| `vite.config.ts` | 加 `ssgOptions` 等所需配置 |
+| 文件                          | 动作                                                                     |
+| ----------------------------- | ------------------------------------------------------------------------ |
+| `package.json`                | 加 `vite-ssg`、`@unhead/vue`;`build` 改为 `vue-tsc -b && vite-ssg build` |
+| `src/main.ts`                 | 改用 `ViteSSG` 包装导出 `createApp`,挂载 router 与 head                  |
+| `src/composables/useTheme.ts` | SSR 安全守卫 + 客户端同步                                                |
+| `src/config/site.ts`          | 新增:`SITE_URL` 等站点常量                                               |
+| `src/config/seo.ts`           | 新增:每路由 SEO 数据                                                     |
+| `src/composables/useSeo.ts`   | 新增:`buildSeoHead` 组装 head                                            |
+| `src/views/*.vue`             | 调用 `useSeo`/`useHead`,login/register 加 noindex                        |
+| `index.html`                  | 精简写死 meta + 加防闪烁内联脚本                                         |
+| `public/robots.txt`           | 新增                                                                     |
+| `public/og-image.png`         | 新增(品牌素材合成)                                                       |
+| sitemap 生成                  | 接入 `vite-ssg` 配置                                                     |
+| `vite.config.ts`              | 加 `ssgOptions` 等所需配置                                               |
 
 **部署链路(nginx / Dockerfile / docker-compose / mise / CI)零改动。**
 

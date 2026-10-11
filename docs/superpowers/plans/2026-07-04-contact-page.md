@@ -24,6 +24,7 @@
 ### Task 1: ContactView 页面 + 配置接线（常量 / SEO / 路由 / i18n）
 
 **Files:**
+
 - Create: `src/views/ContactView.vue`
 - Create: `src/views/ContactView.test.ts`
 - Modify: `src/config/site.ts`（加两个常量）
@@ -32,6 +33,7 @@
 - Modify: `src/locales/en.ts` / `src/locales/zh.ts`（加 `contact` 段）
 
 **Interfaces:**
+
 - Consumes: `useSeo(key)`、`useLocale()`、`createAppI18n()`、`localizePath`——均已存在
 - Produces: 路由 `/contact`、`/zh/contact`；常量 `SUPPORT_EMAIL`、`TELEGRAM_GROUP_URL`（`@/config/site`）；i18n `contact.*` 词条——Task 2 的入口链接依赖 `/contact` 路由存在
 
@@ -89,11 +91,11 @@ describe('ContactView 联系渠道', () => {
 注意：`createAppI18n()` 的语言由路由守卫设置（main.ts），测试里没有守卫——中文断言依赖组件内不依赖全局 locale 的写法不可行，故 ContactView 的 `t()` 走 `useI18n()` 全局实例，测试中需手动同步语言。**在 `mountAt` 里 push 后补一行**：
 
 ```ts
-  const i18n = createAppI18n()
-  i18n.global.locale.value = router.currentRoute.value.meta.locale ?? 'en'
-  return mount(ContactView, {
-    global: { plugins: [router, i18n, createHead()] },
-  })
+const i18n = createAppI18n()
+i18n.global.locale.value = router.currentRoute.value.meta.locale ?? 'en'
+return mount(ContactView, {
+  global: { plugins: [router, i18n, createHead()] },
+})
 ```
 
 （替换上面 `createAppI18n()` 直接入插件的写法；`'en'` 字面量与 `Locale.EN` 等价，导入 `Locale` 用 `Locale.EN` 更规范。）
@@ -408,12 +410,14 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 ### Task 2: 页头/页脚入口改造（联系我们 → /contact，锚点链接全站可用）
 
 **Files:**
+
 - Modify: `src/components/AppHeader.vue`（logo/锚点/联系链接）
 - Modify: `src/components/AppFooter.vue`（logo/联系链接）
 - Modify: `src/components/AppHeader.test.ts`（补断言）
 - Create: `src/components/AppFooter.test.ts`
 
 **Interfaces:**
+
 - Consumes: Task 1 产出的 `/contact` 路由与 `lp()`（`useLocale`，已存在）
 - Produces: 无新接口，纯链接指向变更
 
@@ -485,7 +489,7 @@ Expected: 新增断言 FAIL（现值为 `/legal#contact`、`#top` 等）
 logo（原 `<a href="#top" class="logo-link">`）改为：
 
 ```vue
-    <RouterLink :to="`${lp('/')}#top`" class="logo-link">
+<RouterLink :to="`${lp('/')}#top`" class="logo-link">
       <BrandLogo :size="24" />
     </RouterLink>
 ```
@@ -493,7 +497,7 @@ logo（原 `<a href="#top" class="logo-link">`）改为：
 nav 区（原两个裸锚点 + 指向 `/legal#contact` 的联系链接）改为：
 
 ```vue
-    <nav class="nav">
+<nav class="nav">
       <RouterLink :to="`${lp('/')}#capabilities`" class="nav-link">
         {{ t('nav.capabilities') }}
       </RouterLink>
@@ -514,7 +518,7 @@ nav 区（原两个裸锚点 + 指向 `/legal#contact` 的联系链接）改为�
 logo 改为 `<RouterLink :to="`${lp('/')}#top`" class="logo-link">`（闭合标签同步改 `</RouterLink>`）；联系链接改为：
 
 ```vue
-        <RouterLink :to="lp('/contact')" class="link">
+<RouterLink :to="lp('/contact')" class="link">
           {{ t('footer.contact') }}
         </RouterLink>
 ```
