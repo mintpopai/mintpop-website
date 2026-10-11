@@ -81,6 +81,19 @@ describe('ContactView 联系渠道', () => {
     expect(btn.classes()).toContain('copy-id--done')
   })
 
+  it('微信说明里展示可点击复制的微信号', async () => {
+    const writeText = vi.fn().mockResolvedValue(undefined)
+    Object.defineProperty(navigator, 'clipboard', { value: { writeText }, configurable: true })
+    const wrapper = await mountAt('/zh/contact')
+    const btn = wrapper.find('button.copy-id')
+    expect(btn.text()).toContain('Mintpop_ai')
+    expect(btn.attributes('aria-label')).toBe('复制微信号')
+    await btn.trigger('click')
+    await flushPromises()
+    expect(writeText).toHaveBeenCalledWith('Mintpop_ai')
+    expect(btn.classes()).toContain('copy-id--done')
+  })
+
   it('切到 QQ 后可再切回微信', async () => {
     const wrapper = await mountAt('/contact')
     const tabs = wrapper.findAll('button.im-tab')

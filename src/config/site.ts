@@ -11,10 +11,11 @@ export const API_URL = 'https://api.mintpop.ai'
 // Shop 商城地址：产品页 MintPop Shop 的 CTA 跳转目标（地址暂定，改这里全站生效）
 export const SHOP_URL = 'https://shop.mintpop.ai'
 
-// 联系渠道:支持邮箱、Telegram 群邀请链接与 QQ 群号,改这里全站生效
+// 联系渠道:支持邮箱、Telegram 群邀请链接、QQ 群号与微信号,改这里全站生效
 export const SUPPORT_EMAIL = 'support@mintpop.ai'
 export const TELEGRAM_GROUP_URL = 'https://t.me/+NpAwBIWXs8FkMzVh'
 export const QQ_GROUP_NUMBER = '1063651825'
+export const WECHAT_ID = 'Mintpop_ai'
 
 // 相对站点根的静态资源路径（og-image 是本站专属社交分享图，非品牌通用物料，仍本地托管）
 export const OG_IMAGE_PATH = '/og-image.png'

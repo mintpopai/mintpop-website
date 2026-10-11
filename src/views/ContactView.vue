@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import qqQrUrl from '@/assets/qq-qr.jpg'
 import wechatQrUrl from '@/assets/wechat-qr.jpg'
 import AppFooter from '@/components/AppFooter.vue'
 import AppHeader from '@/components/AppHeader.vue'
+import CopyIdButton from '@/components/CopyIdButton.vue'
 import { useSeo } from '@/composables/useSeo'
-import { QQ_GROUP_NUMBER, SUPPORT_EMAIL, TELEGRAM_GROUP_URL } from '@/config/site'
+import { QQ_GROUP_NUMBER, SUPPORT_EMAIL, TELEGRAM_GROUP_URL, WECHAT_ID } from '@/config/site'
 
 // 联系页：邮件支持 + Telegram 群 + IM 二维码（微信 / QQ 群可切换，默认微信）；
 // 个人账号已按需求移除，见组件测试守护
@@ -18,21 +19,6 @@ const { t } = useI18n()
 type ImChannel = 'WECHAT' | 'QQ'
 const channel = ref<ImChannel>('WECHAT')
 const isWechat = computed(() => channel.value === 'WECHAT')
-
-// 群号点击复制：成功后短暂展示对勾反馈
-const copied = ref(false)
-let copiedTimer: ReturnType<typeof setTimeout> | undefined
-async function copyGroupNumber() {
-  try {
-    await navigator.clipboard.writeText(QQ_GROUP_NUMBER)
-  } catch {
-    return
-  }
-  copied.value = true
-  clearTimeout(copiedTimer)
-  copiedTimer = setTimeout(() => (copied.value = false), 1600)
-}
-onBeforeUnmount(() => clearTimeout(copiedTimer))
 </script>
 
 <template>
@@ -134,54 +120,27 @@ onBeforeUnmount(() => clearTimeout(copiedTimer))
           <Transition name="qr-flip" mode="out-in">
             <div v-if="isWechat" class="im-panel">
               <img :src="wechatQrUrl" :alt="t('contact.wechatQrAlt')" class="im-qr" />
-              <p class="desc desc--center">{{ t('contact.wechatDesc') }}</p>
+              <!-- i18n-t 具名插槽把「可点击复制的微信号」嵌进译文，与 QQ 群号同一套结构 -->
+              <i18n-t keypath="contact.wechatDesc" tag="p" scope="global" class="desc desc--center">
+                <template #n>
+                  <CopyIdButton
+                    :value="WECHAT_ID"
+                    :label="t('contact.wechatCopyAria')"
+                    :copied-label="t('contact.copied')"
+                  />
+                </template>
+              </i18n-t>
             </div>
             <div v-else class="im-panel">
               <img :src="qqQrUrl" :alt="t('contact.qqQrAlt')" class="im-qr" />
               <!-- i18n-t 具名插槽把「可点击复制的群号」嵌进译文，中英共用一套结构 -->
               <i18n-t keypath="contact.qqDesc" tag="p" scope="global" class="desc desc--center">
                 <template #n>
-                  <button
-                    type="button"
-                    class="copy-id"
-                    :class="{ 'copy-id--done': copied }"
-                    :aria-label="t('contact.qqCopyAria')"
-                    @click="copyGroupNumber"
-                  >
-                    {{ QQ_GROUP_NUMBER }}
-                    <svg
-                      v-if="!copied"
-                      width="13"
-                      height="13"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      aria-hidden="true"
-                    >
-                      <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-                      <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
-                    </svg>
-                    <svg
-                      v-else
-                      width="13"
-                      height="13"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      aria-hidden="true"
-                    >
-                      <path d="M20 6 9 17l-5-5" />
-                    </svg>
-                    <span class="visually-hidden" role="status">
-                      {{ copied ? t('contact.qqCopied') : '' }}
-                    </span>
-                  </button>
+                  <CopyIdButton
+                    :value="QQ_GROUP_NUMBER"
+                    :label="t('contact.qqCopyAria')"
+                    :copied-label="t('contact.copied')"
+                  />
                 </template>
               </i18n-t>
             </div>
@@ -416,31 +375,6 @@ onBeforeUnmount(() => clearTimeout(copiedTimer))
 .qr-flip-leave-to {
   transform: perspective(720px) rotateY(58deg) scale(0.94);
   opacity: 0;
-}
-
-/* 群号复制按钮：嵌在描述句内，虚线下划线提示可点，复制成功变对勾 */
-.copy-id {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 0;
-  border: 0;
-  background: none;
-  cursor: pointer;
-  font: inherit;
-  font-weight: 600;
-  color: var(--text);
-  border-bottom: 1px dashed var(--border2);
-  transition: color 0.2s ease;
-}
-
-.copy-id:hover {
-  color: #12b7f5;
-}
-
-/* 双类写法抬高特异性：已复制的绿色反馈要盖过 :hover 蓝 */
-.copy-id.copy-id--done {
-  color: var(--accent-deep);
 }
 
 /* 二维码原图自带白底名片版式，深色主题下保持白底以保证可扫描；
