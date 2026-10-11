@@ -8,19 +8,25 @@ import ApiMock from '@/components/products/ApiMock.vue'
 import LaneMock from '@/components/products/LaneMock.vue'
 import ShopMock from '@/components/products/ShopMock.vue'
 import { useSeo } from '@/composables/useSeo'
-import { API_URL, SHOP_URL } from '@/config/site'
+import {
+  API_URL,
+  PRODUCT_API_ICON_URL,
+  PRODUCT_LANE_ICON_URL,
+  PRODUCT_SHOP_ICON_URL,
+  SHOP_URL,
+} from '@/config/site'
 
 // 产品页：顶部 featured 轮播（每产品一张 slide：示意图 + 文案 + CTA）+ 下方全部产品宫格。
 // 结构化数组驱动，词条在 products.<key> 命名空间；新增产品＝加一段词条＋一个数组项＋一张示意图。
 useSeo('PRODUCTS')
 const { t } = useI18n()
 
-// key 对应词条命名空间与 public/products/<key>.png 图标；href 为 CTA 外链目标。
+// key 对应词条命名空间；icon 为规范中心线上图标；href 为 CTA 外链目标。
 // Lane 尚未上线，落地地址等真正发布时再补，先指向 '#'。
 const PRODUCTS = [
-  { key: 'api', href: API_URL, mock: ApiMock },
-  { key: 'shop', href: SHOP_URL, mock: ShopMock },
-  { key: 'lane', href: '#', mock: LaneMock },
+  { key: 'api', icon: PRODUCT_API_ICON_URL, href: API_URL, mock: ApiMock },
+  { key: 'shop', icon: PRODUCT_SHOP_ICON_URL, href: SHOP_URL, mock: ShopMock },
+  { key: 'lane', icon: PRODUCT_LANE_ICON_URL, href: '#', mock: LaneMock },
 ] as const
 
 // 每个产品固定三条能力要点，模板按序号取词条
@@ -62,7 +68,7 @@ const onKeydown = (e: KeyboardEvent) => {
               <div class="slide-grid">
                 <component :is="p.mock" />
                 <div class="copy">
-                  <img :src="`/products/${p.key}.png`" alt="" width="64" height="64" class="icon" />
+                  <img :src="p.icon" alt="" width="64" height="64" class="icon" />
                   <h2 class="slide-title">{{ t(`products.${p.key}.name`) }}</h2>
                   <p class="slide-tagline">{{ t(`products.${p.key}.featured`) }}</p>
                   <a :href="p.href" target="_blank" rel="noopener" class="btn btn--lg">
@@ -96,7 +102,7 @@ const onKeydown = (e: KeyboardEvent) => {
       <div class="grid">
         <article v-for="p in PRODUCTS" :key="p.key" class="product-card">
           <!-- 产品图标水印：右上角溢出，深色模式透明度由 token 降低 -->
-          <img :src="`/products/${p.key}.png`" alt="" class="watermark" aria-hidden="true" />
+          <img :src="p.icon" alt="" class="watermark" aria-hidden="true" />
           <div class="body">
             <span class="badge badge-live">{{ t('products.live') }}</span>
             <h3 class="name">{{ t(`products.${p.key}.name`) }}</h3>
