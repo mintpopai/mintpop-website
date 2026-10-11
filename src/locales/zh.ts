@@ -206,12 +206,12 @@ const zh: typeof en = {
     },
     lane: {
       name: 'MintPop Lane',
-      featured: '打开就能写代码——代理、密钥与运行时都已就绪。',
-      tagline: '打开就能写代码——{hl}。',
-      hl: '环境已配好',
-      point1: '无需代理与密钥',
-      point2: '固定出口',
-      point3: '内置终端',
+      featured: '原生官方 Claude 账号，开箱即用——独享账号，稳定防封，直连不中转。',
+      tagline: '原生 Claude 账号——{hl}。',
+      hl: '开箱即用',
+      point1: '官方原生账号',
+      point2: '稳定防封',
+      point3: '开箱即用',
       cta: '下载',
     },
     more: {

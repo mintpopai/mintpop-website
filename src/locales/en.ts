@@ -210,12 +210,12 @@ export default {
     },
     lane: {
       name: 'MintPop Lane',
-      featured: 'Open it and code — proxy, keys and runtime are already handled.',
-      tagline: 'Open it and code — {hl}.',
-      hl: 'setup already done',
-      point1: 'No proxy or keys',
-      point2: 'Fixed exit',
-      point3: 'Built-in terminal',
+      featured: 'Your own native Claude account, ready to go — ban-resistant, no relays.',
+      tagline: 'Native Claude account — {hl}.',
+      hl: 'ready out of the box',
+      point1: 'Official account',
+      point2: 'Ban-resistant',
+      point3: 'Ready out of the box',
       cta: 'Download',
     },
     more: {
