@@ -41,6 +41,27 @@
   --accent-soft: rgba(23, 209, 167, 0.09);
   --accent-soft2: rgba(23, 209, 167, 0.16);
   --accent-border: #b9ebdd;
+
+  /* ---- 产品页（/products）产品级覆写 ----
+     设计稿刻意偏离 design-baseline 的 REFERENCE 值：底色略冷绿、描边 1.5px 且偏冷灰绿，
+     否则整版对比度太低、卡片浮不出来。属于基线允许的产品级调整，非 INVARIANT 违规。
+     全部收成 token，深色模式在下方一并覆写；页面内禁止散落硬编码色值。 */
+  --surface-page: #f2f7f4;
+  --surface-card: #ffffff;
+  --surface-tile: #f4f8f6;
+  --surface-featured: #def6ec;
+  --surface-soon: #eaf0ec;
+  --border-default: #cbd5d0;
+  --border-strong: #d3ddd8;
+  --border-accent: #a8dfc9;
+  --border-width: 1.5px;
+  --highlight: #b6f2df;
+  --featured-ink: #0b4e3d;
+  --featured-text: #1f3b33;
+  --card-text: #34403b;
+  --card-shadow: 0 2px 8px rgba(11, 11, 12, 0.09);
+  --mock-shadow: 0 14px 34px rgba(11, 11, 12, 0.15);
+  --watermark-opacity: 0.13;
 }
 
 :root[data-theme='DARK'] {
@@ -63,4 +84,22 @@
   --accent-soft: rgba(23, 209, 167, 0.14);
   --accent-soft2: rgba(23, 209, 167, 0.22);
   --accent-border: #1c4a3d;
+
+  /* ---- 产品页深色覆写 ---- */
+  --surface-page: #0a0f0d;
+  --surface-card: #131a17;
+  --surface-tile: #1a211e;
+  --surface-featured: #10201a;
+  --surface-soon: #111714;
+  --border-default: #26302b;
+  --border-strong: #232b27;
+  --border-accent: #1e4a3d;
+  --highlight: rgba(23, 209, 167, 0.28);
+  --featured-ink: #9fe3cd;
+  --featured-text: #c3d3cc;
+  --card-text: #b9c4bf;
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --mock-shadow: 0 14px 34px rgba(0, 0, 0, 0.5);
+  /* 产品水印图标在深色卡上会发白，透明度从 13% 降到 6% */
+  --watermark-opacity: 0.06;
 }
